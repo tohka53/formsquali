@@ -13,6 +13,13 @@ const routes: Routes = [
     loadChildren: () => import('./formbink/formbink/formbink.module').then(m => m.FormbinkModule)
   },  
 
+  {
+    
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
 ];
 
 @NgModule({

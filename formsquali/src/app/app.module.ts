@@ -8,6 +8,8 @@ import { FootetComponent } from './footet/footet/footet.component';
 import { HomeComponent } from './home/home/home.component';
 import { FormbinkComponent } from './formbink/formbink/formbink.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
