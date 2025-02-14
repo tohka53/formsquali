@@ -1,0 +1,73 @@
+{
+  "hash": "24b9bde0",
+  "configHash": "bac73088",
+  "lockfileHash": "5ed352a5",
+  "browserHash": "6a0d99b5",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "1d931d2b",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "aa99a577",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "95313353",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "15dc4380",
+      "needsInterop": false
+    },
+    "flowbite": {
+      "src": "../../../../../../node_modules/flowbite/lib/esm/index.js",
+      "file": "flowbite.js",
+      "fileHash": "0a75da63",
+      "needsInterop": false
+    },
+    "html2canvas": {
+      "src": "../../../../../../node_modules/html2canvas/dist/html2canvas.esm.js",
+      "file": "html2canvas.js",
+      "fileHash": "1f2cd25e",
+      "needsInterop": false
+    },
+    "jspdf": {
+      "src": "../../../../../../node_modules/jspdf/dist/jspdf.es.min.js",
+      "file": "jspdf.js",
+      "fileHash": "80851621",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "index.es-HJ6NDOY4": {
+      "file": "index__es-HJ6NDOY4.js"
+    },
+    "chunk-WUUVWCMF": {
+      "file": "chunk-WUUVWCMF.js"
+    },
+    "chunk-AB6LE3VF": {
+      "file": "chunk-AB6LE3VF.js"
+    },
+    "chunk-HRBR4UGS": {
+      "file": "chunk-HRBR4UGS.js"
+    },
+    "chunk-PYD6HPQS": {
+      "file": "chunk-PYD6HPQS.js"
+    },
+    "purify.es-5RCLILSO": {
+      "file": "purify__es-5RCLILSO.js"
+    },
+    "chunk-TXDUYLVM": {
+      "file": "chunk-TXDUYLVM.js"
+    }
+  }
+}
