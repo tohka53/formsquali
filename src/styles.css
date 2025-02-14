@@ -2,3 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos personalizados para impresión */
+@media print {
+  #form-container {
+    @apply w-[1024px] max-w-[1024px] !important;
+  }
+  
+  input {
+    @apply border border-black bg-white !important;
+  }
+}

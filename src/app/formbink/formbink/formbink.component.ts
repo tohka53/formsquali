@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-
 @Component({
   selector: 'app-formbink',
   standalone: false,
@@ -10,15 +9,10 @@ import html2canvas from 'html2canvas';
   styleUrl: './formbink.component.css'
 })
 export class FormbinkComponent implements OnInit {
-
-  ngOnInit() {
-    // Inicialización si es necesaria
-  }
-
+  ngOnInit() {}
 
   async exportToPDF() {
     try {
-      // Mostrar indicador de carga
       alert('Generando PDF, por favor espere...');
       
       const element = document.getElementById('form-container');
@@ -26,54 +20,88 @@ export class FormbinkComponent implements OnInit {
         throw new Error('No se encontró el elemento del formulario');
       }
 
-      // Configuración optimizada para html2canvas
+      // Forzar ancho de escritorio
+      const originalWidth = element.style.width;
+      const originalMaxWidth = element.style.maxWidth;
+      element.style.width = '1024px'; // Ancho fijo de escritorio
+      element.style.maxWidth = '1024px';
+
+        // Crear el footer temporalmente
+        const footer = document.createElement('div');
+        footer.style.width = '100%';
+        footer.style.padding = '20px';
+        footer.style.borderTop = '1px solid black';
+        footer.innerHTML = `
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; font-size: 12px;">
+            <div style="text-align: left;">Formulario de Business Intake</div>
+           String()}</div>
+          </div>
+        `;
+        element.appendChild(footer);
+
+
+
+      // Configuración de html2canvas
       const canvas = await html2canvas(element, {
         scale: 1.5,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        scrollX: 0,
-        scrollY: 0,
-        windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight,
-        logging: false
+        windowWidth: 1024, // Forzar ancho de ventana
+        logging: false,
+        onclone: (clonedDoc) => {
+          const clonedElement = clonedDoc.getElementById('form-container');
+          if (clonedElement) {
+            clonedElement.style.width = '1024px';
+            clonedElement.style.maxWidth = '1024px';
+            // Asegurar que todos los inputs mantengan su formato
+            clonedElement.querySelectorAll('input').forEach(input => {
+              input.style.width = input.offsetWidth + 'px';
+            });
+          }
+        }
       });
 
-      // Crear PDF
+      // Restaurar el ancho original
+      element.style.width = originalWidth;
+      element.style.maxWidth = originalMaxWidth;
+
+      // Configuración del PDF
       const pdf = new jsPDF({
         orientation: 'p',
         unit: 'mm',
-        format: 'a4'
+        format: 'a4',
+        compress: true
       });
 
       // Configurar dimensiones
-      const imgData = canvas.toDataURL('image/jpeg', 0.7);
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const margin = 10;
+      const contentWidth = pageWidth - (2 * margin);
+      const aspectRatio = canvas.height / canvas.width;
+      const contentHeight = contentWidth * aspectRatio;
 
-      let heightLeft = imgHeight;
-      let position = 0;
+      let heightLeft = contentHeight;
+      let position = margin;
       let page = 1;
 
       // Primera página
-      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, contentHeight);
+      heightLeft -= (pageHeight - 2 * margin);
 
-      // Agregar páginas adicionales si es necesario
+      // Páginas adicionales
       while (heightLeft >= 0) {
         pdf.addPage();
-        position = -pageHeight * page;
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        position = -pageHeight * page + margin;
+        pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, contentHeight);
+        heightLeft -= (pageHeight - 2 * margin);
         page++;
       }
 
-      // Guardar PDF
       pdf.save('formulario-business-intake.pdf');
       alert('PDF generado exitosamente');
-
     } catch (error) {
       console.error('Error al generar PDF:', error);
       alert('Hubo un error al generar el PDF. Por favor, intente nuevamente.');
@@ -83,4 +111,5 @@ export class FormbinkComponent implements OnInit {
   saveForm() {
     alert('Guardando formulario...');
   }
+  
 }
