@@ -1,73 +1,79 @@
 {
-  "hash": "24b9bde0",
-  "configHash": "bac73088",
-  "lockfileHash": "5ed352a5",
-  "browserHash": "6a0d99b5",
+  "hash": "5a25dc81",
+  "configHash": "8f67496b",
+  "lockfileHash": "21eef46d",
+  "browserHash": "b541aedf",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "1d931d2b",
+      "fileHash": "537826e4",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "aa99a577",
+      "fileHash": "46b41b6b",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "95313353",
+      "fileHash": "c85b6ccd",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "15dc4380",
+      "fileHash": "bff04758",
       "needsInterop": false
     },
     "flowbite": {
       "src": "../../../../../../node_modules/flowbite/lib/esm/index.js",
       "file": "flowbite.js",
-      "fileHash": "0a75da63",
+      "fileHash": "799bb27b",
       "needsInterop": false
     },
     "html2canvas": {
       "src": "../../../../../../node_modules/html2canvas/dist/html2canvas.esm.js",
       "file": "html2canvas.js",
-      "fileHash": "1f2cd25e",
+      "fileHash": "3e58f18c",
       "needsInterop": false
     },
     "jspdf": {
       "src": "../../../../../../node_modules/jspdf/dist/jspdf.es.min.js",
       "file": "jspdf.js",
-      "fileHash": "80851621",
+      "fileHash": "e57d6e3b",
+      "needsInterop": false
+    },
+    "@vercel/analytics": {
+      "src": "../../../../../../node_modules/@vercel/analytics/dist/index.mjs",
+      "file": "@vercel_analytics.js",
+      "fileHash": "93be5aa4",
       "needsInterop": false
     }
   },
   "chunks": {
-    "index.es-HJ6NDOY4": {
-      "file": "index__es-HJ6NDOY4.js"
+    "purify.es-FE2D7YR4": {
+      "file": "purify__es-FE2D7YR4.js"
+    },
+    "index.es-I4JR5UFA": {
+      "file": "index__es-I4JR5UFA.js"
+    },
+    "chunk-GJBFSBRJ": {
+      "file": "chunk-GJBFSBRJ.js"
+    },
+    "chunk-GSPDZL6I": {
+      "file": "chunk-GSPDZL6I.js"
     },
     "chunk-WUUVWCMF": {
       "file": "chunk-WUUVWCMF.js"
     },
-    "chunk-AB6LE3VF": {
-      "file": "chunk-AB6LE3VF.js"
+    "chunk-PFAMQY55": {
+      "file": "chunk-PFAMQY55.js"
     },
-    "chunk-HRBR4UGS": {
-      "file": "chunk-HRBR4UGS.js"
-    },
-    "chunk-PYD6HPQS": {
-      "file": "chunk-PYD6HPQS.js"
-    },
-    "purify.es-5RCLILSO": {
-      "file": "purify__es-5RCLILSO.js"
-    },
-    "chunk-TXDUYLVM": {
-      "file": "chunk-TXDUYLVM.js"
+    "chunk-SNAKS5WD": {
+      "file": "chunk-SNAKS5WD.js"
     }
   }
 }
