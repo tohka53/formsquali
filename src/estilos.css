@@ -2946,3 +2946,25 @@ input:checked + .toggle-bg {
     }
   }
 }
+
+
+@media (max-width: 768px) {
+  .overflow-x-auto {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+      display: none;
+  }
+
+  body {
+      font-size: 14px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"] {
+      font-size: 16px;
+  }
+}
