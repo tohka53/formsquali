@@ -1,0 +1,706 @@
+<!-- Contenedor principal del formulario -->
+<div class="min-h-screen bg-white p-6" id="form-container">
+    <!-- Encabezado con información de contacto -->
+    <div class="w-full max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-8 text-sm">
+            <!-- Columna del logo -->
+            <div class="w-1/3">
+                <img src="/assets/logo1.png" alt="Qualitech Boston" class="w-full max-w-[350px]">
+            </div>
+            
+            <!-- Columna de la información -->
+            <div class="text-right">
+                <p class="font-semibold">671 Adams Street</p>
+                <p>Dorchester MA 02122</p>
+                <p>Ph (617)288-1333</p>
+                <p>Fax: 617-249-1859</p>
+                <p>Email: qualitech&#64;qualitechboston.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Título del formulario -->
+    <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold">DECLARACIÓN DE IMPUESTOS</h1>
+        <h2 class="text-xl font-boldp-2">FORMULARIO DE PERFIL DE CLIENTE</h2>
+    </div>
+
+    <!-- Formulario principal -->
+    <form class="w-full max-w-6xl mx-auto space-y-4">
+
+
+
+<!-- Estado Civil -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">1. Estado Civil</h3>
+    <div class="flex gap-6">
+        <label class="flex items-center">
+            <span>Soltero</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
+        </label>
+        <label class="flex items-center">
+            <span>Cabeza de Familia</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
+        </label>
+        <label class="flex items-center">
+            <span>Casado declarando juntos</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
+        </label>
+        <label class="flex items-center">
+            <span>Casado declarando separados</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
+        </label>
+        <label class="flex items-center">
+            <span>Viudo</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
+        </label>
+    </div>
+</div>
+
+<!-- Información Personal -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">2. Información Personal</h3>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-4">
+            <div>
+                <label class="block">Primer Nombre</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Apellido</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div class="flex gap-4">
+                <div>
+                    <label class="block">Seguro Social #</label>
+                    <div class="flex gap-2">
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="3">
+                        <span>-</span>
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="2">
+                        <span>-</span>
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="4">
+                    </div>
+                </div>
+                <div>
+                    <label class="block">Fecha de Nacimiento</label>
+                    <div class="flex gap-2">
+                        <input type="text" class="w-16 border-b border-black p-2" placeholder="MM">
+                        <span>/</span>
+                        <input type="text" class="w-16 border-b border-black p-2" placeholder="DD">
+                        <span>/</span>
+                        <input type="text" class="w-20 border-b border-black p-2" placeholder="YYYY">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="block">Dirección</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block">Ciudad</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Estado</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Código Postal</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block">Celular #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Trabajo #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Casa #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block">E-mail</label>
+                    <input type="email" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Ocupación</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información de Cónyuge -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">3. Información de Cónyuge</h3>
+    <div class="grid grid-cols-2 gap-4">
+        <!-- Datos personales del cónyuge -->
+        <div class="space-y-4">
+            <div>
+                <label class="block">Primer Nombre</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Apellido</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div class="flex gap-4">
+                <div>
+                    <label class="block">Seguro Social #</label>
+                    <div class="flex gap-2">
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="3">
+                        <span>-</span>
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="2">
+                        <span>-</span>
+                        <input type="text" class="w-20 border-b border-black p-2" maxlength="4">
+                    </div>
+                </div>
+                <div>
+                    <label class="block">Fecha de Nacimiento</label>
+                    <div class="flex gap-2">
+                        <input type="text" class="w-16 border-b border-black p-2" placeholder="MM">
+                        <span>/</span>
+                        <input type="text" class="w-16 border-b border-black p-2" placeholder="DD">
+                        <span>/</span>
+                        <input type="text" class="w-20 border-b border-black p-2" placeholder="YYYY">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dirección y contacto del cónyuge -->
+        <div class="space-y-4">
+            <div>
+                <label class="block">Dirección</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block">Ciudad</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Estado</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Código Postal</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block">Celular #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Trabajo #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Casa #</label>
+                    <input type="tel" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block">E-mail</label>
+                    <input type="email" class="w-full border-b border-black p-2">
+                </div>
+                <div>
+                    <label class="block">Ocupación</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dependientes -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">4. Dependientes</h3>
+    <p class="text-sm italic mb-4">DOCUMENTOS DE RESPALDO: inscripción en el seguro, carta de verificación escolar, examen médico físico, carta de cuidado de niños, contrato de arrendamiento.</p>
+    
+    <!-- Preguntas sobre dependientes -->
+    <div class="space-y-2 mb-4">
+        <div class="flex items-center gap-4">
+            <p>¿Dependientes que no viven con usted pero que han sido mantenidos por usted durante al menos 6 meses?</p>
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+        <div class="flex items-center gap-4">
+            <p>Guardería / Programa extracurricular calificado / Campamento</p>
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+
+    <!-- Tabla de dependientes -->
+    <div class="border border-black">
+        <table class="w-full">
+            <thead>
+                <tr class="border-b border-black">
+                    <th class="p-2 border-r border-black">NOMBRE</th>
+                    <th class="p-2 border-r border-black">FECHA DE NACIMIENTO</th>
+                    <th class="p-2 border-r border-black">SEGURO SOCIAL #</th>
+                    <th class="p-2 border-r border-black">RELACION</th>
+                    <th class="p-2"># DE MESES VIVIENDO CON DEPENDIENTE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-black">
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full" placeholder="MM/DD/YYYY">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2">
+                        <input type="number" class="w-full">
+                    </td>
+                </tr>
+                <tr class="border-b border-black">
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full" placeholder="MM/DD/YYYY">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2">
+                        <input type="number" class="w-full">
+                    </td>
+                </tr>
+                <tr class="border-b border-black">
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full" placeholder="MM/DD/YYYY">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2">
+                        <input type="number" class="w-full">
+                    </td>
+                </tr>
+                <tr class="border-b border-black">
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full" placeholder="MM/DD/YYYY">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2 border-r border-black">
+                        <input type="text" class="w-full">
+                    </td>
+                    <td class="p-2">
+                        <input type="number" class="w-full">
+                    </td>
+                </tr>
+                <!-- Repetir para más filas según sea necesario -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Propietario -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">5. Propietario</h3>
+    <div class="space-y-4">
+        <div class="flex items-center gap-4">
+            <div class="flex gap-4">
+                <label class="flex items-center">
+                    <span>Si</span>
+                    <input type="checkbox" class="ml-2 h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span>No</span>
+                    <input type="checkbox" class="ml-2 h-4 w-4">
+                </label>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <label class="font-medium"># de Unidades</label>
+            <input type="number" class="border-b border-black p-2 w-24">
+            <span class="text-sm italic">(COMPLETAR EL FORMULARIO DE PROPIEDAD INMOBILIARIA)</span>
+        </div>
+    </div>
+</div>
+
+<!-- Trabajador por Cuenta Propia -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">6. Trabajador por Cuenta Propia</h3>
+    <div class="space-y-4">
+        <div class="flex items-center gap-4 mb-4">
+            <div class="flex gap-4">
+                <label class="flex items-center">
+                    <span>Si</span>
+                    <input type="checkbox" class="ml-2 h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span>No</span>
+                    <input type="checkbox" class="ml-2 h-4 w-4">
+                </label>
+            </div>
+            <span class="text-sm italic">(COMPLETE FORMULARIO)</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block">Nombre de la empresa</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">EIN</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4">
+            <div class="col-span-2">
+                <label class="block">Dirección</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Ciudad</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Estado</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Código postal</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block">Celular #</label>
+                <input type="tel" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Trabajo #</label>
+                <input type="tel" class="w-full border-b border-black p-2">
+            </div>
+        </div>
+
+        <div>
+            <label class="block">E-mail</label>
+            <input type="email" class="w-full border-b border-black p-2">
+        </div>
+
+        <p class="text-sm italic">
+            DOCUMENTOS DE RESPALDO PARA TRABAJADORES POR CUENTA PROPIA: formularios 1099 Misceláneos, 
+            carta del contratista, registros de ingresos brutos proporcionados por el contribuyente, 
+            resumen de ingresos del contribuyente, registro de gastos proporcionados por el contribuyente, 
+            resumen de ingresos y gastos, estado de cuenta bancario, estados de pérdidas y ganancias.
+        </p>
+    </div>
+</div>
+
+<!-- Intereses bancarios -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">7. Intereses bancarios</h3>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <div class="flex items-center">
+                <span>($</span>
+                <input type="number" class="w-24 border-b border-black mx-1">
+                <span>)</span>
+            </div>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Compensación por desempleo -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">8. Compensación por desempleo</h3>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- IRA, Distribución -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">9. IRA, Distribución de Pensiones o Anualidades</h3>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Moneda Virtual -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">10. ¿Compraste o vendiste alguna moneda virtual?</h3>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+        <span class="text-sm italic">(En caso afirmativo, adjunta para 8949)</span>
+    </div>
+</div>
+
+<!-- Venta de acciones -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">11. ¿Vendiste acciones?</h3>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Si</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Seguro de Salud -->
+<div class="border border-black p-4 mb-4">
+    <h3 class="font-bold mb-4">12. Seguro de Salud</h3>
+    <div class="space-y-4">
+        <!-- Tipo de seguro -->
+        <div class="flex gap-4">
+            <label class="flex items-center">
+                <span>Privado</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>MassHealth</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+
+        <!-- Detalles del seguro -->
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <label class="block">Nombre del seguro</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">FID#</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+            <div>
+                <label class="block">Miembro #</label>
+                <input type="text" class="w-full border-b border-black p-2">
+            </div>
+        </div>
+
+        <!-- Preguntas adicionales -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <span>¿Tienes un 1095 A?</span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>¿Cubierto todo el año?</span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <span>¿Ha hecho contribuciones a una cuenta HAS?</span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>¿Llevas contigo la tarjeta del seguro?</span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Información de Banco -->
+<div class="border border-black p-4 mb-8">
+    <h3 class="font-bold mb-4">13. Información de Banco</h3>
+    <div class="grid grid-cols-3 gap-4">
+        <div>
+            <label class="block">Nombre</label>
+            <input type="text" class="w-full border-b border-black p-2">
+        </div>
+        <div>
+            <label class="block">Acct#</label>
+            <input type="text" class="w-full border-b border-black p-2">
+        </div>
+        <div>
+            <label class="block">Ruta #</label>
+            <input type="text" class="w-full border-b border-black p-2">
+        </div>
+    </div>
+</div>
+
+<!-- Firmas -->
+<div class="space-y-8 mb-8">
+    <div class="grid grid-cols-2 gap-8">
+        <div>
+            <label class="block mb-2">Firma del Cliente</label>
+            <div class="border-b border-black p-2 h-16"></div>
+            <div class="flex justify-between mt-2">
+                <span>Fecha</span>
+                <input type="date" class="border-b border-black">
+            </div>
+        </div>
+        <div>
+            <label class="block mb-2">Firma del Cliente</label>
+            <div class="border-b border-black p-2 h-16"></div>
+            <div class="flex justify-between mt-2">
+                <span>Fecha</span>
+                <input type="date" class="border-b border-black">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Aviso de Tarifas -->
+<div class="bg-gray-100 p-4 text-center font-bold mb-8">
+    LAS TARIFAS DE LLENADO DEBEN PAGARSE EN EL MOMENTO DEL SERVICIO
+</div>
+
+<!-- Solo para uso en la oficina -->
+<div class="border border-black p-4 mb-8">
+    <h4 class="font-bold mb-4">SOLO PARA USO EN LA OFICINA</h4>
+    <ul class="list-disc pl-4 space-y-2 text-sm">
+        <li>Adjunte una copia de la tarjeta social de identificación con foto, la tarjeta de seguro y los formularios W-2 originales</li>
+        <li>No se permiten tarjetas SS escritas a máquina. Todos los formularios W-2 escritos a máquina deben ser verificados.</li>
+        <li>Al reclamar dependientes del crédito por ingreso del trabajo, se debe verificar la información.</li>
+        <li>Todos los solicitantes deben tener 18 años.</li>
+        <li>Todos los clientes que trabajan por cuenta propia deben presentar registros precisos de ingresos y gastos comerciales en el momento de la presentación.</li>
+        <li>Se deben cobrar tarifas adicionales por copias de declaraciones de impuestos antes de entregárselas al cliente.</li>
+    </ul>
+</div>
+
+<!-- Certificación -->
+<div class="border border-black p-4 text-sm">
+    <p class="mb-4">
+        Al firmar este formulario, certifico que toda la información proporcionada a Qualitech Professional Services es verdadera, correcta a mi leal saber y entender (yo/nosotros) entiendo que cualquier evaluación, sanción o auditoría por parte del IRS debido a omisiones o información errónea proporcionada a Qualitech (yo/nosotros) renuncia al derecho de emprender acciones legales contra Qualitech. (Yo/Nosotros) buscaremos la representación legal adecuada si es necesario fuera de Qualitech Professional Services y aceptaremos pagar toda la preparación de documentos en el momento del Servicio.
+    </p>
+</div>
+
+
+<!-- Botones de acción 
+<div class="flex justify-end space-x-4 mt-8">
+    <button type="button" (click)="saveForm()" 
+        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+        Guardar
+    </button>
+    <button type="button" (click)="exportToPDF()" 
+        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
+        Exportar a PDF
+    </button>
+</div>-->

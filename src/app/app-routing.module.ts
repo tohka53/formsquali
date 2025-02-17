@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./formsc/formsc/formsc.module').then(m => m.FormscModule)
   },  
   {
+    path: 'formispa',
+    loadChildren: () => import('./formispa/formispa/formispa.module').then(m => m.FormispaModule)
+  },  
+  {
     
     path: '',
     redirectTo: 'home',
