@@ -14,6 +14,14 @@ const routes: Routes = [
   },  
 
   {
+    path: 'formprode',
+    loadChildren: () => import('./formprode/formprode/formprode.module').then(m => m.FormprodeModule)
+  },  
+  {
+    path: 'formsc',
+    loadChildren: () => import('./formsc/formsc/formsc.module').then(m => m.FormscModule)
+  },  
+  {
     
     path: '',
     redirectTo: 'home',

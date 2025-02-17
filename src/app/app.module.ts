@@ -7,6 +7,8 @@ import { HeadtComponent } from './headt/headt/headt.component';
 import { FootetComponent } from './footet/footet/footet.component';
 import { HomeComponent } from './home/home/home.component';
 import { FormbinkComponent } from './formbink/formbink/formbink.component';
+import { FormprodeComponent } from './formprode/formprode/formprode.component';
+import { FormscComponent } from './formsc/formsc/formsc.component';
 
 
 inject();
@@ -16,7 +18,9 @@ inject();
     HeadtComponent,
     FootetComponent,
     HomeComponent,
-    FormbinkComponent
+    FormbinkComponent,
+    FormprodeComponent,
+    FormscComponent
   ],
   imports: [
     BrowserModule,
