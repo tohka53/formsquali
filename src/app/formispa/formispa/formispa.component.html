@@ -26,120 +26,203 @@
     </div>
 
     <!-- Formulario principal -->
-    <form class="w-full max-w-6xl mx-auto space-y-4">
 
 
 
-<!-- Estado Civil -->
+<!-- Preguntas iniciales -->
+<div class="border border-black p-4 mb-4">
+    <div class="space-y-4">
+        <!-- ¿Fuiste nuestro cliente fiscal el año pasado? -->
+        <div class="flex items-center gap-4">
+            <span>¿Fuiste nuestro cliente fiscal el año pasado?</span>
+            <div class="flex gap-4">
+                <label class="flex items-center">
+                    <span class="mr-2">Si</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">No</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+            </div>
+        </div>
+
+        <!-- ¿Cómo te enteraste de nosotros? -->
+        <div class="flex items-center gap-4">
+            <span>¿Cómo te enteraste de nosotros?</span>
+            <div class="flex gap-4">
+                <label class="flex items-center">
+                    <span class="mr-2">Anuncio</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">Amigos</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">Google</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">Otros</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 1. Estado Civil -->
 <div class="border border-black p-4 mb-4">
     <h3 class="font-bold mb-4">1. Estado Civil</h3>
-    <div class="flex gap-6">
+    <div class="flex items-center gap-8">
         <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 mr-2">
             <span>Soltero</span>
-            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 mr-2">
             <span>Cabeza de Familia</span>
-            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 mr-2">
             <span>Casado declarando juntos</span>
-            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 mr-2">
             <span>Casado declarando separados</span>
-            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 mr-2">
             <span>Viudo</span>
-            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
     </div>
 </div>
-
-<!-- Información Personal -->
+<!-- 2. Información Personal -->
 <div class="border border-black p-4 mb-4">
     <h3 class="font-bold mb-4">2. Información Personal</h3>
-    <div class="grid grid-cols-2 gap-4">
-        <div class="space-y-4">
+    <div class="space-y-4">
+        <!-- Nombre y Apellido -->
+        <div class="grid grid-cols-2 gap-4">
             <div>
-                <label class="block">Primer Nombre</label>
-                <input type="text" class="w-full border-b border-black p-2">
+                <span>Primer Nombre</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <label class="block">Apellido</label>
-                <input type="text" class="w-full border-b border-black p-2">
-            </div>
-            <div class="flex gap-4">
-                <div>
-                    <label class="block">Seguro Social #</label>
-                    <div class="flex gap-2">
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="3">
-                        <span>-</span>
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="2">
-                        <span>-</span>
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="4">
-                    </div>
-                </div>
-                <div>
-                    <label class="block">Fecha de Nacimiento</label>
-                    <div class="flex gap-2">
-                        <input type="text" class="w-16 border-b border-black p-2" placeholder="MM">
-                        <span>/</span>
-                        <input type="text" class="w-16 border-b border-black p-2" placeholder="DD">
-                        <span>/</span>
-                        <input type="text" class="w-20 border-b border-black p-2" placeholder="YYYY">
-                    </div>
-                </div>
+                <span>Apellido</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
         </div>
 
-        <div class="space-y-4">
+        <!-- Seguro Social y Fecha de Nacimiento -->
+        <div class="flex justify-between">
+            <div class="flex items-center gap-2">
+                <span>Seguro Social #</span>
+                <input type="text" class="border-b border-black w-16">-
+                <input type="text" class="border-b border-black w-16">-
+                <input type="text" class="border-b border-black w-16">
+            </div>
+            <div class="flex items-center gap-2">
+                <span>Fecha de Nacimiento</span>
+                <input type="date" class="border-b border-black">
+           
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="grid grid-cols-5 gap-4">
+            <div class="col-span-2">
+                <span>Dirección</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
             <div>
-                <label class="block">Dirección</label>
-                <input type="text" class="w-full border-b border-black p-2">
+                <span>Ciudad</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <label class="block">Ciudad</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Estado</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Código Postal</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
+            <div>
+                <span>Estado</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <label class="block">Celular #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Trabajo #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Casa #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
+            <div>
+                <span>Código Postal</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label class="block">E-mail</label>
-                    <input type="email" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Ocupación</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
+        </div>
+
+        <!-- Teléfonos -->
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <span>Celular #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
+            <div>
+                <span>Trabajo #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>Casa #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+        </div>
+
+        <!-- Email, Ocupación y PIN -->
+        <div class="grid grid-cols-4 gap-4">
+            <div class="col-span-2">
+                <span>E-mail</span>
+                <input type="email" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>Ocupación</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>PIN</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+        </div>
+
+       <!-- Tipo de Identificación -->
+<div class="space-y-2">
+    <div class="font-medium">Tipo de Identificación</div>
+    <div class="flex flex-wrap gap-6">
+        <div class="flex items-center gap-4">
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>Identificación de Estado</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>Licencia de Conducir</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>Pasaporte</span>
+            </label>
+        </div>
+        <div class="flex items-center">
+            <span>Identificación #</span>
+            <input type="text" class="border-b border-black w-40 ml-2">
+        </div>
+    </div>
+    <div class="flex flex-wrap gap-4 mt-2">
+        <div class="flex items-center">
+            <span>Estado</span>
+            <input type="text" class="border-b border-black w-20 ml-2">
+        </div>
+        <div class="flex items-center">
+            <span>Fecha de emisión</span>
+            <input type="date" class="border-b border-black">
+        </div>
+        <div class="flex items-center">
+            <span>Fecha de expiración</span>
+            <input type="date" class="border-b border-black">
         </div>
     </div>
 </div>
+    </div>
+</div>
+
+<!-- Seccion 3  -->
 
 <!-- Información de Cónyuge -->
 <div class="border border-black p-4 mb-4">
@@ -169,11 +252,7 @@
                 <div>
                     <label class="block">Fecha de Nacimiento</label>
                     <div class="flex gap-2">
-                        <input type="text" class="w-16 border-b border-black p-2" placeholder="MM">
-                        <span>/</span>
-                        <input type="text" class="w-16 border-b border-black p-2" placeholder="DD">
-                        <span>/</span>
-                        <input type="text" class="w-20 border-b border-black p-2" placeholder="YYYY">
+                        <input type="date" class="border-b border-black">
                     </div>
                 </div>
             </div>
@@ -213,7 +292,7 @@
                     <input type="tel" class="w-full border-b border-black p-2">
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-3 gap-4">
                 <div>
                     <label class="block">E-mail</label>
                     <input type="email" class="w-full border-b border-black p-2">
@@ -222,9 +301,52 @@
                     <label class="block">Ocupación</label>
                     <input type="text" class="w-full border-b border-black p-2">
                 </div>
+                <div>
+                    <label class="block">PIN</label>
+                    <input type="text" class="w-full border-b border-black p-2">
+                </div>
             </div>
         </div>
     </div>
+       <!-- Tipo de Identificación -->
+       <div class="space-y-2">
+        <div class="font-medium">Tipo de Identificación</div>
+        <div class="flex flex-wrap gap-6">
+            <div class="flex items-center gap-4">
+                <label class="flex items-center">
+                    <input type="checkbox" class="h-4 w-4 mr-2">
+                    <span>Identificación de Estado</span>
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" class="h-4 w-4 mr-2">
+                    <span>Licencia de Conducir</span>
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" class="h-4 w-4 mr-2">
+                    <span>Pasaporte</span>
+                </label>
+            </div>
+            <div class="flex items-center">
+                <span>Identificación #</span>
+                <input type="text" class="border-b border-black w-40 ml-2">
+            </div>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-2">
+            <div class="flex items-center">
+                <span>Estado</span>
+                <input type="text" class="border-b border-black w-20 ml-2">
+            </div>
+            <div class="flex items-center">
+                <span>Fecha de emisión</span>
+                <input type="date" class="border-b border-black">
+            </div>
+            <div class="flex items-center">
+                <span>Fecha de expiración</span>
+                <input type="date" class="border-b border-black">
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Dependientes -->
@@ -343,6 +465,74 @@
             </tbody>
         </table>
     </div>
+
+<!-- Si el dependiente no es su hijo -->
+<div class="border border-black p-4 mt-4">
+    <h4 class="font-bold mb-4">Si el dependiente no es su hijo</h4>
+    <div class="space-y-4">
+        <div class="flex items-center gap-4">
+            <span>¿Sabes dónde están los padres del niño?</span>
+            <label class="flex items-center">
+                <span>SI</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <span>¿Vivió uno de los padres con usted?</span>
+            <label class="flex items-center">
+                <span>SI</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <span>¿Alguien más vivió contigo?</span>
+            <label class="flex items-center">
+                <span>SI</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <span>¿Es posible que alguien más reclame al niño?</span>
+            <label class="flex items-center">
+                <span>SI</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <span>¿Existe un formulario 8232 de liberación/revocación activa?</span>
+            <label class="flex items-center">
+                <span>SI</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+            <label class="flex items-center">
+                <span>No</span>
+                <input type="checkbox" class="ml-2 h-4 w-4">
+            </label>
+        </div>
+    </div>
+</div>
+
+
 </div>
 <!-- Propietario -->
 <div class="border border-black p-4 mb-4">
@@ -397,7 +587,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-5 gap-4">
             <div class="col-span-2">
                 <label class="block">Dirección</label>
                 <input type="text" class="w-full border-b border-black p-2">
@@ -593,6 +783,19 @@
                         </label>
                     </div>
                 </div>
+                <div class="flex items-center justify-between">
+                    <span>¿Compra a través del mercado de intercambio? </span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="space-y-2">
@@ -611,6 +814,19 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <span>¿Llevas contigo la tarjeta del seguro?</span>
+                    <div class="flex gap-2">
+                        <label class="flex items-center">
+                            <span>Si</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                        <label class="flex items-center">
+                            <span>No</span>
+                            <input type="checkbox" class="ml-1 h-4 w-4">
+                        </label>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>¿Compra a través del empleador?</span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
                             <span>Si</span>
@@ -687,14 +903,15 @@
 
 <!-- Certificación -->
 <div class="border border-black p-4 text-sm">
-    <p class="mb-4">
+    <p class="mb-4 font-bold">
         Al firmar este formulario, certifico que toda la información proporcionada a Qualitech Professional Services es verdadera, correcta a mi leal saber y entender (yo/nosotros) entiendo que cualquier evaluación, sanción o auditoría por parte del IRS debido a omisiones o información errónea proporcionada a Qualitech (yo/nosotros) renuncia al derecho de emprender acciones legales contra Qualitech. (Yo/Nosotros) buscaremos la representación legal adecuada si es necesario fuera de Qualitech Professional Services y aceptaremos pagar toda la preparación de documentos en el momento del Servicio.
     </p>
 </div>
+</div>
 
 
-<!-- Botones de acción 
-<div class="flex justify-end space-x-4 mt-8">
+<!-- Botones de acción -->
+<div class="flex justify-center space-x-4 mt-8">
     <button type="button" (click)="saveForm()" 
         class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
         Guardar
@@ -703,4 +920,4 @@
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
         Exportar a PDF
     </button>
-</div>-->
+</div>
