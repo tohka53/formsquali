@@ -10,6 +10,7 @@ import { FormbinkComponent } from './formbink/formbink/formbink.component';
 import { FormprodeComponent } from './formprode/formprode/formprode.component';
 import { FormscComponent } from './formsc/formsc/formsc.component';
 import { FormispaComponent } from './formispa/formispa/formispa.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 inject();
@@ -26,7 +27,8 @@ inject();
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule  // Añadir esto
   ],
   providers: [],
   bootstrap: [AppComponent]
