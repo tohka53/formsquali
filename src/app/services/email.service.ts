@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = '/api/send-email'; // Este será nuestro endpoint en Vercel
-
+    private apiUrl = 'https://formsqualitechboston.vercel.app/api/send-email';
+  
   constructor(private http: HttpClient) { }
 
   sendEmailWithPdf(pdfBlob: Blob) {
