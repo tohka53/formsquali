@@ -1,33 +1,25 @@
 // src/app/services/email.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = 'https://formsqualitechboston.vercel.app/api/send-email';
+  private apiUrl = '/api/send-email'; // Este será nuestro endpoint en Vercel
 
   constructor(private http: HttpClient) { }
 
-  sendEmailWithPdf(pdfBlob: Blob): Observable<any> {
+  sendEmailWithPdf(pdfBlob: Blob) {
     const formData = new FormData();
     formData.append('pdf', pdfBlob, 'formulario.pdf');
-    formData.append('to', 'correo-destino@ejemplo.com');
-    formData.append('subject', 'Nuevo Formulario Business Intake');
-
+    formData.append('to', 'correo-destino@ejemplo.com'); // El correo al que quieres enviar
+    formData.append('subject', 'Nuevo Formulario');
+    // Agrega headers para debugging
     const headers = new HttpHeaders({
-      'Accept': 'application/json'
+        'Accept': 'application/json'
     });
 
-    return this.http.post(this.apiUrl, formData, { headers }).pipe(
-      tap(response => console.log('Respuesta del servidor:', response)),
-      catchError(error => {
-        console.error('Error detallado:', error);
-        return throwError(() => error);
-      })
-    );
+    return this.http.post(this.apiUrl, formData);
   }
 }
