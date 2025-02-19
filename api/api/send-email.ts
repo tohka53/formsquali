@@ -6,11 +6,16 @@ export default async function handler(
   request: VercelRequest,
   response: VercelResponse
 ) {
-  if (request.method !== 'POST') {
-    return response.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
+    // Configurar CORS
+    response.setHeader('Access-Control-Allow-Credentials', true);
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'POST');
+
+    if (request.method === 'OPTIONS') {
+      return response.status(200).end();
+    }
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -21,8 +26,8 @@ export default async function handler(
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Correo donde recibirás los PDFs
-      subject: 'Nuevo Formulario',
+      to: process.env.EMAIL_USER,
+      subject: 'Nuevo Formulario Business Intake',
       text: 'Adjunto encontrará el formulario solicitado.',
       attachments: [{
         filename: 'formulario.pdf',
@@ -32,6 +37,7 @@ export default async function handler(
     };
 
     await transporter.sendMail(mailOptions);
+    
     return response.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Error:', error);

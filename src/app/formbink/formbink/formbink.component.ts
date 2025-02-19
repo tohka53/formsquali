@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { EmailService } from '../../services/email.service'; // Asegúrate de que la ruta sea correcta
+import { EmailService } from '../services/email.service'; // Ajusta la ruta según tu estructura
 
 @Component({
   selector: 'app-formbink',
@@ -11,7 +11,7 @@ import { EmailService } from '../../services/email.service'; // Asegúrate de qu
 })
 export class FormbinkComponent implements OnInit {
   constructor(private emailService: EmailService) {}
-
+  
   ngOnInit() {}
 
   async exportToPDF() {
@@ -65,7 +65,7 @@ export class FormbinkComponent implements OnInit {
       // Restaurar el ancho original
       element.style.width = originalWidth;
       element.style.maxWidth = originalMaxWidth;
-      element.removeChild(footer);
+      element.removeChild(footer); // Remover el footer temporal
 
       // Configuración del PDF
       const pdf = new jsPDF({
@@ -107,7 +107,7 @@ export class FormbinkComponent implements OnInit {
       // Enviar por email
       await this.emailService.sendPdfByEmail(pdfBlob).toPromise();
       
-      // Guardar localmente también
+      // Guardar localmente
       pdf.save('formulario-business-intake.pdf');
       
       alert('PDF generado y enviado exitosamente');
