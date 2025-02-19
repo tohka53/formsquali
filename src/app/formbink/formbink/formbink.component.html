@@ -31,7 +31,7 @@
 
     <div class="h-4"></div>
     <!-- Formulario principal -->
-    <form class="w-full max-w-6xl mx-auto space-y-4" action="https://formsubmit.co/mecg1994@gmial.com" method="POST">
+        <form class="w-full max-w-6xl mx-auto space-y-4" action="https://formsubmit.co/df4ccf387cc4bc695418b891615c972f" method="POST" enctype="multipart/form-data">
         <!-- Bloque 1 - Información básica -->
         <div class="border border-black form-section">
             <!-- Business Name -->
@@ -359,8 +359,19 @@
         </div>
 
         <!-- Botones de acción -->
-       
+        <!--input type="hidden" name="_next" value="https://blackocean-gamma.vercel.app/home"-->
+      <input type="hidden" name="_subject" value="New submission!">
+      <!--input type="hidden" name="_cc" value="another@email.com"-->
+      <input type="hidden" name="_captcha" value="false">
+      
+      <div class="p-2 w-full">
+        <button class="flex mx-auto text-white
+         bg-pink-500 border-0 py-2 px-8 focus:outline-none
+          hover:bg-pink-600 rounded text-lg" (click)="exportToPDF()">Get In Touch</button>
+      </div>
+      
     </form>
+    
     
 </div>
 <div class="flex justify-center space-x-4 mt-8">
