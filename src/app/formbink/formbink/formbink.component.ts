@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { EmailService } from '../services/email.service'; // Ajusta la ruta según tu estructura
+import { EmailService } from '../../services/email.service'; // Ajusta la ruta según tu estructura
 
 @Component({
   selector: 'app-formbink',
