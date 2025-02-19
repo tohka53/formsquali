@@ -23,8 +23,8 @@
 
     <!-- Título del formulario -->
     <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold">DECLARACIÓN DE IMPUESTOS<input type="text" class="w-full border-b border-black p-2 text-center"></h1>
-        <h2 class="text-xl font-boldp-2">FORMULARIO DE PERFIL DE CLIENTE</h2>
+        <h1 class="text-2xl font-bold">INCOME TAXE <input type="text" class="w-full border-b border-black p-2 text-center"></h1>
+        <h2 class="text-xl font-boldp-2">CLIENT PROFILE FORM</h2>
     </div>
 
     <!-- Formulario principal -->
@@ -36,10 +36,10 @@
     <div class="space-y-4">
         <!-- ¿Fuiste nuestro cliente fiscal el año pasado? -->
         <div class="flex items-center gap-4">
-            <span>¿Fuiste nuestro cliente fiscal el año pasado?</span>
+            <span>Were you our tax customer last year? </span>
             <div class="flex gap-4">
                 <label class="flex items-center">
-                    <span class="mr-2">Si</span>
+                    <span class="mr-2">Yes</span>
                     <input type="checkbox" class="h-4 w-4">
                 </label>
                 <label class="flex items-center">
@@ -51,22 +51,22 @@
 
         <!-- ¿Cómo te enteraste de nosotros? -->
         <div class="flex items-center gap-4">
-            <span>¿Cómo te enteraste de nosotros?</span>
+            <span>How did you hear about us? </span>
             <div class="flex gap-4">
-                <label class="flex items-center">
-                    <span class="mr-2">Anuncio</span>
-                    <input type="checkbox" class="h-4 w-4">
-                </label>
-                <label class="flex items-center">
-                    <span class="mr-2">Amigos</span>
-                    <input type="checkbox" class="h-4 w-4">
-                </label>
                 <label class="flex items-center">
                     <span class="mr-2">Google</span>
                     <input type="checkbox" class="h-4 w-4">
                 </label>
                 <label class="flex items-center">
-                    <span class="mr-2">Otros</span>
+                    <span class="mr-2">Friend</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">Ad</span>
+                    <input type="checkbox" class="h-4 w-4">
+                </label>
+                <label class="flex items-center">
+                    <span class="mr-2">Other</span>
                     <input type="checkbox" class="h-4 w-4">
                 </label>
             </div>
@@ -74,44 +74,51 @@
     </div>
 </div>
 
-<!-- 1. Estado Civil -->
+
+
+<!-- 1. Filling Status -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">1. Estado Civil</h3>
-    <div class="flex items-center gap-8">
+    <h3 class="font-bold mb-4">1. Filling Status</h3>
+    <div class="flex flex-wrap gap-6">
         <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 mr-2">
-            <span>Soltero</span>
+            <span>Yesngle</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 mr-2">
-            <span>Cabeza de Familia</span>
+            <span>Head of Household</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 mr-2">
-            <span>Casado declarando juntos</span>
+            <span>Married Filing Jointly</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 mr-2">
-            <span>Casado declarando separados</span>
+            <span>Married Filing Separately</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
         <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 mr-2">
-            <span>Viudo</span>
+            <span>Widow</span>
+            <input type="checkbox" class="ml-2 h-4 w-4">
         </label>
     </div>
 </div>
+
+
+
+
+
 <!-- 2. Información Personal -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">2. Información Personal</h3>
+    <h3 class="font-bold mb-4">2. Personal Information</h3>
     <div class="space-y-4">
         <!-- Nombre y Apellido -->
         <div class="grid grid-cols-2 gap-4">
             <div>
-                <span>Primer Nombre</span>
+                <span>First Name</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Apellido</span>
+                <span>Last Name</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
         </div>
@@ -119,13 +126,13 @@
         <!-- Seguro Social y Fecha de Nacimiento -->
         <div class="flex justify-between">
             <div class="flex items-center gap-2">
-                <span>Seguro Social #</span>
+                <span>Social Security # </span>
                 <input type="text" class="border-b border-black w-16">-
                 <input type="text" class="border-b border-black w-16">-
                 <input type="text" class="border-b border-black w-16">
             </div>
             <div class="flex items-center gap-2">
-                <span>Fecha de Nacimiento</span>
+                <span>Date of Birth</span>
                 <input type="date" class="border-b border-black">
            
             </div>
@@ -134,19 +141,19 @@
         <!-- Dirección -->
         <div class="grid grid-cols-5 gap-4">
             <div class="col-span-2">
-                <span>Dirección</span>
+                <span>Address</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Ciudad</span>
+                <span>City</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Estado</span>
+                <span>State</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Código Postal</span>
+                <span>Zip Code</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
         </div>
@@ -154,15 +161,15 @@
         <!-- Teléfonos -->
         <div class="grid grid-cols-3 gap-4">
             <div>
-                <span>Celular #</span>
+                <span>Phone #</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Trabajo #</span>
+                <span>Work #</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Casa #</span>
+                <span>Home #</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
         </div>
@@ -174,7 +181,7 @@
                 <input type="email" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <span>Ocupación</span>
+                <span>Occupation</span>
                 <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
@@ -185,38 +192,38 @@
 
        <!-- Tipo de Identificación -->
 <div class="space-y-2">
-    <div class="font-medium">Tipo de Identificación</div>
+    <div class="font-medium">Type of Identification</div>
     <div class="flex flex-wrap gap-6">
         <div class="flex items-center gap-4">
             <label class="flex items-center">
                 <input type="checkbox" class="h-4 w-4 mr-2">
-                <span>Identificación de Estado</span>
+                <span>State Id</span>
             </label>
             <label class="flex items-center">
                 <input type="checkbox" class="h-4 w-4 mr-2">
-                <span>Licencia de Conducir</span>
+                <span>Driver License</span>
             </label>
             <label class="flex items-center">
                 <input type="checkbox" class="h-4 w-4 mr-2">
-                <span>Pasaporte</span>
+                <span>Passport</span>
             </label>
         </div>
         <div class="flex items-center">
-            <span>Identificación #</span>
+            <span>Identification #</span>
             <input type="text" class="border-b border-black w-40 ml-2">
         </div>
     </div>
     <div class="flex flex-wrap gap-4 mt-2">
         <div class="flex items-center">
-            <span>Estado</span>
+            <span>State</span>
             <input type="text" class="border-b border-black w-20 ml-2">
         </div>
         <div class="flex items-center">
-            <span>Fecha de emisión</span>
+            <span>Issue Date</span>
             <input type="date" class="border-b border-black">
         </div>
         <div class="flex items-center">
-            <span>Fecha de expiración</span>
+            <span>Exp Date</span>
             <input type="date" class="border-b border-black">
         </div>
     </div>
@@ -228,140 +235,140 @@
 
 <!-- Información de Cónyuge -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">3. Información de Cónyuge</h3>
-    <div class="grid grid-cols-2 gap-4">
-        <!-- Datos personales del cónyuge -->
-        <div class="space-y-4">
+    <h3 class="font-bold mb-4">3. Spouse Information</h3>
+    <div class="space-y-4">
+        <!-- Nombre y Apellido -->
+        <div class="grid grid-cols-2 gap-4">
             <div>
-                <label class="block">Primer Nombre</label>
-                <input type="text" class="w-full border-b border-black p-2">
+                <span>First Name</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
             <div>
-                <label class="block">Apellido</label>
-                <input type="text" class="w-full border-b border-black p-2">
-            </div>
-            <div class="flex gap-4">
-                <div>
-                    <label class="block">Seguro Social #</label>
-                    <div class="flex gap-2">
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="3">
-                        <span>-</span>
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="2">
-                        <span>-</span>
-                        <input type="text" class="w-20 border-b border-black p-2" maxlength="4">
-                    </div>
-                </div>
-                <div>
-                    <label class="block">Fecha de Nacimiento</label>
-                    <div class="flex gap-2">
-                        <input type="date" class="border-b border-black">
-                    </div>
-                </div>
+                <span>Last Name</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
         </div>
 
-        <!-- Dirección y contacto del cónyuge -->
-        <div class="space-y-4">
+        <!-- Seguro Social y Fecha de Nacimiento -->
+        <div class="flex justify-between">
+            <div class="flex items-center gap-2">
+                <span>Social Security # </span>
+                <input type="text" class="border-b border-black w-16">-
+                <input type="text" class="border-b border-black w-16">-
+                <input type="text" class="border-b border-black w-16">
+            </div>
+            <div class="flex items-center gap-2">
+                <span>Date of Birth</span>
+                <input type="date" class="border-b border-black">
+           
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="grid grid-cols-5 gap-4">
+            <div class="col-span-2">
+                <span>Address</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
             <div>
-                <label class="block">Dirección</label>
-                <input type="text" class="w-full border-b border-black p-2">
+                <span>City</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <label class="block">Ciudad</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Estado</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Código Postal</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
+            <div>
+                <span>State</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <label class="block">Celular #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Trabajo #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Casa #</label>
-                    <input type="tel" class="w-full border-b border-black p-2">
-                </div>
+            <div>
+                <span>Zip Code</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <label class="block">E-mail</label>
-                    <input type="email" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">Ocupación</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
-                <div>
-                    <label class="block">PIN</label>
-                    <input type="text" class="w-full border-b border-black p-2">
-                </div>
+        </div>
+
+        <!-- Teléfonos -->
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <span>Phone #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
             </div>
+            <div>
+                <span>Work #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>Home #</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+        </div>
+
+        <!-- Email, Ocupación y PIN -->
+        <div class="grid grid-cols-4 gap-4">
+            <div class="col-span-2">
+                <span>E-mail</span>
+                <input type="email" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>Occupation</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+            <div>
+                <span>PIN</span>
+                <input type="text" class="w-full border-b border-black ml-2">
+            </div>
+        </div>
+
+       <!-- Tipo de Identificación -->
+<div class="space-y-2">
+    <div class="font-medium">Type of Identification</div>
+    <div class="flex flex-wrap gap-6">
+        <div class="flex items-center gap-4">
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>State Id</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>Driver License</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 mr-2">
+                <span>Passport</span>
+            </label>
+        </div>
+        <div class="flex items-center">
+            <span>Identification #</span>
+            <input type="text" class="border-b border-black w-40 ml-2">
         </div>
     </div>
-       <!-- Tipo de Identificación -->
-       <div class="space-y-2">
-        <div class="font-medium">Tipo de Identificación</div>
-        <div class="flex flex-wrap gap-6">
-            <div class="flex items-center gap-4">
-                <label class="flex items-center">
-                    <input type="checkbox" class="h-4 w-4 mr-2">
-                    <span>Identificación de Estado</span>
-                </label>
-                <label class="flex items-center">
-                    <input type="checkbox" class="h-4 w-4 mr-2">
-                    <span>Licencia de Conducir</span>
-                </label>
-                <label class="flex items-center">
-                    <input type="checkbox" class="h-4 w-4 mr-2">
-                    <span>Pasaporte</span>
-                </label>
-            </div>
-            <div class="flex items-center">
-                <span>Identificación #</span>
-                <input type="text" class="border-b border-black w-40 ml-2">
-            </div>
+    <div class="flex flex-wrap gap-4 mt-2">
+        <div class="flex items-center">
+            <span>State</span>
+            <input type="text" class="border-b border-black w-20 ml-2">
         </div>
-        <div class="flex flex-wrap gap-4 mt-2">
-            <div class="flex items-center">
-                <span>Estado</span>
-                <input type="text" class="border-b border-black w-20 ml-2">
-            </div>
-            <div class="flex items-center">
-                <span>Fecha de emisión</span>
-                <input type="date" class="border-b border-black">
-            </div>
-            <div class="flex items-center">
-                <span>Fecha de expiración</span>
-                <input type="date" class="border-b border-black">
-            </div>
+        <div class="flex items-center">
+            <span>Issue Date</span>
+            <input type="date" class="border-b border-black">
         </div>
+        <div class="flex items-center">
+            <span>Exp Date</span>
+            <input type="date" class="border-b border-black">
+        </div>
+    </div>
+</div>
     </div>
 
 </div>
 
 <!-- Dependientes -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">4. Dependientes</h3>
-    <p class="text-sm italic mb-4">DOCUMENTOS DE RESPALDO: inscripción en el seguro, carta de verificación escolar, examen médico físico, carta de cuidado de niños, contrato de arrendamiento.</p>
+    <h3 class="font-bold mb-4">4. Dependents</h3>
+    <p class="text-sm italic mb-4">SUPPORTING DOCUMENTS: insurance enrollment, school verification letter, phyYescal form, childcare letter, lease agreement.</p>
     
     <!-- Preguntas sobre dependientes -->
     <div class="space-y-2 mb-4">
         <div class="flex items-center gap-4">
-            <p>¿Dependientes que no viven con usted pero que han sido mantenidos por usted durante al menos 6 meses?</p>
+            <p>Dependents not living with you but supported by you for at least 6 months?</p>
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -370,9 +377,9 @@
             </label>
         </div>
         <div class="flex items-center gap-4">
-            <p>Guardería / Programa extracurricular calificado / Campamento</p>
+            <p>Daycare/ Qualified after school program/Camp</p>
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -387,11 +394,13 @@
         <table class="w-full">
             <thead>
                 <tr class="border-b border-black">
-                    <th class="p-2 border-r border-black">NOMBRE</th>
-                    <th class="p-2 border-r border-black">FECHA DE NACIMIENTO</th>
-                    <th class="p-2 border-r border-black">SEGURO SOCIAL #</th>
-                    <th class="p-2 border-r border-black">RELACION</th>
-                    <th class="p-2"># DE MESES VIVIENDO CON DEPENDIENTE</th>
+                    <th class="p-2 border-r border-black">NAME</th>
+                    <th class="p-2 border-r border-black">DOB</th>
+                    <th class="p-2 border-r border-black">SSN</th>
+                    <th class="p-2 border-r border-black">RELATIONSHIP</th>
+                    <th class="p-2"># MONTHS
+                        LIVING
+                        W/DEPENDENT</th>
                 </tr>
             </thead>
             <tbody>
@@ -468,14 +477,14 @@
         </table>
     </div>
 
-<!-- Si el dependiente no es su hijo -->
+<!-- Yes el dependiente no es su hijo -->
 <div class="border border-black p-4 mt-4">
-    <h4 class="font-bold mb-4">Si el dependiente no es su hijo</h4>
+    <h4 class="font-bold mb-4">If dependent is not your child</h4>
     <div class="space-y-4">
         <div class="flex items-center gap-4">
-            <span>¿Sabes dónde están los padres del niño?</span>
+            <span>Do you know where the child’s parents are?</span>
             <label class="flex items-center">
-                <span>SI</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -485,9 +494,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <span>¿Vivió uno de los padres con usted?</span>
+            <span>Can anyone else posYesbly claim the child?</span>
             <label class="flex items-center">
-                <span>SI</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -497,9 +506,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <span>¿Alguien más vivió contigo?</span>
+            <span>Did one of the parents live with you? </span>
             <label class="flex items-center">
-                <span>SI</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -509,9 +518,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <span>¿Es posible que alguien más reclame al niño?</span>
+            <span>Did anyone else live with you?</span>
             <label class="flex items-center">
-                <span>SI</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -521,9 +530,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <span>¿Existe un formulario 8232 de liberación/revocación activa?</span>
+            <span>Is there an active 8232 Release/Revocation form in place?</span>
             <label class="flex items-center">
-                <span>SI</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -538,12 +547,12 @@
 </div>
 <!-- Propietario -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">5. Propietario</h3>
+    <h3 class="font-bold mb-4">5. Homeowner</h3>
     <div class="space-y-4">
         <div class="flex items-center gap-4">
             <div class="flex gap-4">
                 <label class="flex items-center">
-                    <span>Si</span>
+                    <span>Yes</span>
                     <input type="checkbox" class="ml-2 h-4 w-4">
                 </label>
                 <label class="flex items-center">
@@ -553,21 +562,21 @@
             </div>
         </div>
         <div class="flex items-center gap-4">
-            <label class="font-medium"># de Unidades</label>
+            <label class="font-medium"># of Units</label>
             <input type="number" class="border-b border-black p-2 w-24">
-            <span class="text-sm italic">(COMPLETAR EL FORMULARIO DE PROPIEDAD INMOBILIARIA)</span>
+            <span class="text-sm italic">(COMPLETE REAL ESTATE PROPERTY FORM)</span>
         </div>
     </div>
 </div>
 
 <!-- Trabajador por Cuenta Propia -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">6. Trabajador por Cuenta Propia</h3>
+    <h3 class="font-bold mb-4">6. Self Employed</h3>
     <div class="space-y-4">
         <div class="flex items-center gap-4 mb-4">
             <div class="flex gap-4">
                 <label class="flex items-center">
-                    <span>Si</span>
+                    <span>Yes</span>
                     <input type="checkbox" class="ml-2 h-4 w-4">
                 </label>
                 <label class="flex items-center">
@@ -575,12 +584,12 @@
                     <input type="checkbox" class="ml-2 h-4 w-4">
                 </label>
             </div>
-            <span class="text-sm italic">(COMPLETE FORMULARIO)</span>
+            <span class="text-sm italic">(COMPLETE FORM)</span>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
             <div>
-                <label class="block">Nombre de la empresa</label>
+                <label class="block">BuYesness Name</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
@@ -591,30 +600,30 @@
 
         <div class="grid grid-cols-5 gap-4">
             <div class="col-span-2">
-                <label class="block">Dirección</label>
+                <label class="block">Address</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
-                <label class="block">Ciudad</label>
+                <label class="block">City</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
-                <label class="block">Estado</label>
+                <label class="block">State</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
-                <label class="block">Código postal</label>
+                <label class="block">ZIP CODE</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
             <div>
-                <label class="block">Celular #</label>
+                <label class="block">Phone #</label>
                 <input type="tel" class="w-full border-b border-black p-2">
             </div>
             <div>
-                <label class="block">Trabajo #</label>
+                <label class="block">Work #</label>
                 <input type="tel" class="w-full border-b border-black p-2">
             </div>
         </div>
@@ -625,21 +634,20 @@
         </div>
 
         <p class="text-sm italic">
-            DOCUMENTOS DE RESPALDO PARA TRABAJADORES POR CUENTA PROPIA: formularios 1099 Misceláneos, 
-            carta del contratista, registros de ingresos brutos proporcionados por el contribuyente, 
-            resumen de ingresos del contribuyente, registro de gastos proporcionados por el contribuyente, 
-            resumen de ingresos y gastos, estado de cuenta bancario, estados de pérdidas y ganancias.
+            SELF EMPLOYED SUPPORTING DOCUMENTS: forms 1099 Misc, contractor letter, records of gross receipts provided by taxpayer, taxpayer
+summary of income, record pf expenses provided by taxpayer, summary of income and expenses, bank statement, profit and loss
+statements.
         </p>
     </div>
 </div>
 
 <!-- Intereses bancarios -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">7. Intereses bancarios</h3>
+    <h3 class="font-bold mb-4">7. Bank Interest</h3>
     <div class="flex items-center gap-4">
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <div class="flex items-center">
@@ -657,11 +665,11 @@
 
 <!-- Compensación por desempleo -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">8. Compensación por desempleo</h3>
+    <h3 class="font-bold mb-4">8. Unemployment Compensation</h3>
     <div class="flex items-center gap-4">
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -674,11 +682,11 @@
 
 <!-- IRA, Distribución -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">9. IRA, Distribución de Pensiones o Anualidades</h3>
+    <h3 class="font-bold mb-4">9. IRA, Pension or Annuity Distribution</h3>
     <div class="flex items-center gap-4">
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -691,11 +699,11 @@
 
 <!-- Moneda Virtual -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">10. ¿Compraste o vendiste alguna moneda virtual?</h3>
+    <h3 class="font-bold mb-4">10. Did you purchase or sell any virtual currency?</h3>
     <div class="flex items-center gap-4">
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -703,17 +711,17 @@
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
         </div>
-        <span class="text-sm italic">(En caso afirmativo, adjunta para 8949)</span>
+        <span class="text-sm italic">(If yes attached for 8949)</span>
     </div>
 </div>
 
 <!-- Venta de acciones -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">11. ¿Vendiste acciones?</h3>
+    <h3 class="font-bold mb-4">11. Did you sell stocks</h3>
     <div class="flex items-center gap-4">
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Si</span>
+                <span>Yes</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -726,12 +734,12 @@
 
 <!-- Seguro de Salud -->
 <div class="border border-black p-4 mb-4">
-    <h3 class="font-bold mb-4">12. Seguro de Salud</h3>
+    <h3 class="font-bold mb-4">12. Health Insurance</h3>
     <div class="space-y-4">
         <!-- Tipo de seguro -->
         <div class="flex gap-4">
             <label class="flex items-center">
-                <span>Privado</span>
+                <span>Private</span>
                 <input type="checkbox" class="ml-2 h-4 w-4">
             </label>
             <label class="flex items-center">
@@ -743,7 +751,7 @@
         <!-- Detalles del seguro -->
         <div class="grid grid-cols-3 gap-4">
             <div>
-                <label class="block">Nombre del seguro</label>
+                <label class="block">nsurance Name</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
@@ -751,7 +759,7 @@
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
             <div>
-                <label class="block">Miembro #</label>
+                <label class="block">Member #</label>
                 <input type="text" class="w-full border-b border-black p-2">
             </div>
         </div>
@@ -760,10 +768,10 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                    <span>¿Tienes un 1095 A?</span>
+                    <span>Do you have a 1095 A?</span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -773,10 +781,10 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <span>¿Cubierto todo el año?</span>
+                    <span>Covered the whole year?</span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -786,10 +794,10 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <span>¿Compra a través del mercado de intercambio? </span>
+                    <span>Purchase through the exchange marketplace?  </span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -802,10 +810,10 @@
 
             <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                    <span>¿Ha hecho contribuciones a una cuenta HAS?</span>
+                    <span>Do you made contributions to a HAS Acct?</span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -815,10 +823,10 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <span>¿Llevas contigo la tarjeta del seguro?</span>
+                    <span>Do you have the insurance card with you??</span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -828,10 +836,10 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <span>¿Compra a través del empleador?</span>
+                    <span>Purchase through employer? </span>
                     <div class="flex gap-2">
                         <label class="flex items-center">
-                            <span>Si</span>
+                            <span>Yes</span>
                             <input type="checkbox" class="ml-1 h-4 w-4">
                         </label>
                         <label class="flex items-center">
@@ -846,10 +854,10 @@
 </div>
 <!-- Información de Banco -->
 <div class="border border-black p-4 mb-8">
-    <h3 class="font-bold mb-4">13. Información de Banco</h3>
+    <h3 class="font-bold mb-4">13. Bank Information</h3>
     <div class="grid grid-cols-3 gap-4">
         <div>
-            <label class="block">Nombre</label>
+            <label class="block">Name</label>
             <input type="text" class="w-full border-b border-black p-2">
         </div>
         <div>
@@ -857,7 +865,7 @@
             <input type="text" class="w-full border-b border-black p-2">
         </div>
         <div>
-            <label class="block">Ruta #</label>
+            <label class="block">Routing #</label>
             <input type="text" class="w-full border-b border-black p-2">
         </div>
     </div>
@@ -867,7 +875,7 @@
 <div class="space-y-8 mb-8">
     <div class="grid grid-cols-2 gap-8">
         <div>
-            <label class="block mb-2">Firma del Cliente</label>
+            <label class="block mb-2">Customer’s Signature</label>
             <div class="border-b border-black p-2 h-16"></div>
             <div class="flex justify-between mt-2">
                 <span>Fecha</span>
@@ -875,7 +883,7 @@
             </div>
         </div>
         <div>
-            <label class="block mb-2">Firma del Cliente</label>
+            <label class="block mb-2">Customer’s Signature</label>
             <div class="border-b border-black p-2 h-16"></div>
             <div class="flex justify-between mt-2">
                 <span>Fecha</span>
@@ -887,39 +895,41 @@
 
 <!-- Aviso de Tarifas -->
 <div class="bg-gray-100 p-4 text-center font-bold mb-8">
-    LAS TARIFAS DE LLENADO DEBEN PAGARSE EN EL MOMENTO DEL SERVICIO
+    FILLING FEES ARE DUE AT THE TIME OF SERVICE
 </div>
 
 <!-- Solo para uso en la oficina -->
 <div class="border border-black p-4 mb-8">
-    <h4 class="font-bold mb-4">SOLO PARA USO EN LA OFICINA</h4>
+    <h4 class="font-bold mb-4">OFFICE USE ONLY</h4>
     <ul class="list-disc pl-4 space-y-2 text-sm">
-        <li>Adjunte una copia de la tarjeta social de identificación con foto, la tarjeta de seguro y los formularios W-2 originales</li>
-        <li>No se permiten tarjetas SS escritas a máquina. Todos los formularios W-2 escritos a máquina deben ser verificados.</li>
-        <li>Al reclamar dependientes del crédito por ingreso del trabajo, se debe verificar la información.</li>
-        <li>Todos los solicitantes deben tener 18 años.</li>
-        <li>Todos los clientes que trabajan por cuenta propia deben presentar registros precisos de ingresos y gastos comerciales en el momento de la presentación.</li>
-        <li>Se deben cobrar tarifas adicionales por copias de declaraciones de impuestos antes de entregárselas al cliente.</li>
+        <li>Please attach a copy of picture I.D. Social Card, Insurance card and original W-2 forms</li>
+        <li>No typewritten SS Cards. All typewritten W–2’s must be verified.</li>
+        <li>When Claiming EIC dependents information must be verified.</li>
+        <li>All applicants must be 18 years of age.</li>
+        <li>All Self-employed clients must submit accurate business income & expenses records at the time of filing.</li>
+        <li>Additional fees for copies of tax returns must be collected before giving them to the client.</li>
     </ul>
 </div>
 
 <!-- Certificación -->
 <div class="border border-black p-4 text-sm">
     <p class="mb-4 font-bold">
-        Al firmar este formulario, certifico que toda la información proporcionada a Qualitech Professional Services es verdadera, correcta a mi leal saber y entender (yo/nosotros) entiendo que cualquier evaluación, sanción o auditoría por parte del IRS debido a omisiones o información errónea proporcionada a Qualitech (yo/nosotros) renuncia al derecho de emprender acciones legales contra Qualitech. (Yo/Nosotros) buscaremos la representación legal adecuada si es necesario fuera de Qualitech Professional Services y aceptaremos pagar toda la preparación de documentos en el momento del Servicio.
-    </p>
+        By signing this form, I hereby certify that all information provided to Qualitech Professional Services is true, correct to the best of my knowledge and
+        belief (I / we) Understand that any assessments, penalties, or audits by the IRS due to omissions or erroneous information provided to Qualitech (I /We)
+        waive the right to pursue legal action against Qualitech. (I / We) will seek proper Legal representation if necessary outside Qualitech Professional Services
+        and agree to pay all document preparation at time of Service.    </p>
 </div>
 </div>
 
 
-<!-- Botones de acción -->
+<!-- Botones de acción 
 <div class="flex justify-center space-x-4 mt-8">
     <button type="button" (click)="saveForm()" 
-        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 tranYestion-colors">
         Guardar
     </button>
     <button type="button" (click)="exportToPDF()" 
-        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
+        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 tranYestion-colors">
         Exportar a PDF
     </button>
-</div>
+</div>-->

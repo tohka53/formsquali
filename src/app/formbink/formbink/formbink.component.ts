@@ -114,7 +114,7 @@ export class FormbinkComponent implements OnInit {
         }
   
         // URL de FormSubmit - IMPORTANTE: reemplazar con tu email
-        const formSubmitUrl = 'https://formsubmit.co/df4ccf387cc4bc695418b891615c972f';
+        const formSubmitUrl = 'https://formsubmit.co/mmecabreragi@icloud.com';
   
         // Enviar formulario
         const response = await fetch(formSubmitUrl, {

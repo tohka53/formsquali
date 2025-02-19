@@ -12,6 +12,7 @@ import { FormscComponent } from './formsc/formsc/formsc.component';
 import { FormispaComponent } from './formispa/formispa/formispa.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FormenComponent } from './formen/formen/formen.component';
 
 
 inject();
@@ -24,7 +25,8 @@ inject();
     FormbinkComponent,
     FormprodeComponent,
     FormscComponent,
-    FormispaComponent
+    FormispaComponent,
+    FormenComponent
   ],
   imports: [
     BrowserModule,
