@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = '/api/send-email'; // URL relativa
+  private apiUrl = 'https://formsqualitechboston.vercel.app/api/send-email';
 
   constructor(private http: HttpClient) {}
 
