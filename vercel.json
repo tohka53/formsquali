@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/app/services/email.service.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/send-email",
+        "dest": "src/app/services/email.service.ts"
+      }
+    ]
+  }
