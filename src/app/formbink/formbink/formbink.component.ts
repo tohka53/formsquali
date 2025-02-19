@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-formbink',
@@ -9,6 +10,9 @@ import html2canvas from 'html2canvas';
   styleUrl: './formbink.component.css'
 })
 export class FormbinkComponent implements OnInit {
+ 
+  constructor(private emailService: EmailService) { }
+
   ngOnInit() {}
 
   async exportToPDF() {
@@ -19,13 +23,11 @@ export class FormbinkComponent implements OnInit {
       if (!element) {
         throw new Error('No se encontró el elemento del formulario');
       }
-
       // Forzar ancho de escritorio
       const originalWidth = element.style.width;
       const originalMaxWidth = element.style.maxWidth;
       element.style.width = '1024px'; // Ancho fijo de escritorio
       element.style.maxWidth = '1024px';
-
         // Crear el footer temporalmente
         const footer = document.createElement('div');
         footer.style.width = '100%';
@@ -38,9 +40,6 @@ export class FormbinkComponent implements OnInit {
           </div>
         `;
         element.appendChild(footer);
-
-
-
       // Configuración de html2canvas
       const canvas = await html2canvas(element, {
         scale: 1.5,
@@ -61,11 +60,9 @@ export class FormbinkComponent implements OnInit {
           }
         }
       });
-
       // Restaurar el ancho original
       element.style.width = originalWidth;
       element.style.maxWidth = originalMaxWidth;
-
       // Configuración del PDF
       const pdf = new jsPDF({
         orientation: 'p',
@@ -73,7 +70,6 @@ export class FormbinkComponent implements OnInit {
         format: 'a4',
         compress: true
       });
-
       // Configurar dimensiones
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
       const pageWidth = pdf.internal.pageSize.getWidth();
@@ -82,15 +78,12 @@ export class FormbinkComponent implements OnInit {
       const contentWidth = pageWidth - (2 * margin);
       const aspectRatio = canvas.height / canvas.width;
       const contentHeight = contentWidth * aspectRatio;
-
       let heightLeft = contentHeight;
       let position = margin;
       let page = 1;
-
       // Primera página
       pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, contentHeight);
       heightLeft -= (pageHeight - 2 * margin);
-
       // Páginas adicionales
       while (heightLeft >= 0) {
         pdf.addPage();
@@ -99,13 +92,33 @@ export class FormbinkComponent implements OnInit {
         heightLeft -= (pageHeight - 2 * margin);
         page++;
       }
-
       pdf.save('formulario-business-intake.pdf');
       alert('PDF generado exitosamente');
+      
+      // Enviar el correo electrónico
+      this.sendEmail();
     } catch (error) {
       console.error('Error al generar PDF:', error);
       alert('Hubo un error al generar el PDF. Por favor, intente nuevamente.');
     }
+  }
+
+  sendEmail() {
+    const to = 'destinatario@example.com';
+    const subject = 'Formulario de Business Intake';
+    const text = 'Adjunto encontrarás el formulario de Business Intake en formato PDF.';
+
+    this.emailService.sendEmail(to, subject, text)
+      .subscribe(
+        () => {
+          console.log('Correo electrónico enviado correctamente');
+          alert('El formulario ha sido enviado por correo electrónico.');
+        },
+        (error) => {
+          console.error('Error al enviar el correo electrónico', error);
+          alert('Hubo un error al enviar el correo electrónico. Por favor, intente nuevamente.');
+        }
+      );
   }
 
   saveForm() {
