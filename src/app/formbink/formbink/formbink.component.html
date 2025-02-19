@@ -31,7 +31,7 @@
 
     <div class="h-4"></div>
     <!-- Formulario principal -->
-        <form class="w-full max-w-6xl mx-auto space-y-4" action="https://formsubmit.co/df4ccf387cc4bc695418b891615c972f" method="POST" enctype="multipart/form-data">
+    <form #formRef="ngForm">
         <!-- Bloque 1 - Información básica -->
         <div class="border border-black form-section">
             <!-- Business Name -->
@@ -119,7 +119,7 @@
             <!-- Email -->
             <div class="border-b border-black">
                 <label class="block p-2">Email:</label>
-                <input type="email" class="w-full p-2 border-t border-black">
+                <input name="email" type="email" class="w-full p-2 border-t border-black">
             </div>
 
             <!-- Business Start -->
@@ -364,11 +364,7 @@
       <!--input type="hidden" name="_cc" value="another@email.com"-->
       <input type="hidden" name="_captcha" value="false">
       
-      <div class="p-2 w-full">
-        <button class="flex mx-auto text-white
-         bg-pink-500 border-0 py-2 px-8 focus:outline-none
-          hover:bg-pink-600 rounded text-lg" (click)="exportToPDF()">Get In Touch</button>
-      </div>
+     
       
     </form>
     
@@ -379,7 +375,7 @@
         class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
         Enviar Formulario
     </button>
-    <button type="button" (click)="exportToPDF()" 
+    <button type="button" (click)="exportToPDF(formRef)"
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
         Exportar a PDF
     </button>

@@ -11,6 +11,7 @@ import { FormprodeComponent } from './formprode/formprode/formprode.component';
 import { FormscComponent } from './formsc/formsc/formsc.component';
 import { FormispaComponent } from './formispa/formispa/formispa.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 inject();
@@ -28,7 +29,8 @@ inject();
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule  // Añadir esto
+    HttpClientModule,  // Añadir esto
+    FormsModule       // Añadir esto
   ],
   providers: [],
   bootstrap: [AppComponent]
