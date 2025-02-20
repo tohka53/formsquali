@@ -138,7 +138,7 @@ export class FormprodeComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `form-real-state-property-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = `https://formsubmit.co/lisbethcabrerag@icloud.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
 
 
 
