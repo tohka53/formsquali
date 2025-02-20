@@ -28,7 +28,7 @@
     </div>
 
     <!-- Formulario principal -->
-    <form class="w-full max-w-6xl mx-auto space-y-4">
+    <form #formRef="ngForm">
         <!-- Información básica -->
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="border border-black p-2">
@@ -50,6 +50,13 @@
                 <div>
                     <span>Tax ID #</span>
                     <input type="text" class="ml-2 border-b border-black w-64">
+                </div>
+                <div>
+                    <span>Email</span>
+                    <input type="email" name="email" [(ngModel)]="formData.email"  class="ml-2 border-b border-black w-64"required 
+                    #email="ngModel">
+
+                   
                 </div>
             </div>
         </div>
@@ -280,12 +287,9 @@
 </div>
  <!-- Botones de acción -->
  <div class="flex justify-center space-x-4 mt-8">
-    <button type="button" (click)="saveForm()" 
-        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
-        Guardar
-    </button>
-    <button type="button" (click)="exportToPDF()" 
+    
+    <button type="button" (click)="exportToPDF(formRef)"
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Exportar a PDF
+        Send Form
     </button>
- </div>
+</div>

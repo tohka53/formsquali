@@ -138,7 +138,7 @@ export class FormbinkComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `form-business-intake-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/lisbethcabrerag@icloud.com?_cc=${encodeURIComponent(this.formData.email)}`;
 
 
 

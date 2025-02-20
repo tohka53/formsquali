@@ -30,7 +30,7 @@
     <!-- Formulario principal -->
 
 
-
+    <form #formRef="ngForm">
 <!-- Preguntas iniciales -->
 <div class="border border-black p-4 mb-4">
     <div class="space-y-4">
@@ -171,8 +171,7 @@
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-2">
                 <span>E-mail</span>
-                <input type="email" class="w-full border-b border-black ml-2">
-            </div>
+                <input type="email" name="email" [(ngModel)]="formData.email"  #email="ngModel" required  class="w-full border-b border-black ml-2">            </div>
             <div>
                 <span>Ocupación</span>
                 <input type="text" class="w-full border-b border-black ml-2">
@@ -909,17 +908,14 @@
         Al firmar este formulario, certifico que toda la información proporcionada a Qualitech Professional Services es verdadera, correcta a mi leal saber y entender (yo/nosotros) entiendo que cualquier evaluación, sanción o auditoría por parte del IRS debido a omisiones o información errónea proporcionada a Qualitech (yo/nosotros) renuncia al derecho de emprender acciones legales contra Qualitech. (Yo/Nosotros) buscaremos la representación legal adecuada si es necesario fuera de Qualitech Professional Services y aceptaremos pagar toda la preparación de documentos en el momento del Servicio.
     </p>
 </div>
+    </form>
 </div>
 
 
-<!-- Botones de acción -->
-<div class="flex justify-center space-x-4 mt-8">
-    <button type="button" (click)="saveForm()" 
-        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
-        Guardar
-    </button>
-    <button type="button" (click)="exportToPDF()" 
+<<div class="flex justify-center space-x-4 mt-8">
+    
+    <button type="button" (click)="exportToPDF(formRef)"
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Exportar a PDF
+        Enviar Formulario
     </button>
 </div>
