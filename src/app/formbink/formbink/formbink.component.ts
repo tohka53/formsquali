@@ -126,7 +126,7 @@ export class FormbinkComponent implements OnInit {
       // Campos adicionales de FormSubmit
       formData.append('_captcha', 'false');
       formData.append('_next', 'https://formsqualitechboston.vercel.app/');
-      formData.append('_subject', `Formulario Business Intake - ID: ${uniqueId}`);
+      formData.append('_subject', `Form Business Intake - ID: ${uniqueId}`);
       formData.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
       formData.append('_template', 'table');
       formData.append('_replyto', formValues.email);
@@ -135,7 +135,7 @@ export class FormbinkComponent implements OnInit {
       
 
       if (this.pdfFile) {
-        formData.append('pdf', this.pdfFile, `formulario-business-intake-${uniqueId}.pdf`);
+        formData.append('pdf', this.pdfFile, `form-business-intake-${uniqueId}.pdf`);
       }
 
       const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
@@ -155,7 +155,7 @@ export class FormbinkComponent implements OnInit {
         throw new Error(`Error: ${response.status}`);
       }
 
-      pdf.save(`formulario-business-intake-${uniqueId}.pdf`);
+      pdf.save(`form-business-intake-${uniqueId}.pdf`);
 
       alert('Form submitted and PDF generated successfully!');
 
