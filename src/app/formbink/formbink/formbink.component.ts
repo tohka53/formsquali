@@ -12,7 +12,9 @@ import { NgForm } from '@angular/forms';
 export class FormbinkComponent implements OnInit {
   private isProcessing = false;
   pdfFile: File | null = null;
-
+  formData = {
+    email: ''
+  };
   ngOnInit() {}
 
   // Prevenir cierre de pestaña durante el proceso
@@ -20,7 +22,7 @@ export class FormbinkComponent implements OnInit {
   handleBeforeUnload(event: BeforeUnloadEvent) {
     if (this.isProcessing) {
       event.preventDefault();
-      event.returnValue = '¿Estás seguro de que deseas salir? El proceso de envío está en curso.';
+      event.returnValue = 'Are you sure you want to go out? The shipping process is in progress.';
       return event.returnValue;
     }
     return true;
@@ -37,16 +39,24 @@ export class FormbinkComponent implements OnInit {
     
     try {
       if (form.invalid) {
-        alert('Por favor, complete todos los campos requeridos');
+        alert('Please complete all required fields');
+        this.isProcessing = false;
+        return;
+        
+      }
+      if (!this.formData.email) {
+        alert('Please enter a valid email address');
         this.isProcessing = false;
         return;
       }
 
-      alert('Generando PDF y enviando, por favor espere...');
+
+
+      alert('Generating PDF and sending, please wait...');
       
       const element = document.getElementById('form-container');
       if (!element) {
-        throw new Error('No se encontró el elemento del formulario');
+        throw new Error('Form element not found');
       }
 
       // Configuración para capturar todo el contenido
@@ -93,7 +103,7 @@ export class FormbinkComponent implements OnInit {
       }
       
       const pdfBlob = pdf.output('blob');
-      this.pdfFile = new File([pdfBlob], 'formulario-business-intake.pdf', { 
+      this.pdfFile = new File([pdfBlob], 'form-business-intake.pdf', { 
         type: 'application/pdf' 
       });
 
@@ -102,6 +112,8 @@ export class FormbinkComponent implements OnInit {
 
       // Agregar ID único al formData
       formData.append('form_id', uniqueId);
+  // Asegurarse de que el email se adjunte correctamente
+      formData.append('email', this.formData.email);
 
       // Obtener todos los campos del formulario
       const formValues = form.value;
@@ -115,43 +127,50 @@ export class FormbinkComponent implements OnInit {
       formData.append('_captcha', 'false');
       formData.append('_next', 'https://formsqualitechboston.vercel.app/');
       formData.append('_subject', `Formulario Business Intake - ID: ${uniqueId}`);
-      formData.append('_autoresponse', 'Gracias por completar el formulario');
+      formData.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
       formData.append('_template', 'table');
       formData.append('_replyto', formValues.email);
+      formData.append('_replyto', this.formData.email); // Usar el email del formulario
+      formData.append('_cc', this.formData.email); // Enviar copia al email proporcionado
+      
 
       if (this.pdfFile) {
         formData.append('pdf', this.pdfFile, `formulario-business-intake-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = 'https://formsubmit.co/mecg1994@gmail.com';
+      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
+
+
 
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
         body: formData
       });
 
-      console.log('Respuesta completa:', response);
+      console.log('Complete answer::', response);
       const responseText = await response.text();
-      console.log('Texto de respuesta:', responseText);
+      console.log('Response text:', responseText);
 
       if (!response.ok) {
-        throw new Error(`Error en el envío: ${response.status}`);
+        throw new Error(`Error: ${response.status}`);
       }
 
       pdf.save(`formulario-business-intake-${uniqueId}.pdf`);
 
-      alert('Formulario enviado y PDF generado exitosamente');
+      alert('Form submitted and PDF generated successfully!');
 
-      form.reset();
-      this.pdfFile = null;
+       // Resetear el formulario y los datos
+       form.reset();
+       this.formData.email = '';
+       this.pdfFile = null;
 
     } catch (error) {
       console.error('Error al enviar formulario:', error);
       
       if (error instanceof Error) {
-        alert(`No se pudo enviar el formulario: ${error.message}`);
+        alert(`The form could not be submitted: ${error.message}`);
       } else {
-        alert('Hubo un error desconocido al enviar el formulario');
+        alert('There was an unknown error submitting the form');
       }
     } finally {
       this.isProcessing = false;

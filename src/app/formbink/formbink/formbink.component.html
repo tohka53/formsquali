@@ -119,7 +119,13 @@
             <!-- Email -->
             <div class="border-b border-black">
                 <label class="block p-2">Email:</label>
-                <input name="email" type="email" class="w-full p-2 border-t border-black">
+                <input 
+                type="email" 
+                name="email" class="w-full p-2 border-t border-black"
+                [(ngModel)]="formData.email" 
+                required 
+                #email="ngModel"
+               >
             </div>
 
             <!-- Business Start -->
@@ -371,12 +377,9 @@
     
 </div>
 <div class="flex justify-center space-x-4 mt-8">
-    <button type="button" (click)="saveForm()" 
-        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
-        Enviar Formulario
-    </button>
+    
     <button type="button" (click)="exportToPDF(formRef)"
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Exportar a PDF
+        Send Form
     </button>
 </div>
