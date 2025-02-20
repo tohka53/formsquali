@@ -123,7 +123,7 @@ export class FormbinkComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `formulario-business-intake-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = 'https://formsubmit.co/lisbethcabrerag@icloud.com';
+      const formSubmitUrl = 'https://formsubmit.co/mecg1994@gmail.com';
 
       const response = await fetch(formSubmitUrl, {
         method: 'POST',

@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./formen/formen/formen.module').then(m => m.FormenModule)
   },  
   {
+    path: 'formcare',
+    loadChildren: () => import('./formcare/formcare/formcare.module').then(m => m.FormcareModule)
+  },  
+  {
     
     path: '',
     redirectTo: 'home',
