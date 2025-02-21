@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-formbink',
   standalone: false,
   templateUrl: './formbink.component.html',
-  styleUrl: './formbink.component.css'
+  styleUrls: ['./formbink.component.css']
 })
 export class FormbinkComponent implements OnInit {
   private isProcessing = false;
@@ -15,6 +15,7 @@ export class FormbinkComponent implements OnInit {
   formData = {
     email: ''
   };
+
   ngOnInit() {}
 
   // Prevenir cierre de pestaña durante el proceso
@@ -33,7 +34,7 @@ export class FormbinkComponent implements OnInit {
     return `form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }
 
-  // Método para exportar PDF y enviar por correo
+  // Método actualizado para exportar PDF y enviar por correo
   async exportToPDF(form: NgForm) {
     this.isProcessing = true;
     
@@ -42,15 +43,12 @@ export class FormbinkComponent implements OnInit {
         alert('Please complete all required fields');
         this.isProcessing = false;
         return;
-        
       }
       if (!this.formData.email) {
         alert('Please enter a valid email address');
         this.isProcessing = false;
         return;
       }
-
-
 
       alert('Generating PDF and sending, please wait...');
       
@@ -59,49 +57,65 @@ export class FormbinkComponent implements OnInit {
         throw new Error('Form element not found');
       }
 
-      // Configuración para capturar todo el contenido
+      // Mejorar la configuración de html2canvas
       const canvas = await html2canvas(element, {
-        scale: 1.5,
+        scale: 2, // Aumentar la escala para mejor calidad
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
         windowWidth: 1024,
-        logging: false,
+        logging: true, // Activar logging para debug
         scrollX: 0,
-        scrollY: -window.scrollY
+        scrollY: -window.scrollY,
+        height: element.scrollHeight, // Asegurar que capture todo el alto
+        onclone: (clonedDoc) => {
+          // Ajustar el elemento clonado para mejor renderizado
+          const clonedElement = clonedDoc.getElementById('form-container');
+          if (clonedElement) {
+            clonedElement.style.position = 'relative';
+            clonedElement.style.height = 'auto';
+            clonedElement.style.minHeight = '100%';
+          }
+        }
       });
 
+      // Configurar el PDF con márgenes más específicos
       const pdf = new jsPDF({
-        orientation: 'p',
+        orientation: 'portrait',
         unit: 'mm',
         format: 'a4',
         compress: true
       });
 
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      
+      // Calcular dimensiones considerando márgenes
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 10;
       const contentWidth = pageWidth - (2 * margin);
       
       const imgProps = pdf.getImageProperties(imgData);
-      const imgHeight = (imgProps.height * contentWidth) / imgProps.width;
+      const scaleFactor = contentWidth / imgProps.width;
+      const imgHeight = imgProps.height * scaleFactor;
       
       let heightLeft = imgHeight;
       let position = margin;
       let page = 1;
 
+      // Ajustar la primera página
       pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, imgHeight);
       heightLeft -= (pageHeight - 2 * margin);
 
-      while (heightLeft > 0) {
+      // Agregar páginas adicionales si es necesario
+      while (heightLeft >= 0) {
         pdf.addPage();
-        position = -pageHeight * page + margin;
+        position = margin - (pageHeight * page);
         pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, imgHeight);
         heightLeft -= (pageHeight - 2 * margin);
         page++;
       }
-      
+
       const pdfBlob = pdf.output('blob');
       this.pdfFile = new File([pdfBlob], 'form-business-intake.pdf', { 
         type: 'application/pdf' 
@@ -112,7 +126,6 @@ export class FormbinkComponent implements OnInit {
 
       // Agregar ID único al formData
       formData.append('form_id', uniqueId);
-  // Asegurarse de que el email se adjunte correctamente
       formData.append('email', this.formData.email);
 
       // Obtener todos los campos del formulario
@@ -130,17 +143,14 @@ export class FormbinkComponent implements OnInit {
       formData.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
       formData.append('_template', 'table');
       formData.append('_replyto', formValues.email);
-      formData.append('_replyto', this.formData.email); // Usar el email del formulario
-      formData.append('_cc', this.formData.email); // Enviar copia al email proporcionado
-      
+      formData.append('_replyto', this.formData.email);
+      formData.append('_cc', this.formData.email);
 
       if (this.pdfFile) {
         formData.append('pdf', this.pdfFile, `form-business-intake-${uniqueId}.pdf`);
       }
 
       const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
-
-
 
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
@@ -155,14 +165,15 @@ export class FormbinkComponent implements OnInit {
         throw new Error(`Error: ${response.status}`);
       }
 
+      // Guardar el PDF localmente
       pdf.save(`form-business-intake-${uniqueId}.pdf`);
 
       alert('Form submitted and PDF generated successfully!');
 
-       // Resetear el formulario y los datos
-       form.reset();
-       this.formData.email = '';
-       this.pdfFile = null;
+      // Resetear el formulario y los datos
+      form.reset();
+      this.formData.email = '';
+      this.pdfFile = null;
 
     } catch (error) {
       console.error('Error al enviar formulario:', error);
