@@ -1,14 +1,52 @@
+
 <footer class="text-gray-600 body-font">
-    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Qualitech Boston</span>
-      </a>
-      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
-        <a href="https://github.com/tohka53" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">By TOHKA DEVS</a>
-      </p>
-      
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl">Qualitech Boston</span>
+    </a>
+    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2025 Qualitech Boston —
+      <button (click)="showModal = true" class="text-gray-600 ml-1 hover:text-gray-800">By Miguel E. Cabrera</button>
+    </p>
+  </div>
+
+  <!-- Modal / Popup -->
+  <div *ngIf="showModal" 
+       class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center"
+       (click)="showModal = false">
+    <div class="relative bg-white rounded-lg shadow-xl p-6 max-w-sm mx-4" 
+         (click)="$event.stopPropagation()">
+      <div class="flex items-start justify-between mb-2">
+        <h3 class="text-lg font-semibold text-gray-900">
+          Información de Contacto
+        </h3>
+        <button 
+          (click)="showModal = false"
+          class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+      <div>
+        <p class="text-gray-700">
+          Email: mecg1994&#64;gmail.com
+        </p>
+        <div class="flex gap-2 mt-4">
+          <button 
+            (click)="copyEmail()"
+            class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 text-sm">
+            Copy Email
+          </button>
+          <button 
+            (click)="showModal = false"
+            class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 text-sm">
+            Close
+          </button>
+        </div>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>
