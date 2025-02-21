@@ -1,16 +1,13 @@
-<head><meta name="viewport" content="width=1024">
+<head>
+    <meta name="viewport" content="width=1024">
 </head>
-<!-- Contenedor principal del formulario -->
 <div class="min-h-screen bg-white p-6" id="form-container">
-    <!-- Encabezado con información de contacto -->
-    <div class="w-full max-w-6xl mx-auto">
+    <!-- Encabezado -->
+    <div class="w-full max-w-6xl mx-auto form-header">
         <div class="flex justify-between items-center mb-8 text-sm">
-            <!-- Columna del logo -->
             <div class="w-1/3">
                 <img src="/assets/logo1.png" alt="Qualitech Boston" class="w-full max-w-[350px]">
             </div>
-            
-            <!-- Columna de la información -->
             <div class="text-right">
                 <p class="font-semibold">671 Adams Street</p>
                 <p>Dorchester MA 02122</p>
@@ -21,22 +18,22 @@
         </div>
     </div>
 
-    <!-- Título del formulario -->
+    <!-- Título -->
     <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold">INCOME TAX <input type="text" class="w-full border-b border-black p-2 text-center"></h1>
-        <h2 class="text-xl font-boldp-2">CLIENT PROFILE FORM</h2>
+        <h1 class="text-2xl font-bold">INCOME TAX <p class="text-white">.</p><input type="text" class="w-full border-b border-black p-2 text-center"></h1>
+        
+        <h2 class="text-xl font-bold p-2">CLIENT PROFILE FORM</h2>
     </div>
 
-    <!-- Formulario principal -->
-
-
     <form #formRef="ngForm">
+
 <!-- Preguntas iniciales -->
 <div class="border border-black p-4 mb-4">
     <div class="space-y-4">
         <!-- ¿Fuiste nuestro cliente fiscal el año pasado? -->
         <div class="flex items-center gap-4">
             <span>Were you our tax customer last year? </span>
+            
             <div class="flex gap-4">
                 <label class="flex items-center">
                     <span class="mr-2">Yes</span>
@@ -361,7 +358,7 @@
 </div>
 
 <!-- Dependientes -->
-<div class="border border-black p-4 mb-4">
+<div class="border border-black p-4 mb-4 dependents-info">
     <h3 class="font-bold mb-4">4. Dependents</h3>
     <p class="text-sm italic mb-4">SUPPORTING DOCUMENTS: insurance enrollment, school verification letter, phyYescal form, childcare letter, lease agreement.</p>
     
@@ -392,7 +389,7 @@
     </div>
 
     <!-- Tabla de dependientes -->
-    <div class="border border-black">
+    <div class="border border-black dependents-table">
         <table class="w-full">
             <thead>
                 <tr class="border-b border-black">
@@ -770,7 +767,7 @@ statements.
 </div>
 
 <!-- Seguro de Salud -->
-<div class="border border-black p-4 mb-4">
+<div class="border border-black p-4 mb-4 health-insurance">
     <h3 class="font-bold mb-4">12. Health Insurance</h3>
     <div class="space-y-4">
         <!-- Tipo de seguro -->
@@ -909,7 +906,7 @@ statements.
 </div>
 
 <!-- Firmas -->
-<div class="space-y-8 mb-8">
+<div class="space-y-8 mb-8 signature-section">
     <div class="grid grid-cols-2 gap-8">
         <div>
             <label class="block mb-2">Customer’s Signature</label>
@@ -936,7 +933,7 @@ statements.
 </div>
 
 <!-- Solo para uso en la oficina -->
-<div class="border border-black p-4 mb-8">
+<div class="border border-black p-4 mb-8 office-use-section">
     <h4 class="font-bold mb-4">OFFICE USE ONLY</h4>
     <ul class="list-disc pl-4 space-y-2 text-sm">
         <li>Please attach a copy of picture I.D. Social Card, Insurance card and original W-2 forms</li>
@@ -949,7 +946,7 @@ statements.
 </div>
 
 <!-- Certificación -->
-<div class="border border-black p-4 text-sm">
+<div class="border border-black p-4 text-sm certification-section">
     <p class="mb-4 font-bold">
         By signing this form, I hereby certify that all information provided to Qualitech Professional Services is true, correct to the best of my knowledge and
         belief (I / we) Understand that any assessments, penalties, or audits by the IRS due to omissions or erroneous information provided to Qualitech (I /We)
