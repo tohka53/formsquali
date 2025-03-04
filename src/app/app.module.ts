@@ -16,6 +16,7 @@ import { FormenComponent } from './formen/formen/formen.component';
 import { FormcareComponent } from './formcare/formcare/formcare.component';
 
 
+
 inject();
 @NgModule({
   declarations: [

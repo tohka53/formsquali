@@ -34,6 +34,11 @@ const routes: Routes = [
     loadChildren: () => import('./formcare/formcare/formcare.module').then(m => m.FormcareModule)
   },  
   {
+    path: 'formemp',
+    loadChildren: () => import('./formemp/formemp/formemp.module').then(m => m.FormempModule)
+ 
+  }, 
+  {
     
     path: '',
     redirectTo: 'home',
