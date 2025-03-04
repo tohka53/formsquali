@@ -25,27 +25,8 @@ export class FormempComponent implements OnInit {
     zip: ''
   };
   selectedImage: string | ArrayBuffer | null = null;
-  isMobile: boolean = false;
 
-  ngOnInit() {
-    // Detectar si es un dispositivo móvil al iniciar
-    this.checkDevice();
-    
-    // Escuchar cambios de tamaño de ventana
-    window.addEventListener('resize', () => {
-      this.checkDevice();
-    });
-  }
-
-  // Verificar si es un dispositivo móvil
-  private checkDevice() {
-    this.isMobile = window.innerWidth < 768;
-    if (this.isMobile) {
-      document.body.classList.add('mobile-device');
-    } else {
-      document.body.classList.remove('mobile-device');
-    }
-  }
+  ngOnInit() {}
 
   // Prevenir cierre de pestaña durante el proceso
   @HostListener('window:beforeunload', ['$event'])
@@ -104,25 +85,21 @@ export class FormempComponent implements OnInit {
 
       alert('Generating PDF and sending, please wait...');
       
-      // Preparar el formulario para la exportación
-      await this.prepareFormForExport();
-      
       const element = document.getElementById('form-container');
       if (!element) {
         throw new Error('Form element not found');
       }
 
-      // Configuración adaptada para dispositivos móviles
+      // Configuración para capturar todo el contenido
       const canvas = await html2canvas(element, {
-        scale: this.isMobile ? 1 : 1.5,
+        scale: 1.5,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        windowWidth: this.isMobile ? window.innerWidth : 1024,
+        windowWidth: 1024,
         logging: false,
         scrollX: 0,
-        scrollY: -window.scrollY,
-        height: element.scrollHeight
+        scrollY: -window.scrollY
       });
 
       const pdf = new jsPDF({
@@ -135,7 +112,7 @@ export class FormempComponent implements OnInit {
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const margin = this.isMobile ? 5 : 10;
+      const margin = 10;
       const contentWidth = pageWidth - (2 * margin);
       
       const imgProps = pdf.getImageProperties(imgData);
@@ -155,9 +132,6 @@ export class FormempComponent implements OnInit {
         heightLeft -= (pageHeight - 2 * margin);
         page++;
       }
-      
-      // Restaurar el formulario después de la exportación
-      this.restoreFormAfterExport();
       
       const pdfBlob = pdf.output('blob');
       this.pdfFile = new File([pdfBlob], 'employee-setup-sheet.pdf', { 
@@ -193,7 +167,7 @@ export class FormempComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `employee-setup-sheet-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
 
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
@@ -239,82 +213,10 @@ export class FormempComponent implements OnInit {
       }
     } finally {
       this.isProcessing = false;
-      // Asegurarse de restaurar el formulario si hay un error
-      this.restoreFormAfterExport();
-    }
-  }
-
-  // Preparar el formulario para exportación
-  private async prepareFormForExport(): Promise<void> {
-    // Guardar estado original de los elementos que vamos a modificar
-    const formContainer = document.getElementById('form-container');
-    
-    if (formContainer) {
-      // Añadir clase para estilos de impresión
-      formContainer.classList.add('print-mode');
-      
-      // Para dispositivos móviles, hacer ajustes adicionales
-      if (this.isMobile) {
-        // Aplicar estilos específicos para móviles
-        const gridElements = formContainer.querySelectorAll('.grid');
-        gridElements.forEach(grid => {
-          (grid as HTMLElement).style.display = 'block';
-        });
-        
-        // Asegurar que los inputs sean visibles
-        const inputs = formContainer.querySelectorAll('input, select');
-        inputs.forEach(input => {
-          (input as HTMLElement).style.border = '1px solid #000';
-          (input as HTMLElement).style.minHeight = '24px';
-        });
-        
-        // Ocultar botones
-        const buttons = formContainer.querySelectorAll('button');
-        buttons.forEach(button => {
-          button.classList.add('hidden-for-print');
-          (button as HTMLElement).style.display = 'none';
-        });
-      }
-    }
-    
-    // Pequeña pausa para asegurar que los cambios se apliquen
-    return new Promise(resolve => setTimeout(resolve, 100));
-  }
-
-  // Restaurar el formulario después de la exportación
-  private restoreFormAfterExport(): void {
-    const formContainer = document.getElementById('form-container');
-    
-    if (formContainer) {
-      // Quitar clase de impresión
-      formContainer.classList.remove('print-mode');
-      
-      // Restaurar elementos modificados
-      if (this.isMobile) {
-        // Restaurar grids
-        const gridElements = formContainer.querySelectorAll('.grid');
-        gridElements.forEach(grid => {
-          (grid as HTMLElement).style.display = '';
-        });
-        
-        // Restaurar inputs
-        const inputs = formContainer.querySelectorAll('input, select');
-        inputs.forEach(input => {
-          (input as HTMLElement).style.border = '';
-          (input as HTMLElement).style.minHeight = '';
-        });
-        
-        // Restaurar botones
-        const buttons = formContainer.querySelectorAll('button');
-        buttons.forEach(button => {
-          button.classList.remove('hidden-for-print');
-          (button as HTMLElement).style.display = '';
-        });
-      }
     }
   }
 
   saveForm() {
     alert('Guardando formulario...');
   }
-}
+} 

@@ -35,7 +35,7 @@ const routes: Routes = [
   },  
   {
     path: 'formemp',
-    loadChildren: () => import('./formemp/formemp/formemp.module').then(m => m.FormempModule)
+    loadChildren: () => import('./formemp/formemp.module').then(m => m.FormempModule)
  
   }, 
   {
