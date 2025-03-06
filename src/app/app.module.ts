@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FormenComponent } from './formen/formen/formen.component';
 import { FormcareComponent } from './formcare/formcare/formcare.component';
+import { FormcpayComponent } from './formcpay/formcpay/formcpay.component';
 
 
 
@@ -29,7 +30,8 @@ inject();
     FormscComponent,
     FormispaComponent,
     FormenComponent,
-    FormcareComponent
+    FormcareComponent,
+    FormcpayComponent
   ],
   imports: [
     BrowserModule,

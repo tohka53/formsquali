@@ -176,7 +176,7 @@ export class FormbinkComponent implements OnInit {
       this.pdfFile = null;
 
     } catch (error) {
-      console.error('Error al enviar formulario:', error);
+      console.error('Error to Send Form:', error);
       
       if (error instanceof Error) {
         alert(`The form could not be submitted: ${error.message}`);

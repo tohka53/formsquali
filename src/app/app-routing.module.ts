@@ -39,6 +39,11 @@ const routes: Routes = [
  
   }, 
   {
+    path: 'formcpay',
+    loadChildren: () => import('./formcpay/formcpay/formcpay.module').then(m => m.FormcpayModule)
+ 
+  }, 
+  {
     
     path: '',
     redirectTo: 'home',
