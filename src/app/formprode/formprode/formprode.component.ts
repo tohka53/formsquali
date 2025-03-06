@@ -33,43 +33,70 @@ export class FormprodeComponent implements OnInit {
     return `form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }
 
-  // Método para exportar PDF y enviar por correo
+  // Método actualizado para exportar PDF y enviar por correo
   async exportToPDF(form: NgForm) {
     this.isProcessing = true;
     
     try {
       if (form.invalid) {
-        alert('Please complete all required fields');
+        alert('Por favor complete todos los campos requeridos');
         this.isProcessing = false;
         return;
-        
       }
       if (!this.formData.email) {
-        alert('Please enter a valid email address');
+        alert('Por favor ingrese una dirección de email válida');
         this.isProcessing = false;
         return;
       }
 
-
-
-      alert('Generating PDF and sending, please wait...');
+      alert('Generando PDF y enviando, por favor espere...');
       
       const element = document.getElementById('form-container');
       if (!element) {
-        throw new Error('Form element not found');
+        throw new Error('Elemento del formulario no encontrado');
       }
 
-      // Configuración para capturar todo el contenido
+      // Guardar el ancho original y el overflow para restaurarlos después
+      const originalWidth = element.style.width;
+      const originalOverflow = document.body.style.overflow;
+      
+      // Establecer un ancho fijo para una generación de PDF consistente
+      element.style.width = '1024px';
+      document.body.style.overflow = 'visible';
+
+      // Configuración mejorada para capturar el contenido de manera consistente
       const canvas = await html2canvas(element, {
-        scale: 1.5,
+        scale: 2, // Escala más alta para mejor calidad
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        windowWidth: 1024,
+        windowWidth: 1024, // Forzar un ancho de ventana consistente
+        width: 1024, // Forzar el ancho del elemento
+        height: element.scrollHeight,
         logging: false,
         scrollX: 0,
-        scrollY: -window.scrollY
+        scrollY: -window.scrollY,
+        onclone: (clonedDoc) => {
+          // Agregar un estilo para asegurar un renderizado consistente en el documento clonado
+          const style = clonedDoc.createElement('style');
+          style.innerHTML = `
+            #form-container { width: 1024px !important; margin: 0 auto !important; }
+            input, select { font-size: 14px !important; }
+          `;
+          clonedDoc.head.appendChild(style);
+          
+          // Asegurarse de que todos los campos del formulario sean visibles en el documento clonado
+          const formContainer = clonedDoc.getElementById('form-container');
+          if (formContainer) {
+            formContainer.style.width = '1024px';
+            formContainer.style.transform = 'none';
+          }
+        }
       });
+
+      // Restaurar los estilos originales
+      element.style.width = originalWidth;
+      document.body.style.overflow = originalOverflow;
 
       const pdf = new jsPDF({
         orientation: 'p',
@@ -78,7 +105,7 @@ export class FormprodeComponent implements OnInit {
         compress: true
       });
 
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 10;
@@ -107,12 +134,14 @@ export class FormprodeComponent implements OnInit {
         type: 'application/pdf' 
       });
 
+      // El resto del código de envío del formulario se mantiene igual
       const formData = new FormData();
       const uniqueId = this.generateUniqueId();
 
       // Agregar ID único al formData
       formData.append('form_id', uniqueId);
-  // Asegurarse de que el email se adjunte correctamente
+      
+      // Asegurarse de que el email se adjunte correctamente
       formData.append('email', this.formData.email);
 
       // Obtener todos los campos del formulario
@@ -129,27 +158,23 @@ export class FormprodeComponent implements OnInit {
       formData.append('_subject', `Form Real State Property - ID: ${uniqueId}`);
       formData.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
       formData.append('_template', 'table');
-      formData.append('_replyto', formValues.email);
-      formData.append('_replyto', this.formData.email); // Usar el email del formulario
+      formData.append('_replyto', this.formData.email);
       formData.append('_cc', this.formData.email); // Enviar copia al email proporcionado
       
-
       if (this.pdfFile) {
         formData.append('pdf', this.pdfFile, `form-real-state-property-${uniqueId}.pdf`);
       }
 
       const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
 
-
-
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
         body: formData
       });
 
-      console.log('Complete answer::', response);
+      console.log('Respuesta completa:', response);
       const responseText = await response.text();
-      console.log('Response text:', responseText);
+      console.log('Texto de respuesta:', responseText);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
@@ -157,20 +182,20 @@ export class FormprodeComponent implements OnInit {
 
       pdf.save(`form-real-state-property-${uniqueId}.pdf`);
 
-      alert('Form submitted and PDF generated successfully!');
+      alert('¡Formulario enviado y PDF generado exitosamente!');
 
-       // Resetear el formulario y los datos
-       form.reset();
-       this.formData.email = '';
-       this.pdfFile = null;
+      // Resetear el formulario y los datos
+      form.reset();
+      this.formData.email = '';
+      this.pdfFile = null;
 
     } catch (error) {
       console.error('Error al enviar formulario:', error);
       
       if (error instanceof Error) {
-        alert(`The form could not be submitted: ${error.message}`);
+        alert(`No se pudo enviar el formulario: ${error.message}`);
       } else {
-        alert('There was an unknown error submitting the form');
+        alert('Hubo un error desconocido al enviar el formulario');
       }
     } finally {
       this.isProcessing = false;
