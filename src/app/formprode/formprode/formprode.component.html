@@ -1,25 +1,7 @@
-<head>
-    <!-- Cambio en el viewport para asegurar un renderizado consistente -->
-    <meta name="viewport" content="width=1024, initial-scale=1.0">
-    <!-- Estilos específicos para impresión -->
-    <style media="print">
-        @page {
-            size: A4;
-            margin: 10mm;
-        }
-        body {
-            width: 1024px !important;
-            margin: 0 auto !important;
-        }
-        #form-container {
-            width: 1024px !important;
-            transform: none !important;
-            margin: 0 auto !important;
-        }
-    </style>
+<head><meta name="viewport" content="width=1024">
 </head>
-<!-- Contenedor principal del formulario - ahora centrado -->
-<div class="min-h-screen bg-white p-6 mx-auto" id="form-container">
+<!-- Contenedor principal del formulario -->
+<div class="min-h-screen bg-white p-6" id="form-container">
     <!-- Encabezado con información de contacto -->
     <div class="w-full max-w-6xl mx-auto">
         <div class="flex justify-between items-center mb-8 text-sm">
@@ -46,8 +28,9 @@
     </div>
 
     <!-- Formulario principal -->
-    <form #formRef="ngForm" class="max-w-6xl mx-auto">
+    <form #formRef="ngForm">
         <!-- Información básica -->
+
         
         <div class="border border-black">
             
@@ -97,7 +80,7 @@
         </div>
 
         <!-- Sección de ingresos -->
-        <div class="border border-black mt-4">
+        <div class="border border-black">
             <div class="bg-yellow-300 p-2 font-bold text-center border-b border-black">
                 ANNUAL RENT INCOME
             </div>
@@ -109,189 +92,197 @@
             </div>
         </div>
 
+
+
         <!-- Sección de gastos operativos anuales -->
-        <div class="border border-black mt-4">
-            <div class="bg-yellow-300 p-2 font-bold text-center border-b border-black">
-                ANNUAL OPERATING EXPENSE (Actual)
-            </div>
-
-            <!-- Lista de gastos -->
-            <div class="grid grid-cols-2 section-gastos">
-                <!-- Columna izquierda: etiquetas -->
-                <div class="border-r border-black">
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Advertising</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Auto & Travel</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Cleaning & Maintenance</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Commissions</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Insurance</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Legal and other fees</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Management fees</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Mortgage Interest</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Other Interest</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Painting & Decorating</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Repair</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Plumbing & Heating</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Carpentry</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Electrical</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Supplies</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Real StateTaxes</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Utilities(Electricity)</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Depreciation Expense</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2">Others</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Water & Sewer</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Trash & Snow Removal</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Contractor Labor</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Heat</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Condo Fee</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Gas</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 pl-8">Other</span>
-                    </div>
-                    <div class="h-10 flex items-center border-b border-black">
-                        <span class="p-2 font-bold">TOTAL EXPENSES</span>
-                    </div>
-                </div>
-
-                <!-- Columna derecha: inputs -->
-                <div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                    <div class="h-10 border-b border-black">
-                        <input type="number" class="w-full h-full px-2">
-                    </div>
-                </div>
-            </div>
+        <div class="border border-black">
+     <div class="bg-yellow-300 p-2 font-bold text-center border-b border-black">
+         ANNUAL OPERATING EXPENSE (Actual)
         </div>
+
+             <!-- Lista de gastos -->
+
+           <!-- Lista de gastos -->
+<div class="grid grid-cols-2 section-gastos">
+   <!-- Columna izquierda: etiquetas -->
+   <div class="border-r border-black">
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Advertising</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Auto & Travel</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Cleaning & Maintenance</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Commissions</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Insurance</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Legal and other fees</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Management fees</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Mortgage Interest</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Other Interest</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Painting & Decorating</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Repair</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Plumbing & Heating</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Carpentry</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Electrical</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Supplies</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Real StateTaxes</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Utilities(Electricity)</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Depreciation Expense</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2">Others</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Water & Sewer</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Trash & Snow Removal</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Contractor Labor</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Heat</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Condo Fee</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Gas</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 pl-8">Other</span>
+       </div>
+       <div class="h-10 flex items-center border-b border-black">
+           <span class="p-2 font-bold">TOTAL EXPENSES</span>
+       </div>
+   </div>
+
+   <!-- Columna derecha: inputs -->
+   <div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+       <div class="h-10 border-b border-black">
+           <input type="number" class="w-full h-full px-2">
+       </div>
+      
+   </div>
+</div>
+    
+    </div>
+
     </form> 
 </div>
 
 <div class="flex justify-center space-x-4 mt-8">
+    
     <button type="button" (click)="exportToPDF(formRef)"
         class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
         Send Form
