@@ -138,7 +138,7 @@ export class FormenComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `form-income-taxe-${uniqueId}.pdf`);
       }
 
-      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
 
 
 

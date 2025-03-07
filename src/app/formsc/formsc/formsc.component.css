@@ -1,0 +1,34 @@
+.form-section {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .section-payroll {
+    page-break-before: always;
+  }
+  
+  #form-container {
+    overflow: visible !important;
+    min-height: 100vh;
+  }
+  
+  /* Estilos adicionales para mejorar la visualización en el PDF */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  input[type="url"] {
+    min-height: 24px;
+  }
+  
+  .border-black {
+    border-color: #000000 !important;
+  }
+  
+  /* Asegurar que los checkboxes sean visibles en el PDF */
+  input[type="checkbox"] {
+    min-width: 16px;
+    min-height: 16px;
+    border: 1px solid black;
+    }
