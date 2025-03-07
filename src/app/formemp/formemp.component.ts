@@ -122,7 +122,7 @@ export class FormempComponent implements OnInit {
       
       // 2. Agregar el logo de Qualitech (opcional)
       const logoHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid #000; padding-bottom: 10px;">
           <div style="width: 300px;">
             <img src="/assets/logo1.png" alt="Qualitech Professional Services" style="max-width: 100%;" />
           </div>
@@ -142,7 +142,7 @@ export class FormempComponent implements OnInit {
         throw new Error('Form container not found');
       }
       
-      // 4. Crear una estructura de tabla explícita y consistente para el PDF
+      // 4. Crear una estructura de tabla explícita y consistente para el PDF con líneas más visibles
       printContainer.innerHTML = `
         <div style="padding: 0.5in; font-family: Arial, sans-serif;">
           ${logoHTML}
@@ -150,65 +150,66 @@ export class FormempComponent implements OnInit {
           
           <!-- Información Personal -->
           <div style="display: flex; margin-bottom: 20px;">
-            <div style="width: 110px; height: 110px; background-color: #f0f0f0; margin-right: 20px;">
+            <div style="width: 110px; height: 110px; background-color: #f0f0f0; margin-right: 20px; border: 1px solid #000;">
               ${this.selectedImage ? 
                 `<img src="${this.selectedImage}" style="width: 100%; height: 100%; object-fit: cover;">` : 
-                `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #ccc;">
+                `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #ddd;">
                   <div style="width: 70%; height: 70%; border-radius: 50%; background-color: white;"></div>
                 </div>`
               }
+              <div style="text-align: center; background-color: #4285f4; color: white; padding: 2px 0; font-size: 12px;">Cargar Foto</div>
             </div>
             
             <div style="flex: 1;">
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                  <td style="width: 33%; padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">First Name</div>
-                    <div>${this.formData.firstName || ''}</div>
+                  <td style="width: 33%; padding: 5px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">First Name</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.firstName || ''}</div>
                   </td>
-                  <td style="width: 33%; padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Last Name</div>
-                    <div>${this.formData.lastName || ''}</div>
+                  <td style="width: 33%; padding: 5px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Last Name</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.lastName || ''}</div>
                   </td>
-                  <td style="width: 33%; padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Company Name</div>
-                    <div>${this.formData.company || ''}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">DOB</div>
-                    <div>${this.formData.dob || ''}</div>
-                  </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">SSN</div>
-                    <div>${this.formData.ssn || ''}</div>
-                  </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Email Address</div>
-                    <div>${this.formData.email || ''}</div>
-                  </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Hire Date</div>
-                    <div>${form.value.hireDate || ''}</div>
+                  <td style="width: 33%; padding: 5px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Company Name</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.company || ''}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Address</div>
-                    <div>${this.formData.address || ''}</div>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">DOB</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.dob || ''}</div>
                   </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">City</div>
-                    <div>${this.formData.city || ''}</div>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">SSN</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.ssn || ''}</div>
                   </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">State</div>
-                    <div>${this.formData.state || ''}</div>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Email Address</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.email || ''}</div>
                   </td>
-                  <td style="padding: 5px; border-bottom: 1px solid black;">
-                    <div style="font-size: 12px;">Zip</div>
-                    <div>${this.formData.zip || ''}</div>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Hire Date</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${form.value.hireDate || ''}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Address</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.address || ''}</div>
+                  </td>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">City</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.city || ''}</div>
+                  </td>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">State</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.state || ''}</div>
+                  </td>
+                  <td style="padding: 15px 5px 0 5px;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Zip</div>
+                    <div style="border-bottom: 1px solid black; min-height: 20px; padding: 2px;">${this.formData.zip || ''}</div>
                   </td>
                 </tr>
               </table>
@@ -216,7 +217,7 @@ export class FormempComponent implements OnInit {
           </div>
           
           <!-- Información de Empleo -->
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
             <tr>
               <td style="width: 20%; background-color: #f0f0f0; border: 1px solid black; padding: 8px; font-weight: bold;">Gender</td>
               <td style="width: 20%; background-color: #f0f0f0; border: 1px solid black; padding: 8px; font-weight: bold;">Pay Information</td>
@@ -226,48 +227,110 @@ export class FormempComponent implements OnInit {
             </tr>
             <tr>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin: 4px 0;">☐ Male</div>
-                <div style="margin: 4px 0;">☐ Female</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.genderMale ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Male
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.genderFemale ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Female
+                </div>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin: 4px 0;">☐ Hourly</div>
-                <div style="margin: 4px 0;">☐ Salary</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.payHourly ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Hourly
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.paySalary ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Salary
+                </div>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin: 4px 0;">☐ Full Time</div>
-                <div style="margin: 4px 0;">☐ 1099</div>
-                <div style="margin: 4px 0;">☐ Part Time</div>
-                <div style="margin: 4px 0;">☐ Temporary</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.empFullTime ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Full Time
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.emp1099 ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> 1099
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.empPartTime ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Part Time
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.empTemporary ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Temporary
+                </div>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin: 4px 0;">☐ Active</div>
-                <div style="margin: 4px 0;">☐ New Hire</div>
-                <div style="margin: 4px 0;">☐ Terminated</div>
-                <div style="margin: 4px 0;">☐ Inactive</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.statusActive ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Active
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.statusNewHire ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> New Hire
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.statusTerminated ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Terminated
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.statusInactive ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Inactive
+                </div>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin: 4px 0;">☐ Check</div>
-                <div style="margin: 4px 0;">☐ Direct Deposit</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.payTypeCheck ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Check
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.payTypeDirectDeposit ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Direct Deposit
+                </div>
               </td>
             </tr>
           </table>
           
           <!-- Información de Tarifa -->
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
             <tr>
               <td style="width: 33.33%; background-color: #f0f0f0; border: 1px solid black; padding: 8px; font-weight: bold;">Regular Pay Rate</td>
               <td style="width: 33.33%; background-color: #f0f0f0; border: 1px solid black; padding: 8px; font-weight: bold;">Overtime Rate</td>
               <td style="width: 33.33%; background-color: #f0f0f0; border: 1px solid black; padding: 8px; font-weight: bold;">Other Rate</td>
             </tr>
             <tr>
-              <td style="border: 1px solid black; padding: 8px;">$ __________ / hour or salary</td>
-              <td style="border: 1px solid black; padding: 8px;">$ __________</td>
-              <td style="border: 1px solid black; padding: 8px;">$ __________ Per Hour / Pay Period</td>
+              <td style="border: 1px solid black; padding: 8px;">
+                $ <span style="display: inline-block; min-width: 100px; border-bottom: 1px solid black;">${form.value.regularPayRate || ''}</span> / hour or salary
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                $ <span style="display: inline-block; min-width: 100px; border-bottom: 1px solid black;">${form.value.overtimeRate || ''}</span>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                $ <span style="display: inline-block; min-width: 100px; border-bottom: 1px solid black;">${form.value.otherRate || ''}</span> Per Hour / Pay Period
+              </td>
             </tr>
           </table>
           
           <!-- Información de Depósito Directo -->
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
             <tr>
               <td style="width: 20%; border: 1px solid black; padding: 8px; font-weight: bold;">Direct Deposit Information</td>
               <td style="width: 15%; border: 1px solid black; padding: 8px; font-weight: bold;">$ or %*</td>
@@ -276,25 +339,70 @@ export class FormempComponent implements OnInit {
               <td style="width: 20%; border: 1px solid black; padding: 8px; font-weight: bold;">Bank Name</td>
             </tr>
             <tr>
-              <td style="border: 1px solid black; padding: 8px;">☐ Checking ☐ Savings</td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                  ${form.value.account1Checking ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Checking 
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; margin-left: 10px; position: relative;">
+                  ${form.value.account1Savings ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Savings
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account1Amount || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account1Routing || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account1Number || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account1Bank || ''}</div>
+              </td>
             </tr>
             <tr>
-              <td style="border: 1px solid black; padding: 8px;">☐ Checking ☐ Savings</td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                  ${form.value.account2Checking ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Checking 
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; margin-left: 10px; position: relative;">
+                  ${form.value.account2Savings ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Savings
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account2Amount || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account2Routing || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account2Number || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account2Bank || ''}</div>
+              </td>
             </tr>
             <tr>
-              <td style="border: 1px solid black; padding: 8px;">☐ Checking ☐ Savings</td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
-              <td style="border: 1px solid black; padding: 8px;"></td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                  ${form.value.account3Checking ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Checking 
+                <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; margin-left: 10px; position: relative;">
+                  ${form.value.account3Savings ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                </span> Savings
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account3Amount || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account3Routing || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account3Number || ''}</div>
+              </td>
+              <td style="border: 1px solid black; padding: 8px;">
+                <div style="border-bottom: 1px solid black; min-height: 18px;">${form.value.account3Bank || ''}</div>
+              </td>
             </tr>
           </table>
           
@@ -305,82 +413,140 @@ export class FormempComponent implements OnInit {
           </div>
           
           <!-- Deducciones e Impuestos -->
-          <table style="width: 100%; border-collapse: collapse;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid black;">
             <tr>
-              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold;">Deductions</td>
-              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold;">Federal Tax Info</td>
-              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold;">State Tax Info</td>
+              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold; background-color: #f0f0f0;">Deductions</td>
+              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold; background-color: #f0f0f0;">Federal Tax Info</td>
+              <td style="width: 33.33%; text-align: center; border: 1px solid black; padding: 8px; font-weight: bold; background-color: #f0f0f0;">State Tax Info</td>
             </tr>
             <tr>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
                 <!-- Tabla de deducciones -->
                 <table style="width: 100%; border-collapse: collapse;">
                   <tr>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px;">Deduction Name</td>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px; white-space: nowrap;">☐ $ ☐ % Amount</td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black;">
+                      <div>Deduction Name</div>
+                    </td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black; white-space: nowrap;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px;"></span> $ 
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin: 0 5px;"></span> % 
+                      <span style="border-bottom: 1px solid black; display: inline-block; min-width: 60px;">Amount</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px;">Deduction Name</td>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px; white-space: nowrap;">☐ $ ☐ % Amount</td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black;">
+                      <div>Deduction Name</div>
+                    </td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black; white-space: nowrap;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px;"></span> $ 
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin: 0 5px;"></span> % 
+                      <span style="border-bottom: 1px solid black; display: inline-block; min-width: 60px;">Amount</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px;">Deduction Name</td>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px; white-space: nowrap;">☐ $ ☐ % Amount</td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black;">
+                      <div>Deduction Name</div>
+                    </td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black; white-space: nowrap;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px;"></span> $ 
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin: 0 5px;"></span> % 
+                      <span style="border-bottom: 1px solid black; display: inline-block; min-width: 60px;">Amount</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px;">Deduction Name</td>
-                    <td style="border-bottom: 1px solid #ccc; padding: 4px; white-space: nowrap;">☐ $ ☐ % Amount</td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black;">
+                      <div>Deduction Name</div>
+                    </td>
+                    <td style="padding: 4px 0; border-bottom: 1px solid black; white-space: nowrap;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px;"></span> $ 
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin: 0 5px;"></span> % 
+                      <span style="border-bottom: 1px solid black; display: inline-block; min-width: 60px;">Amount</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td style="padding: 4px;">Deduction Name</td>
-                    <td style="padding: 4px; white-space: nowrap;">☐ $ ☐ % Amount</td>
+                    <td style="padding: 4px 0;">
+                      <div>Deduction Name</div>
+                    </td>
+                    <td style="padding: 4px 0; white-space: nowrap;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px;"></span> $ 
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin: 0 5px;"></span> % 
+                      <span style="border-bottom: 1px solid black; display: inline-block; min-width: 60px;">Amount</span>
+                    </td>
                   </tr>
                 </table>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin-bottom: 8px;">Filing Status:</div>
-                <div style="margin: 4px 0;">☐ Single or Married Filing Separately</div>
-                <div style="margin: 4px 0;">☐ Married Filing Jointly</div>
-                <div style="margin: 4px 0;">☐ Head of Household</div>
+                <div style="margin-bottom: 8px; font-weight: bold;">Filing Status:</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.federalStatusSingle ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Single or Married Filing Separately
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.federalStatusMarried ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Married Filing Jointly
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.federalStatusHOH ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Head of Household
+                </div>
                 <div style="margin: 8px 0; font-size: 12px;">
                   If your income will be $200,000 or less ($400,000 or less if married filing jointly):
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Multiply the number of children under age 17 by $2,000 _______
+                  Multiply the number of children under age 17 by $2,000 <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalChildCredit || ''}</span>
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Multiply the number of other dependents by $500 _______
+                  Multiply the number of other dependents by $500 <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalDependentCredit || ''}</span>
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Add the amounts above and enter the total here _______
+                  Add the amounts above and enter the total here <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalCreditTotal || ''}</span>
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Other income (not from jobs) _______
+                  Other income (not from jobs) <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalOtherIncome || ''}</span>
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Deductions _______
+                  Deductions <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalDeductions || ''}</span>
                 </div>
                 <div style="margin: 4px 0; font-size: 12px;">
-                  Extra withholding _______
+                  Extra withholding <span style="display: inline-block; min-width: 60px; border-bottom: 1px solid black;">${form.value.federalExtraWithholding || ''}</span>
                 </div>
               </td>
               <td style="border: 1px solid black; padding: 8px; vertical-align: top;">
-                <div style="margin-bottom: 8px;">Filing Status:</div>
-                <div style="margin: 4px 0;">☐ Single or Married Filing Separately</div>
-                <div style="margin: 4px 0;">☐ Married Filing Jointly</div>
-                <div style="margin: 4px 0;">☐ Head of Household</div>
-                <div style="margin: 4px 0;">☐ Other</div>
-                <div style="margin: 8px 0;">
-                  Income Tax Filing State _______
+                <div style="margin-bottom: 8px; font-weight: bold;">Filing Status:</div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.stateStatusSingle ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Single or Married Filing Separately
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.stateStatusMarried ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Married Filing Jointly
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.stateStatusHOH ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Head of Household
+                </div>
+                <div style="margin: 4px 0;">
+                  <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; position: relative;">
+                    ${form.value.stateStatusOther ? '<span style="position: absolute; top: 1px; left: 1px; width: 8px; height: 8px; background-color: black;"></span>' : ''}
+                  </span> Other
                 </div>
                 <div style="margin: 8px 0;">
-                  Unemployment Filing State _______
+                  Income Tax Filing State <span style="display: inline-block; min-width: 120px; border-bottom: 1px solid black;">${form.value.stateIncomeTaxState || ''}</span>
                 </div>
                 <div style="margin: 8px 0;">
-                  Allowances _______
+                  Unemployment Filing State <span style="display: inline-block; min-width: 120px; border-bottom: 1px solid black;">${form.value.stateUnemploymentState || ''}</span>
                 </div>
                 <div style="margin: 8px 0;">
-                  Additional Withholding Amount $ _______
+                  Allowances <span style="display: inline-block; min-width: 120px; border-bottom: 1px solid black;">${form.value.stateAllowances || ''}</span>
+                </div>
+                <div style="margin: 8px 0;">
+                  Additional Withholding Amount $ <span style="display: inline-block; min-width: 90px; border-bottom: 1px solid black;">${form.value.stateAdditionalWithholding || ''}</span>
                 </div>
               </td>
             </tr>
@@ -403,7 +569,25 @@ export class FormempComponent implements OnInit {
         logging: false,
         onclone: (doc) => {
           // Podemos ajustar el clon del documento si es necesario
-          console.log('Document cloned for PDF');
+          const style = doc.createElement('style');
+          style.innerHTML = `
+            #print-container {
+              width: 8.5in !important;
+              margin: 0 !important;
+              padding: 0.5in !important;
+            }
+            
+            /* Asegurarse de que las líneas de subrayado sean visibles */
+            [style*="border-bottom"] {
+              border-bottom: 1px solid black !important;
+            }
+            
+            /* Asegurarse de que los bordes de las tablas sean visibles */
+            table, td, th {
+              border-color: black !important;
+            }
+          `;
+          doc.head.appendChild(style);
         }
       });
       
@@ -418,7 +602,7 @@ export class FormempComponent implements OnInit {
         compress: true
       });
       
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
       
       // Dimensiones de página carta
       const pageWidth = 8.5;
@@ -473,7 +657,7 @@ export class FormempComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `employee-setup-sheet-${uniqueId}.pdf`);
       }
       
-      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
       
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
@@ -510,7 +694,7 @@ export class FormempComponent implements OnInit {
       this.pdfFile = null;
       
     } catch (error) {
-      console.error('Error to send Form:', error);
+      console.error('Error al enviar formulario:', error);
       
       if (error instanceof Error) {
         alert(`The form could not be submitted: ${error.message}`);
