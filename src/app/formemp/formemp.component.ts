@@ -657,7 +657,7 @@ export class FormempComponent implements OnInit {
         formData.append('pdf', this.pdfFile, `employee-setup-sheet-${uniqueId}.pdf`);
       }
       
-      const formSubmitUrl = `https://formsubmit.co/mecg1994@gmail.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
       
       const response = await fetch(formSubmitUrl, {
         method: 'POST',
