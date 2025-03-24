@@ -102,7 +102,7 @@ export class FormempComponent implements OnInit {
         return;
       }
 
-      alert('Generating PDF and sending, please wait...');
+      alert('Please allow up to 2 minutes, for form to be sent..');
       
       // Ocultar temporalmente el botón de envío para que no aparezca en el PDF
       const sendButton = document.querySelector('button[type="button"]');

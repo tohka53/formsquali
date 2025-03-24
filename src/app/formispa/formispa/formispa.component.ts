@@ -53,7 +53,7 @@ export class FormispaComponent implements OnInit {
 
 
 
-      alert('Generating PDF and sending, please wait...');
+      alert('Please allow up to 2 minutes, for form to be sent...');
       
       const element = document.getElementById('form-container');
       if (!element) {
