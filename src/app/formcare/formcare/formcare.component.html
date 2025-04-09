@@ -42,15 +42,15 @@
         <form #formRef="ngForm">
             <!-- Business Info Row -->
             <div class="grid grid-cols-3 gap-4 mb-6">
-                <div class="border-b border-black">
+                <div class="border-b border-black text-size-2xl font-bold">
                     <label>Business Name</label>
                     <input type="text" class="w-full border-none">
                 </div>
-                <div class="border-b border-black">
+                <div class="border-b border-black text-size-2xl font-bold">
                     <label>ID #</label>
                     <input type="text" class="w-full border-none">
                 </div>
-                <div class="border-b border-black">
+                <div class="border-b border-black text-size-2xl font-bold">
                     <label>TAX YEAR</label>
                     <input type="text" class="w-full border-none">
                 </div>
@@ -62,19 +62,19 @@
                 <div>
                     <div class="mb-4">
                         <label>Client Name</label>
-                        <input type="text" class="w-64 border-b border-black ml-2">
+                        <input type="text" class="w-64 border-b border-black text-size-2xl font-bold ml-2">
                     </div>
                     <div>
                         <p class="mb-2">TOTAL INCOME:</p>
                         <div class="pl-4 space-y-2">
                             <div class="flex items-center">
                                 <span>$</span>
-                                <input type="text" class="w-32 border-b border-black mx-2">
+                                <input type="text" class="w-32 border-b border-black text-size-2xl font-bold mx-2">
                                 <span>1099-Misc</span>
                             </div>
                             <div class="flex items-center">
                                 <span>$</span>
-                                <input type="text" class="w-32 border-b border-black mx-2">
+                                <input type="text" class="w-32 border-b border-black text-size-2xl font-bold mx-2">
                                 <span>Private Income</span>
                             </div>
                         </div>
@@ -85,13 +85,13 @@
                     <p class="mb-2">FOOD REIMBURSEMENT</p>
                     <div class="flex items-center">
                         <span>PROGRAM:$</span>
-                        <input type="text" class="w-32 border-b border-black ml-2">
+                        <input type="text" class="w-32 border-b border-black text-size-2xl font-bold ml-2">
                     </div>
-                    <div class="border-b border-black">
+                    <div class="border-b border-black text-size-2xl font-bold">
                         <label class="block p-2">Email:</label>
                         <input 
                         type="email" 
-                        name="email" class="w-full p-2 border-t border-black"
+                        name="email" class="w-full p-2 border-t border-black text-size-2xl font-bold"
                         [(ngModel)]="formData.email" 
                         required 
                         #email="ngModel"
@@ -103,154 +103,154 @@
             <!-- Main Two Column Layout -->
             <div class="grid grid-cols-2 gap-8">
                 <!-- Left Column -->
-                <div class="border border-black">
+                <div class="border border-black text-size-2xl font-bold">
                     <!-- Ordinary Supplies Section -->
-                    <div class="bg-gray-100 p-2 border-b border-black">
+                    <div class="bg-gray-100 p-2 border-b border-black text-size-2xl font-bold">
                         <h2 class="font-bold">ORDINARY SUPPLIES</h2>
                     </div>
                     <div class="divide-y divide-black">
                         <div class="grid grid-cols-1 divide-y divide-black">
                             <div class="flex justify-between items-center p-2">
                                 <span>Advertising</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Books & Magazines</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Business Cards</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Bank Charges</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Client Gifts</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Continuing Education</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>CPR Training</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Food & Snacks</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Insurance : Business</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Licence & Permits</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Membership</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Payroll Wages</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Payroll Taxes</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Office Expense</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Professional Fees:Legal</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Professional Fees:Tax Prep</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Repairs</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Supplies</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Telephone:Cell</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Telephone:Business</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Tickets,Fees,Field Trps</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Toys</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Rentals</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Other</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2 bg-gray-100">
                                 <span class="font-bold">TOTAL</span>
-                                <input type="number" class="w-32 border-b border-black" readonly>
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold" readonly>
                             </div>
                         </div>
                     </div>
 
                     <!-- Major Purchases Section -->
-                    <div class="border-t border-black">
-                        <div class="bg-gray-100 p-2 border-b border-black">
+                    <div class="border-t border-black text-size-2xl font-bold">
+                        <div class="bg-gray-100 p-2 border-b border-black text-size-2xl font-bold">
                             <h2 class="font-bold">MAJOR PURCHASES (Equipment)</h2>
                         </div>
                         <div class="divide-y divide-black">
                             <div class="flex justify-between items-center p-2">
                                 <span>Equipment</span>
-                                <input type="text" class="w-32 border-b border-black">
+                                <input type="text" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span>Vehicle</span>
-                                <input type="text" class="w-32 border-b border-black">
+                                <input type="text" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span class="pl-4">Type</span>
-                                <input type="text" class="w-32 border-b border-black">
+                                <input type="text" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span class="pl-4">Date Purchase</span>
-                                <input type="date" class="w-32 border-b border-black">
+                                <input type="date" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span class="pl-4">Beginning Mileage in January</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                             <div class="flex justify-between items-center p-2">
                                 <span class="pl-4">End Mileage in December</span>
-                                <input type="number" class="w-32 border-b border-black">
+                                <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column -->
-                <div class="border border-black">
+                <div class="border border-black text-size-2xl font-bold">
                     <!-- Description Box -->
-                    <div class="p-4 border-b border-black">
+                    <div class="p-4 border-b border-black text-size-2xl font-bold">
                         <p class="text-sm">The Purpose of this worksheet is to help you organize your tax deductible business 
                         expense to be deductible, it must be considered an "ordinary and necessary" 
                         expense. You may include other applicable expense. Do not include expense for which 
@@ -261,51 +261,51 @@
                     <div class="divide-y divide-black">
                         <div class="flex justify-between items-center p-2">
                             <span>Stove</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Dishwasher</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Refrigerator</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Dryer</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Fencing</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Television & Home Entertainment</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>VCR,DVD</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Washer</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Other</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Other</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2">
                             <span>Other</span>
-                            <input type="number" class="w-32 border-b border-black">
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
                         </div>
                         <div class="flex justify-between items-center p-2 bg-gray-100">
                             <span class="font-bold">TOTAL</span>
-                            <input type="number" class="w-32 border-b border-black" readonly>
+                            <input type="number" class="w-32 border-b border-black text-size-2xl font-bold" readonly>
                         </div>
                     </div>
 
@@ -316,19 +316,19 @@
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Home Mortgage Interest</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Property Taxes</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Hazard Insurance</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Rents</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <!-- Allocated Expenses Section -->
     <div class="flex justify-between items-center p-2 bg-gray-100">
@@ -336,31 +336,31 @@
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Cleaning Services</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Maintenance & Repair of Home</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Utilities:Cable</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Utilities:Electric & Gas</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Utilities:Sewer,Water& Trash</span>
-        <input type="number" class="w-32 border-b border-black">
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
     <div class="flex justify-between items-center p-2 bg-gray-100">
         <span class="font-bold">TOTAL</span>
-        <input type="number" class="w-32 border-b border-black" readonly>
+        <input type="number" class="w-32 border-b border-black text-size-2xl font-bold" readonly>
     </div>
     <div class="flex justify-between items-center p-2">
         <span>Others Information</span>
-        <input type="text" class="w-32 border-b border-black">
+        <input type="text" class="w-32 border-b border-black text-size-2xl font-bold">
     </div>
 </div>
 

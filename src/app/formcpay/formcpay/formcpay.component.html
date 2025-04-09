@@ -32,161 +32,161 @@
     <!-- Formulario principal -->
     <form #formRef="ngForm" class="max-w-6xl mx-auto">
         <!-- Información de contacto y tipo de empresa -->
-        <div class="border border-black">
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Contact Name</div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="contactName" [(ngModel)]="formData.contactName" class="w-full border-b border-black">
+        <div class="border border-black text-size-2xl font-bold">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Contact Name</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="contactName" [(ngModel)]="formData.contactName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="font-normal">Email Address:</div>
-                    <input type="email" name="contactEmail" [(ngModel)]="formData.contactEmail" class="w-full border-b border-black">
+                    <input type="email" name="contactEmail" [(ngModel)]="formData.contactEmail" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Company Type</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Type</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>General Business</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Household</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Have you paid any employees so far this year?</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Have you paid any employees so far this year?</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Yes</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>No</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">How many employees will you be paying?</div>
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">How many employees will you be paying?</div>
                 <div class="p-2 col-span-2">
-                    <input type="text" name="employeeCount" [(ngModel)]="formData.employeeCount" class="w-full border-b border-black">
+                    <input type="text" name="employeeCount" [(ngModel)]="formData.employeeCount" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Información del nombre de la empresa -->
-        <div class="border border-black border-t-0">
+        <div class="border border-black text-size-2xl font-bold border-t-0">
             <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black font-normal">Company Name (Legal Name)</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Name (Legal Name)</div>
                 <div class="p-2">
-                    <input type="text" name="legalName" [(ngModel)]="formData.legalName" class="w-full border-b border-black">
+                    <input type="text" name="legalName" [(ngModel)]="formData.legalName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Company Name (Doing Business As)</div>
+            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Name (Doing Business As)</div>
                 <div class="p-2">
-                    <input type="text" name="dbaName" [(ngModel)]="formData.dbaName" class="w-full border-b border-black">
+                    <input type="text" name="dbaName" [(ngModel)]="formData.dbaName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Tipo de empresa detallado -->
-        <div class="border border-black border-t-0">
+        <div class="border border-black text-size-2xl font-bold border-t-0">
             <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black font-normal">Company Type</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Type</div>
                 <div class="p-2 grid grid-cols-2 gap-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Sole Proprietorship</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>General Partnership</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Limited Partnership</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Non-Profit Corporation</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Corporation</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Limited Liability Company</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Other</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Main Address</div>
+            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Main Address</div>
                 <div class="p-2">
-                    <input type="text" name="addressLine1" [(ngModel)]="formData.addressLine1" class="w-full border-b border-black mb-2">
-                    <input type="text" name="addressLine2" [(ngModel)]="formData.addressLine2" class="w-full border-b border-black mb-2">
-                    <input type="text" name="addressLine3" [(ngModel)]="formData.addressLine3" class="w-full border-b border-black">
+                    <input type="text" name="addressLine1" [(ngModel)]="formData.addressLine1" class="w-full border-b border-black text-size-2xl font-bold mb-2">
+                    <input type="text" name="addressLine2" [(ngModel)]="formData.addressLine2" class="w-full border-b border-black text-size-2xl font-bold mb-2">
+                    <input type="text" name="addressLine3" [(ngModel)]="formData.addressLine3" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Programación de nómina -->
-        <div class="border border-black border-t-0">
+        <div class="border border-black text-size-2xl font-bold border-t-0">
             <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black font-normal">Payroll Schedule</div>
-                <div class="p-2 border-r border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Payroll Schedule</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center mb-2">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Weekly</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Twice a Month</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center mb-2">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Every Two Weeks</span>
                     </div>
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Monthly</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Pay Period</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Pay Period</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="mb-2">
                         <div class="text-sm">Start Date</div>
-                        <input type="text" name="startDate" [(ngModel)]="formData.startDate" class="w-full border-b border-black">
+                        <input type="text" name="startDate" [(ngModel)]="formData.startDate" class="w-full border-b border-black text-size-2xl font-bold">
                     </div>
                     <div class="mb-2">
                         <div class="text-sm">End Date</div>
-                        <input type="text" name="endDate" [(ngModel)]="formData.endDate" class="w-full border-b border-black">
+                        <input type="text" name="endDate" [(ngModel)]="formData.endDate" class="w-full border-b border-black text-size-2xl font-bold">
                     </div>
                     <div>
                         <div class="text-sm">First Check Date</div>
-                        <input type="text" name="firstCheckDate" [(ngModel)]="formData.firstCheckDate" class="w-full border-b border-black">
+                        <input type="text" name="firstCheckDate" [(ngModel)]="formData.firstCheckDate" class="w-full border-b border-black text-size-2xl font-bold">
                     </div>
                 </div>
                 <div class="p-2"></div>
@@ -194,203 +194,203 @@
         </div>
 
         <!-- Deducciones de nómina -->
-        <div class="border border-black border-t-0">
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Do some employees have payroll deductions such as health insurance, retirement plans or garnishments?</div>
-                <div class="p-2 border-r border-black">
+        <div class="border border-black text-size-2xl font-bold border-t-0">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Do some employees have payroll deductions such as health insurance, retirement plans or garnishments?</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Yes</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>No</span>
                     </div>
                 </div>
             </div>
             
             <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black font-normal">If Yes, List Company Deduction Type Below:</div>
-                <div class="p-2 border-r border-black font-normal">Desired Abbreviation</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">If Yes, List Company Deduction Type Below:</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Desired Abbreviation</div>
                 <div class="p-2 font-normal">Pre / Post Tax?</div>
             </div>
             
             <!-- Filas para la tabla de deducciones -->
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction1Type" [(ngModel)]="formData.deduction1Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction1Type" [(ngModel)]="formData.deduction1Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction1Abbr" [(ngModel)]="formData.deduction1Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction1Abbr" [(ngModel)]="formData.deduction1Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="deduction1Tax" [(ngModel)]="formData.deduction1Tax" class="w-full border-b border-black">
+                    <input type="text" name="deduction1Tax" [(ngModel)]="formData.deduction1Tax" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction2Type" [(ngModel)]="formData.deduction2Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction2Type" [(ngModel)]="formData.deduction2Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction2Abbr" [(ngModel)]="formData.deduction2Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction2Abbr" [(ngModel)]="formData.deduction2Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="deduction2Tax" [(ngModel)]="formData.deduction2Tax" class="w-full border-b border-black">
+                    <input type="text" name="deduction2Tax" [(ngModel)]="formData.deduction2Tax" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction3Type" [(ngModel)]="formData.deduction3Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction3Type" [(ngModel)]="formData.deduction3Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction3Abbr" [(ngModel)]="formData.deduction3Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction3Abbr" [(ngModel)]="formData.deduction3Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="deduction3Tax" [(ngModel)]="formData.deduction3Tax" class="w-full border-b border-black">
+                    <input type="text" name="deduction3Tax" [(ngModel)]="formData.deduction3Tax" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction4Type" [(ngModel)]="formData.deduction4Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction4Type" [(ngModel)]="formData.deduction4Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction4Abbr" [(ngModel)]="formData.deduction4Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction4Abbr" [(ngModel)]="formData.deduction4Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="deduction4Tax" [(ngModel)]="formData.deduction4Tax" class="w-full border-b border-black">
+                    <input type="text" name="deduction4Tax" [(ngModel)]="formData.deduction4Tax" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction5Type" [(ngModel)]="formData.deduction5Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction5Type" [(ngModel)]="formData.deduction5Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="deduction5Abbr" [(ngModel)]="formData.deduction5Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="deduction5Abbr" [(ngModel)]="formData.deduction5Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="deduction5Tax" [(ngModel)]="formData.deduction5Tax" class="w-full border-b border-black">
+                    <input type="text" name="deduction5Tax" [(ngModel)]="formData.deduction5Tax" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Tipos de ingresos adicionales -->
-        <div class="border border-black border-t-0 mt-4">
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Do Some Employees have Additional Earning Types such as Auto Allowance, Meals, Tips etc?</div>
-                <div class="p-2 border-r border-black">
+        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Do Some Employees have Additional Earning Types such as Auto Allowance, Meals, Tips etc?</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Yes</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>No</span>
                     </div>
                 </div>
             </div>
             
             <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black font-normal">If Yes, List Earnings Type Below:</div>
-                <div class="p-2 border-r border-black font-normal">Desired Abbreviation</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">If Yes, List Earnings Type Below:</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Desired Abbreviation</div>
                 <div class="p-2 font-normal">Taxable?</div>
             </div>
             
             <!-- Filas para la tabla de tipos de ingresos -->
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning1Type" [(ngModel)]="formData.earning1Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning1Type" [(ngModel)]="formData.earning1Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning1Abbr" [(ngModel)]="formData.earning1Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning1Abbr" [(ngModel)]="formData.earning1Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="earning1Taxable" [(ngModel)]="formData.earning1Taxable" class="w-full border-b border-black">
+                    <input type="text" name="earning1Taxable" [(ngModel)]="formData.earning1Taxable" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning2Type" [(ngModel)]="formData.earning2Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning2Type" [(ngModel)]="formData.earning2Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning2Abbr" [(ngModel)]="formData.earning2Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning2Abbr" [(ngModel)]="formData.earning2Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="earning2Taxable" [(ngModel)]="formData.earning2Taxable" class="w-full border-b border-black">
+                    <input type="text" name="earning2Taxable" [(ngModel)]="formData.earning2Taxable" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning3Type" [(ngModel)]="formData.earning3Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning3Type" [(ngModel)]="formData.earning3Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning3Abbr" [(ngModel)]="formData.earning3Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning3Abbr" [(ngModel)]="formData.earning3Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="earning3Taxable" [(ngModel)]="formData.earning3Taxable" class="w-full border-b border-black">
+                    <input type="text" name="earning3Taxable" [(ngModel)]="formData.earning3Taxable" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning4Type" [(ngModel)]="formData.earning4Type" class="w-full border-b border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning4Type" [(ngModel)]="formData.earning4Type" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
-                <div class="p-2 border-r border-black">
-                    <input type="text" name="earning4Abbr" [(ngModel)]="formData.earning4Abbr" class="w-full border-b border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
+                    <input type="text" name="earning4Abbr" [(ngModel)]="formData.earning4Abbr" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
-                    <input type="text" name="earning4Taxable" [(ngModel)]="formData.earning4Taxable" class="w-full border-b border-black">
+                    <input type="text" name="earning4Taxable" [(ngModel)]="formData.earning4Taxable" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Información fiscal federal -->
-        <div class="border border-black border-t-0 mt-4">
-            <div class="p-2 border-b border-black font-bold">Federal Tax Information</div>
+        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
+            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Federal Tax Information</div>
             
             <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black font-normal">Federal Employer Identification Number</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Federal Employer Identification Number</div>
                 <div class="p-2">
-                    <input type="text" name="fein" [(ngModel)]="formData.fein" class="w-full border-b border-black">
+                    <input type="text" name="fein" [(ngModel)]="formData.fein" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Federal Unemployment Tax Status</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Federal Unemployment Tax Status</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Subject</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Exempt</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Are You an Agricultural Business Required to File Form 943?</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Are You an Agricultural Business Required to File Form 943?</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Yes</span>
                     </div>
                 </div>
                 <div class="p-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>No</span>
                     </div>
                 </div>
@@ -398,54 +398,54 @@
         </div>
 
         <!-- Información fiscal estatal -->
-        <div class="border border-black border-t-0">
-            <div class="p-2 border-b border-black font-bold">State Tax Information *</div>
+        <div class="border border-black text-size-2xl font-bold border-t-0">
+            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">State Tax Information *</div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal" rowspan="2">State Income Tax ID</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">State Income Tax ID</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">#</div>
-                    <input type="text" name="stateIncomeTaxId1" [(ngModel)]="formData.stateIncomeTaxId1" class="w-full border-b border-black">
+                    <input type="text" name="stateIncomeTaxId1" [(ngModel)]="formData.stateIncomeTaxId1" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">State:</div>
-                    <input type="text" name="stateIncomeTaxState1" [(ngModel)]="formData.stateIncomeTaxState1" class="w-full border-b border-black">
+                    <input type="text" name="stateIncomeTaxState1" [(ngModel)]="formData.stateIncomeTaxState1" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black hidden"></div> <!-- Columna oculta por el rowspan anterior -->
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">#</div>
-                    <input type="text" name="stateIncomeTaxId2" [(ngModel)]="formData.stateIncomeTaxId2" class="w-full border-b border-black">
+                    <input type="text" name="stateIncomeTaxId2" [(ngModel)]="formData.stateIncomeTaxId2" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">State:</div>
-                    <input type="text" name="stateIncomeTaxState2" [(ngModel)]="formData.stateIncomeTaxState2" class="w-full border-b border-black">
+                    <input type="text" name="stateIncomeTaxState2" [(ngModel)]="formData.stateIncomeTaxState2" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal" rowspan="2">State Unemployment Tax ID</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">State Unemployment Tax ID</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">#</div>
-                    <input type="text" name="stateUnemploymentTaxId1" [(ngModel)]="formData.stateUnemploymentTaxId1" class="w-full border-b border-black">
+                    <input type="text" name="stateUnemploymentTaxId1" [(ngModel)]="formData.stateUnemploymentTaxId1" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">SUI Rate:</div>
-                    <input type="text" name="suiRate1" [(ngModel)]="formData.suiRate1" class="w-full border-b border-black">
+                    <input type="text" name="suiRate1" [(ngModel)]="formData.suiRate1" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
             <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black hidden"></div> <!-- Columna oculta por el rowspan anterior -->
-                <div class="p-2 border-r border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">#</div>
-                    <input type="text" name="stateUnemploymentTaxId2" [(ngModel)]="formData.stateUnemploymentTaxId2" class="w-full border-b border-black">
+                    <input type="text" name="stateUnemploymentTaxId2" [(ngModel)]="formData.stateUnemploymentTaxId2" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">SUI Rate:</div>
-                    <input type="text" name="suiRate2" [(ngModel)]="formData.suiRate2" class="w-full border-b border-black">
+                    <input type="text" name="suiRate2" [(ngModel)]="formData.suiRate2" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
@@ -453,76 +453,76 @@
         <div class="text-xs italic mt-1 mb-4">*If more states are needed, please contact your sales representative to ensure that all state tax information is correct. If you do not have your state tax ID numbers type "Applied For" in the State Income Tax ID # section, or leave it blank.</div>
 
         <!-- Información bancaria -->
-        <div class="border border-black">
-            <div class="p-2 border-b border-black font-bold">Bank Information</div>
+        <div class="border border-black text-size-2xl font-bold">
+            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Bank Information</div>
             
             <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black font-normal">Bank Name</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Bank Name</div>
                 <div class="p-2">
-                    <input type="text" name="bankName" [(ngModel)]="formData.bankName" class="w-full border-b border-black">
+                    <input type="text" name="bankName" [(ngModel)]="formData.bankName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Routing Number</div>
+            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Routing Number</div>
                 <div class="p-2">
-                    <input type="text" name="routingNumber" [(ngModel)]="formData.routingNumber" class="w-full border-b border-black">
+                    <input type="text" name="routingNumber" [(ngModel)]="formData.routingNumber" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 border-t border-black">
-                <div class="p-2 border-r border-black font-normal">Checking Account Number</div>
+            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Checking Account Number</div>
                 <div class="p-2">
-                    <input type="text" name="accountNumber" [(ngModel)]="formData.accountNumber" class="w-full border-b border-black">
+                    <input type="text" name="accountNumber" [(ngModel)]="formData.accountNumber" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
 
         <!-- Información específica de nómina doméstica -->
-        <div class="border border-black border-t-0 mt-4">
-            <div class="p-2 border-b border-black font-bold">Household Payroll ONLY</div>
+        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
+            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Household Payroll ONLY</div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal" rowspan="2">What is your income tax filing status on Form 1040</div>
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">What is your income tax filing status on Form 1040</div>
                 <div class="p-2 col-span-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Single / Head of Household</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black hidden"></div> <!-- Columna oculta por el rowspan anterior -->
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
                 <div class="p-2 col-span-2">
                     <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black mr-2"></div>
+                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
                         <span>Joint</span>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 border-b border-black">
-                <div class="p-2 border-r border-black font-normal">Primary Tax Filer</div>
-                <div class="p-2 border-r border-black">
+            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Primary Tax Filer</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">Name</div>
-                    <input type="text" name="primaryTaxFilerName" [(ngModel)]="formData.primaryTaxFilerName" class="w-full border-b border-black">
+                    <input type="text" name="primaryTaxFilerName" [(ngModel)]="formData.primaryTaxFilerName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">SSN</div>
-                    <input type="text" name="primaryTaxFilerSSN" [(ngModel)]="formData.primaryTaxFilerSSN" class="w-full border-b border-black">
+                    <input type="text" name="primaryTaxFilerSSN" [(ngModel)]="formData.primaryTaxFilerSSN" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
             
             <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black font-normal">Other Tax Filer</div>
-                <div class="p-2 border-r border-black">
+                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Other Tax Filer</div>
+                <div class="p-2 border-r border-black text-size-2xl font-bold">
                     <div class="text-sm">Name</div>
-                    <input type="text" name="otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" class="w-full border-b border-black">
+                    <input type="text" name="otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
                 <div class="p-2">
                     <div class="text-sm">SSN</div>
-                    <input type="text" name="otherTaxFilerSSN" [(ngModel)]="formData.otherTaxFilerSSN" class="w-full border-b border-black">
+                    <input type="text" name="otherTaxFilerSSN" [(ngModel)]="formData.otherTaxFilerSSN" class="w-full border-b border-black text-size-2xl font-bold">
                 </div>
             </div>
         </div>
