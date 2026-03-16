@@ -1,34 +1,455 @@
-.form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    }
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── Outer / Wrapper ─────────────────────── */
+.form-outer {
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+:host {
+  display: block;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.form-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000;
+}
+
+/* ── Page ─────────────────────────────────── */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #ffffff;
+  padding: 22px 30px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+  position: relative;
+}
+
+/* ── Header ───────────────────────────────── */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.logo-img { width: 200px; max-width: 100%; }
+
+.header-address {
+  text-align: right;
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.header-address p { margin: 0; }
+
+/* ── Title ────────────────────────────────── */
+.form-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.title-main {
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ── Photo + info row ────────────────────── */
+.emp-top-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+
+/* Photo */
+.emp-photo-box {
+  flex-shrink: 0;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-photo-preview {
+  width: 120px;
+  height: 120px;
+  background: #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.emp-photo-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.emp-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emp-photo-btn {
+  background: #3b82f6;
+  color: #fff;
+  font-size: 9px;
+  text-align: center;
+  padding: 3px 0;
+  cursor: pointer;
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+.emp-photo-input { display: none; }
+
+/* Info grid */
+.emp-info-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emp-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.emp-info-row--4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* ── Generic field ────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 9px;
+  font-weight: bold;
+  margin-bottom: 1px;
+  color: #222;
+}
+
+.field input,
+.emp-info-grid input[type="text"],
+.emp-info-grid input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 2px 1px;
+  font-size: 11px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  min-height: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.field input:focus { background: #fffde7; }
+
+/* ── 5-column boxes ───────────────────────── */
+.emp-5col {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+
+/* ── 3-column ─────────────────────────────── */
+.emp-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+/* ── Shared box ───────────────────────────── */
+.emp-box {
+  border: 1px solid #000;
+  border-right: none;
+}
+
+.emp-5col .emp-box:last-child,
+.emp-3col .emp-box:last-child { border-right: 1px solid #000; }
+
+.emp-box-header {
+  background: #d1d5db;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 4px 6px;
+  border-bottom: 1px solid #000;
+}
+
+.emp-box-header--center { text-align: center; }
+
+.emp-box-body {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.emp-box-body--row {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.emp-box-body--tax {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.emp-box-divider {
+  border-top: 1px solid #000;
+  margin: 4px -6px;
+}
+
+/* ── Checkbox labels ─────────────────────── */
+.chk-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chk-label-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.chk {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000 !important;
+  accent-color: #000;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ── Pay rates inputs ────────────────────── */
+.rate-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 18px;
+  flex: 1;
+  min-width: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Direct Deposit table ────────────────── */
+.dd-table {
+  display: flex;
+  border: 1px solid #000;
+  border-right: none;
+}
+
+.dd-col {
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.dd-col--wide { flex: 1.6; }
+.dd-col--med  { flex: 1.4; }
+
+.dd-cell {
+  padding: 4px 6px;
+  border-top: 1px solid #000;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.dd-cell--chk {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dd-cell input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  font-size: 10.5px;
+  min-height: 18px;
+  padding: 1px 2px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── 1099 warning ────────────────────────── */
+.contractor-warning {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.warning-red  { color: #dc2626; font-weight: bold; font-size: 10.5px; }
+.warning-note { color: #555;    font-size: 9px; }
+
+/* ── Deductions ──────────────────────────── */
+.deduct-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.deduct-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 9px;
+  padding: 3px 6px;
+  border-bottom: 1px solid #000;
+  background: #f3f4f6;
+}
+
+.deduct-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border-bottom: 1px solid #000;
+}
+
+.deduct-row:last-child { border-bottom: none; }
+
+.deduct-name {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 10px;
+  flex: 1;
+  min-height: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.deduct-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.deduct-amount {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 10px;
+  width: 50px;
+  min-height: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Tax sections ────────────────────────── */
+.tax-sub-label {
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.tax-note {
+  font-size: 8.5px;
+  color: #333;
+  margin: 4px 0;
+  line-height: 1.3;
+}
+
+.tax-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 3px;
+  font-size: 9.5px;
+}
+
+.tax-short {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 10px;
+  width: 50px;
+  min-height: 16px;
+  flex-shrink: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tax-med {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 10px;
+  width: 80px;
+  min-height: 16px;
+  flex-shrink: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Utilities ───────────────────────────── */
+.mb6 { margin-bottom: 6px; }
+
+/* ── Send button ─────────────────────────── */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 32px;
+}
+
+.send-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 36px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) { background: #15803d; }
+
+.send-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

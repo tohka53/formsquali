@@ -1,34 +1,320 @@
-.form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    
+/* ===========================
+   Inherit all base styles from
+   the shared form CSS, then add
+   daycare-specific overrides.
+   =========================== */
+
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── Wrapper & outer ───────── */
+.form-outer {
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+:host {
+  display: block;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.form-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000;
+}
+
+/* ── Page ──────────────────── */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #ffffff;
+  padding: 24px 32px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+  position: relative;
+}
+
+/* ── Header ────────────────── */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.logo-img {
+  width: 200px;
+  max-width: 100%;
+}
+
+.header-address {
+  text-align: right;
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.header-address p { margin: 0; }
+
+/* ── Title ─────────────────── */
+.care-title {
+  text-align: center;
+  background: #fde047; /* yellow-300 */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Top info grid (3 cols) ── */
+.care-top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ── Client/Income/Food/Email ─ */
+.care-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.care-info-left,
+.care-info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.income-block,
+.food-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.income-title {
+  font-weight: bold;
+  font-size: 10.5px;
+  margin-bottom: 2px;
+}
+
+.income-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+}
+
+.income-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 90px;
+  font-size: 11px;
+  outline: none;
+  background: transparent;
+  min-height: 18px;
+  padding: 1px 2px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Body grid (2 cols) ────── */
+.care-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid #000;
+}
+
+.care-col {
+  border-right: 1px solid #000;
+}
+
+.care-col:last-child {
+  border-right: none;
+}
+
+/* ── Section header ─────────── */
+.care-section-header {
+  background: #e5e7eb; /* gray-200 */
+  font-weight: bold;
+  font-size: 10.5px;
+  padding: 5px 8px;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+.care-section-header:first-child {
+  border-top: none;
+}
+
+.care-section-header--sub {
+  background: #f3f4f6;
+  font-weight: normal;
+}
+
+.care-section-header--sm {
+  font-size: 9.5px;
+}
+
+/* ── Description box ────────── */
+.care-desc-box {
+  padding: 8px;
+  font-size: 9px;
+  line-height: 1.5;
+  border-bottom: 1px solid #000;
+  color: #222;
+}
+
+/* ── Rows ───────────────────── */
+.care-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.care-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 8px;
+  border-bottom: 1px solid #000;
+  min-height: 22px;
+  font-size: 10.5px;
+}
+
+.care-row:last-child {
+  border-bottom: none;
+}
+
+.care-row input[type="number"],
+.care-row input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 90px;
+  font-size: 10.5px;
+  outline: none;
+  background: transparent;
+  min-height: 16px;
+  text-align: right;
+  padding: 1px 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-shrink: 0;
+}
+
+.care-total {
+  background: #f3f4f6;
+  font-weight: bold;
+}
+
+.care-indent {
+  padding-left: 14px;
+}
+
+/* ── DOB inside care-row ────── */
+.dob-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.dob-group span { font-size: 12px; }
+
+.dob-group input {
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  font-size: 10.5px;
+  outline: none;
+  background: transparent;
+  min-height: 16px;
+  padding: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dob-mm, .dob-dd { width: 24px; }
+.dob-yyyy         { width: 40px; }
+
+/* ── Generic field ──────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #222;
+}
+
+.field input {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 2px 1px;
+  font-size: 11px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  min-height: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.field input:focus { background: #fffde7; }
+
+.mb8 { margin-bottom: 8px; }
+.mt8 { margin-top: 8px;    }
+
+/* ── Footer ─────────────────── */
+.care-footer {
+  margin-top: 10px;
+  font-size: 9px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.care-footer p { margin: 0; }
+.font-bold { font-weight: bold; }
+
+/* ── Send button ─────────────── */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 32px;
+}
+
+.send-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 36px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) { background: #15803d; }
+
+.send-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Responsive scaling (JS-driven) ─ */
+/* Applied via applyScale() in TS      */

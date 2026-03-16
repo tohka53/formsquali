@@ -1,539 +1,332 @@
-<head>
-    <meta name="viewport" content="width=1024">
-  
-</head>
+<div class="form-outer">
+<div class="form-wrapper">
+  <form #formRef="ngForm" novalidate>
 
-<div class="min-h-screen bg-white p-6 mx-auto" id="form-container">
-    <!-- Encabezado con información de contacto -->
-    <div class="w-full max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-8 text-sm">
-            <!-- Columna del logo -->
-            <div class="w-1/3">
-                <img src="/assets/logo1.png" alt="Qualitech Boston" class="w-full max-w-[350px]">
-            </div>
-            
-            <!-- Columna de la información -->
-            <div class="text-right">
-                <p class="font-semibold">671 Adams Street</p>
-                <p>Dorchester MA 02122</p>
-                <p>Ph (617)288-1333</p>
-                <p>Fax: 617-249-1859</p>
-                <p>Email: qualitech&#64;qualitechboston.com</p>
-            </div>
+    <div id="page-1" class="form-page">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="header-logo">
+          <img src="/assets/logo1.png" alt="Qualitech Boston" class="logo-img">
         </div>
-    </div>
+        <div class="header-address">
+          <p>671 Adams Street</p>
+          <p>Dorchester MA 02122</p>
+          <p>Ph (617)288-1333</p>
+          <p>Fax: 617-249-1859</p>
+          <p>Email: qualitech&#64;qualitechboston.com</p>
+        </div>
+      </div>
 
-    <!-- Título del formulario -->
-    <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold">COMPANY PAYROLL SETUP</h1>
-        <p class="text-base">Enter the basic information on your company and provide contact information for key company contacts</p>
-    </div>
+      <!-- Title -->
+      <div class="form-title">
+        <div class="title-main">COMPANY PAYROLL SETUP</div>
+        <div class="title-sub">Enter the basic information on your company and provide contact information for key company contacts</div>
+      </div>
 
-    <!-- Formulario principal -->
-    <form #formRef="ngForm" class="max-w-6xl mx-auto">
-        <!-- Información de contacto y tipo de empresa -->
-        <div class="border border-black text-size-2xl font-bold">
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Contact Name</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="contactName" [(ngModel)]="formData.contactName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="font-normal">Email Address:</div>
-                    <input type="email" name="contactEmail" [(ngModel)]="formData.contactEmail" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Type</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>General Business</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Household</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Have you paid any employees so far this year?</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Yes</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>No</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">How many employees will you be paying?</div>
-                <div class="p-2 col-span-2">
-                    <input type="text" name="employeeCount" [(ngModel)]="formData.employeeCount" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+      <!-- ── Contact info ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Contact Name</div>
+          <div class="pay-cell">
+            <input type="text" name="contactName" [(ngModel)]="formData.contactName">
+          </div>
+          <div class="pay-cell">
+            <label class="cell-label">Email Address:</label>
+            <input type="email" name="contactEmail" [(ngModel)]="formData.contactEmail" required>
+          </div>
         </div>
 
-        <!-- Información del nombre de la empresa -->
-        <div class="border border-black text-size-2xl font-bold border-t-0">
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Name (Legal Name)</div>
-                <div class="p-2">
-                    <input type="text" name="legalName" [(ngModel)]="formData.legalName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Name (Doing Business As)</div>
-                <div class="p-2">
-                    <input type="text" name="dbaName" [(ngModel)]="formData.dbaName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Company Type</div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeGeneralBusiness"> General Business</label>
+          </div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeHousehold"> Household</label>
+          </div>
         </div>
 
-        <!-- Tipo de empresa detallado -->
-        <div class="border border-black text-size-2xl font-bold border-t-0">
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Company Type</div>
-                <div class="p-2 grid grid-cols-2 gap-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Sole Proprietorship</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>General Partnership</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Limited Partnership</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Non-Profit Corporation</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Corporation</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Limited Liability Company</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Other</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Main Address</div>
-                <div class="p-2">
-                    <input type="text" name="addressLine1" [(ngModel)]="formData.addressLine1" class="w-full border-b border-black text-size-2xl font-bold mb-2">
-                    <input type="text" name="addressLine2" [(ngModel)]="formData.addressLine2" class="w-full border-b border-black text-size-2xl font-bold mb-2">
-                    <input type="text" name="addressLine3" [(ngModel)]="formData.addressLine3" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Have you paid any employees so far this year?</div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="paidEmployeesYes"> Yes</label>
+          </div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="paidEmployeesNo"> No</label>
+          </div>
         </div>
 
-        <!-- Programación de nómina -->
-        <div class="border border-black text-size-2xl font-bold border-t-0">
-            <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Payroll Schedule</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center mb-2">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Weekly</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Twice a Month</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center mb-2">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Every Two Weeks</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Monthly</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Pay Period</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="mb-2">
-                        <div class="text-sm">Start Date</div>
-                        <input type="text" name="startDate" [(ngModel)]="formData.startDate" class="w-full border-b border-black text-size-2xl font-bold">
-                    </div>
-                    <div class="mb-2">
-                        <div class="text-sm">End Date</div>
-                        <input type="text" name="endDate" [(ngModel)]="formData.endDate" class="w-full border-b border-black text-size-2xl font-bold">
-                    </div>
-                    <div>
-                        <div class="text-sm">First Check Date</div>
-                        <input type="text" name="firstCheckDate" [(ngModel)]="formData.firstCheckDate" class="w-full border-b border-black text-size-2xl font-bold">
-                    </div>
-                </div>
-                <div class="p-2"></div>
-            </div>
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">How many employees will you be paying?</div>
+          <div class="pay-cell pay-cell--span2">
+            <input type="text" name="employeeCount" [(ngModel)]="formData.employeeCount">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Company Names ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Company Name (Legal Name)</div>
+          <div class="pay-cell">
+            <input type="text" name="legalName" [(ngModel)]="formData.legalName">
+          </div>
+        </div>
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Company Name (Doing Business As)</div>
+          <div class="pay-cell">
+            <input type="text" name="dbaName" [(ngModel)]="formData.dbaName">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Detailed Company Type + Address ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Company Type</div>
+          <div class="pay-cell pay-cell--chk-grid">
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeSole"> Sole Proprietorship</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeGenPartner"> General Partnership</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeLimitedPartner"> Limited Partnership</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeNonProfit"> Non-Profit Corporation</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeCorp"> Corporation</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeLLC"> Limited Liability Company</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="typeOther"> Other</label>
+          </div>
+        </div>
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Main Address</div>
+          <div class="pay-cell pay-cell--stack">
+            <input type="text" name="addressLine1" [(ngModel)]="formData.addressLine1" placeholder="Street address">
+            <input type="text" name="addressLine2" [(ngModel)]="formData.addressLine2" placeholder="City, State, ZIP">
+            <input type="text" name="addressLine3" [(ngModel)]="formData.addressLine3" placeholder="Additional info">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Payroll Schedule + Pay Period ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Payroll Schedule</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="chk-label"><input type="checkbox" class="chk" name="schedWeekly"> Weekly</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="schedTwiceMonth"> Twice a Month</label>
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="chk-label"><input type="checkbox" class="chk" name="schedEveryTwoWeeks"> Every Two Weeks</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="schedMonthly"> Monthly</label>
+          </div>
         </div>
 
-        <!-- Deducciones de nómina -->
-        <div class="border border-black text-size-2xl font-bold border-t-0">
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Do some employees have payroll deductions such as health insurance, retirement plans or garnishments?</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Yes</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>No</span>
-                    </div>
-                </div>
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Pay Period</div>
+          <div class="pay-cell pay-cell--stack">
+            <div class="field">
+              <label>Start Date</label>
+              <input type="text" name="startDate" [(ngModel)]="formData.startDate" placeholder="MM/DD/YYYY">
             </div>
-            
-            <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">If Yes, List Company Deduction Type Below:</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Desired Abbreviation</div>
-                <div class="p-2 font-normal">Pre / Post Tax?</div>
+            <div class="field">
+              <label>End Date</label>
+              <input type="text" name="endDate" [(ngModel)]="formData.endDate" placeholder="MM/DD/YYYY">
             </div>
-            
-            <!-- Filas para la tabla de deducciones -->
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction1Type" [(ngModel)]="formData.deduction1Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction1Abbr" [(ngModel)]="formData.deduction1Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="deduction1Tax" [(ngModel)]="formData.deduction1Tax" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
+            <div class="field">
+              <label>First Check Date</label>
+              <input type="text" name="firstCheckDate" [(ngModel)]="formData.firstCheckDate" placeholder="MM/DD/YYYY">
             </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction2Type" [(ngModel)]="formData.deduction2Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction2Abbr" [(ngModel)]="formData.deduction2Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="deduction2Tax" [(ngModel)]="formData.deduction2Tax" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction3Type" [(ngModel)]="formData.deduction3Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction3Abbr" [(ngModel)]="formData.deduction3Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="deduction3Tax" [(ngModel)]="formData.deduction3Tax" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction4Type" [(ngModel)]="formData.deduction4Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction4Abbr" [(ngModel)]="formData.deduction4Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="deduction4Tax" [(ngModel)]="formData.deduction4Tax" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction5Type" [(ngModel)]="formData.deduction5Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="deduction5Abbr" [(ngModel)]="formData.deduction5Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="deduction5Tax" [(ngModel)]="formData.deduction5Tax" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+          </div>
+          <div class="pay-cell"></div>
+        </div>
+      </div>
+
+      <!-- ── Payroll Deductions ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Do some employees have payroll deductions such as health insurance, retirement plans or garnishments?</div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="hasDeductionsYes"> Yes</label>
+          </div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="hasDeductionsNo"> No</label>
+          </div>
         </div>
 
-        <!-- Tipos de ingresos adicionales -->
-        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Do Some Employees have Additional Earning Types such as Auto Allowance, Meals, Tips etc?</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Yes</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>No</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">If Yes, List Earnings Type Below:</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Desired Abbreviation</div>
-                <div class="p-2 font-normal">Taxable?</div>
-            </div>
-            
-            <!-- Filas para la tabla de tipos de ingresos -->
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning1Type" [(ngModel)]="formData.earning1Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning1Abbr" [(ngModel)]="formData.earning1Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="earning1Taxable" [(ngModel)]="formData.earning1Taxable" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning2Type" [(ngModel)]="formData.earning2Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning2Abbr" [(ngModel)]="formData.earning2Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="earning2Taxable" [(ngModel)]="formData.earning2Taxable" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning3Type" [(ngModel)]="formData.earning3Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning3Abbr" [(ngModel)]="formData.earning3Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="earning3Taxable" [(ngModel)]="formData.earning3Taxable" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning4Type" [(ngModel)]="formData.earning4Type" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <input type="text" name="earning4Abbr" [(ngModel)]="formData.earning4Abbr" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <input type="text" name="earning4Taxable" [(ngModel)]="formData.earning4Taxable" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <!-- Table header -->
+        <div class="pay-row pay-row--3 pay-row--header">
+          <div class="pay-cell">If Yes, List Company Deduction Type Below:</div>
+          <div class="pay-cell">Desired Abbreviation</div>
+          <div class="pay-cell">Pre / Post Tax?</div>
         </div>
 
-        <!-- Información fiscal federal -->
-        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
-            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Federal Tax Information</div>
-            
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Federal Employer Identification Number</div>
-                <div class="p-2">
-                    <input type="text" name="fein" [(ngModel)]="formData.fein" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Federal Unemployment Tax Status</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Subject</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Exempt</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Are You an Agricultural Business Required to File Form 943?</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Yes</span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>No</span>
-                    </div>
-                </div>
-            </div>
+        <!-- 5 deduction rows -->
+        <div class="pay-row pay-row--3" *ngFor="let i of [1,2,3,4,5]">
+          <div class="pay-cell"><input type="text" [name]="'deduction'+i+'Type'" [(ngModel)]="formData['deduction'+i+'Type']"></div>
+          <div class="pay-cell"><input type="text" [name]="'deduction'+i+'Abbr'" [(ngModel)]="formData['deduction'+i+'Abbr']"></div>
+          <div class="pay-cell"><input type="text" [name]="'deduction'+i+'Tax'"  [(ngModel)]="formData['deduction'+i+'Tax']"></div>
+        </div>
+      </div>
+
+      <!-- ── Additional Earning Types ── -->
+      <div class="pay-block mt6">
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Do Some Employees have Additional Earning Types such as Auto Allowance, Meals, Tips etc?</div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="hasEarningsYes"> Yes</label>
+          </div>
+          <div class="pay-cell">
+            <label class="chk-label"><input type="checkbox" class="chk" name="hasEarningsNo"> No</label>
+          </div>
         </div>
 
-        <!-- Información fiscal estatal -->
-        <div class="border border-black text-size-2xl font-bold border-t-0">
-            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">State Tax Information *</div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">State Income Tax ID</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">#</div>
-                    <input type="text" name="stateIncomeTaxId1" [(ngModel)]="formData.stateIncomeTaxId1" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">State:</div>
-                    <input type="text" name="stateIncomeTaxState1" [(ngModel)]="formData.stateIncomeTaxState1" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">#</div>
-                    <input type="text" name="stateIncomeTaxId2" [(ngModel)]="formData.stateIncomeTaxId2" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">State:</div>
-                    <input type="text" name="stateIncomeTaxState2" [(ngModel)]="formData.stateIncomeTaxState2" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">State Unemployment Tax ID</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">#</div>
-                    <input type="text" name="stateUnemploymentTaxId1" [(ngModel)]="formData.stateUnemploymentTaxId1" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">SUI Rate:</div>
-                    <input type="text" name="suiRate1" [(ngModel)]="formData.suiRate1" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">#</div>
-                    <input type="text" name="stateUnemploymentTaxId2" [(ngModel)]="formData.stateUnemploymentTaxId2" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">SUI Rate:</div>
-                    <input type="text" name="suiRate2" [(ngModel)]="formData.suiRate2" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-        </div>
-        
-        <div class="text-xs italic mt-1 mb-4">*If more states are needed, please contact your sales representative to ensure that all state tax information is correct. If you do not have your state tax ID numbers type "Applied For" in the State Income Tax ID # section, or leave it blank.</div>
-
-        <!-- Información bancaria -->
-        <div class="border border-black text-size-2xl font-bold">
-            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Bank Information</div>
-            
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Bank Name</div>
-                <div class="p-2">
-                    <input type="text" name="bankName" [(ngModel)]="formData.bankName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Routing Number</div>
-                <div class="p-2">
-                    <input type="text" name="routingNumber" [(ngModel)]="formData.routingNumber" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 border-t border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Checking Account Number</div>
-                <div class="p-2">
-                    <input type="text" name="accountNumber" [(ngModel)]="formData.accountNumber" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="pay-row pay-row--3 pay-row--header">
+          <div class="pay-cell">If Yes, List Earnings Type Below:</div>
+          <div class="pay-cell">Desired Abbreviation</div>
+          <div class="pay-cell">Taxable?</div>
         </div>
 
-        <!-- Información específica de nómina doméstica -->
-        <div class="border border-black text-size-2xl font-bold border-t-0 mt-4">
-            <div class="p-2 border-b border-black text-size-2xl font-bold font-bold">Household Payroll ONLY</div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal" rowspan="2">What is your income tax filing status on Form 1040</div>
-                <div class="p-2 col-span-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Single / Head of Household</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold hidden"></div> <!-- Columna oculta por el rowspan anterior -->
-                <div class="p-2 col-span-2">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 border border-black text-size-2xl font-bold mr-2"></div>
-                        <span>Joint</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Primary Tax Filer</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">Name</div>
-                    <input type="text" name="primaryTaxFilerName" [(ngModel)]="formData.primaryTaxFilerName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">SSN</div>
-                    <input type="text" name="primaryTaxFilerSSN" [(ngModel)]="formData.primaryTaxFilerSSN" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3">
-                <div class="p-2 border-r border-black text-size-2xl font-bold font-normal">Other Tax Filer</div>
-                <div class="p-2 border-r border-black text-size-2xl font-bold">
-                    <div class="text-sm">Name</div>
-                    <input type="text" name="otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-                <div class="p-2">
-                    <div class="text-sm">SSN</div>
-                    <input type="text" name="otherTaxFilerSSN" [(ngModel)]="formData.otherTaxFilerSSN" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="pay-row pay-row--3" *ngFor="let i of [1,2,3,4]">
+          <div class="pay-cell"><input type="text" [name]="'earning'+i+'Type'"    [(ngModel)]="formData['earning'+i+'Type']"></div>
+          <div class="pay-cell"><input type="text" [name]="'earning'+i+'Abbr'"    [(ngModel)]="formData['earning'+i+'Abbr']"></div>
+          <div class="pay-cell"><input type="text" [name]="'earning'+i+'Taxable'" [(ngModel)]="formData['earning'+i+'Taxable']"></div>
         </div>
-    </form>
+      </div>
+
+      <!-- ── Federal Tax Info ── -->
+      <div class="pay-block mt6">
+        <div class="pay-row pay-row--section-header">Federal Tax Information</div>
+
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Federal Employer Identification Number</div>
+          <div class="pay-cell"><input type="text" name="fein" [(ngModel)]="formData.fein"></div>
+        </div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Federal Unemployment Tax Status</div>
+          <div class="pay-cell"><label class="chk-label"><input type="checkbox" class="chk" name="futaSubject"> Subject</label></div>
+          <div class="pay-cell"><label class="chk-label"><input type="checkbox" class="chk" name="futaExempt"> Exempt</label></div>
+        </div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Are You an Agricultural Business Required to File Form 943?</div>
+          <div class="pay-cell"><label class="chk-label"><input type="checkbox" class="chk" name="form943Yes"> Yes</label></div>
+          <div class="pay-cell"><label class="chk-label"><input type="checkbox" class="chk" name="form943No"> No</label></div>
+        </div>
+      </div>
+
+      <!-- ── State Tax Info ── -->
+      <div class="pay-block">
+        <div class="pay-row pay-row--section-header">State Tax Information *</div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label" style="grid-row: span 2;">State Income Tax ID</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">#</label>
+            <input type="text" name="stateIncomeTaxId1" [(ngModel)]="formData.stateIncomeTaxId1">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">State:</label>
+            <input type="text" name="stateIncomeTaxState1" [(ngModel)]="formData.stateIncomeTaxState1">
+          </div>
+        </div>
+        <div class="pay-row pay-row--3 pay-row--no-first">
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">#</label>
+            <input type="text" name="stateIncomeTaxId2" [(ngModel)]="formData.stateIncomeTaxId2">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">State:</label>
+            <input type="text" name="stateIncomeTaxState2" [(ngModel)]="formData.stateIncomeTaxState2">
+          </div>
+        </div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label" style="grid-row: span 2;">State Unemployment Tax ID</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">#</label>
+            <input type="text" name="stateUnemploymentTaxId1" [(ngModel)]="formData.stateUnemploymentTaxId1">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">SUI Rate:</label>
+            <input type="text" name="suiRate1" [(ngModel)]="formData.suiRate1">
+          </div>
+        </div>
+        <div class="pay-row pay-row--3 pay-row--no-first">
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">#</label>
+            <input type="text" name="stateUnemploymentTaxId2" [(ngModel)]="formData.stateUnemploymentTaxId2">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">SUI Rate:</label>
+            <input type="text" name="suiRate2" [(ngModel)]="formData.suiRate2">
+          </div>
+        </div>
+      </div>
+      <p class="footnote">*If more states are needed, please contact your sales representative to ensure that all state tax information is correct. If you do not have your state tax ID numbers type "Applied For" in the State Income Tax ID # section, or leave it blank.</p>
+
+      <!-- ── Bank Information ── -->
+      <div class="pay-block mt6">
+        <div class="pay-row pay-row--section-header">Bank Information</div>
+
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Bank Name</div>
+          <div class="pay-cell"><input type="text" name="bankName" [(ngModel)]="formData.bankName"></div>
+        </div>
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Routing Number</div>
+          <div class="pay-cell"><input type="text" name="routingNumber" [(ngModel)]="formData.routingNumber"></div>
+        </div>
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">Checking Account Number</div>
+          <div class="pay-cell"><input type="text" name="accountNumber" [(ngModel)]="formData.accountNumber"></div>
+        </div>
+      </div>
+
+      <!-- ── Household Payroll Only ── -->
+      <div class="pay-block mt6">
+        <div class="pay-row pay-row--section-header">Household Payroll ONLY</div>
+
+        <div class="pay-row pay-row--2">
+          <div class="pay-cell pay-cell--label">What is your income tax filing status on Form 1040</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="chk-label"><input type="checkbox" class="chk" name="hhFilingSingle"> Single / Head of Household</label>
+            <label class="chk-label"><input type="checkbox" class="chk" name="hhFilingJoint"> Joint</label>
+          </div>
+        </div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Primary Tax Filer</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">Name</label>
+            <input type="text" name="primaryTaxFilerName" [(ngModel)]="formData.primaryTaxFilerName">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">SSN</label>
+            <input type="text" name="primaryTaxFilerSSN" [(ngModel)]="formData.primaryTaxFilerSSN">
+          </div>
+        </div>
+
+        <div class="pay-row pay-row--3">
+          <div class="pay-cell pay-cell--label">Other Tax Filer</div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">Name</label>
+            <input type="text" name="otherTaxFilerName" [(ngModel)]="formData.otherTaxFilerName">
+          </div>
+          <div class="pay-cell pay-cell--stack">
+            <label class="cell-label">SSN</label>
+            <input type="text" name="otherTaxFilerSSN" [(ngModel)]="formData.otherTaxFilerSSN">
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end page-1 -->
+
+  </form>
+</div>
 </div>
 
-<!-- Botones de acción -->
-<div class="flex justify-center space-x-4 mt-8">
-  
-    <button type="button" (click)="exportToPDF(formRef)"
-        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Send Form
-    </button>
+<div class="btn-container">
+  <button type="button" (click)="exportToPDF(formRef)" [disabled]="isProcessing" class="send-btn">
+    <span *ngIf="!isProcessing">📤 Send Form</span>
+    <span *ngIf="isProcessing">⏳ Sending...</span>
+  </button>
 </div>

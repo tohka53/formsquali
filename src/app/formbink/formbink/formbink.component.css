@@ -1,34 +1,213 @@
-.form-section {
-  page-break-inside: avoid;
-  margin-bottom: 20px;
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.form-outer  { width: 100%; overflow: visible; display: flex; flex-direction: column; align-items: center; padding: 0; }
+:host        { display: block; overflow-x: hidden; width: 100%; }
+.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; }
+
+/* Page */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #fff;
+  padding: 22px 30px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
 }
 
-.section-payroll {
-  page-break-before: always;
+/* Header */
+.form-header  { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.logo-img     { width: 200px; max-width: 100%; }
+.header-address { text-align: right; font-size: 9.5px; line-height: 1.5; }
+.header-address p { margin: 0; }
+
+/* Title */
+.form-title   { text-align: center; margin-bottom: 10px; }
+.title-main   { font-size: 17px; font-weight: bold; letter-spacing: 1px; }
+
+/* ── Block ── */
+.bink-block { border: 1px solid #000; margin-bottom: 6px; }
+
+/* ── Row ── */
+.bink-row {
+  display: flex;
+  border-top: 1px solid #000;
+  min-height: 32px;
 }
 
-#form-container {
-  overflow: visible !important;
-  min-height: 100vh;
+.bink-row:first-child { border-top: none; }
+.bink-row--last { }  /* no special style needed */
+
+/* grid variants */
+.bink-row--2col { }   /* default flex is fine */
+.bink-row--3    { }
+.bink-row--addr { flex-wrap: nowrap; }
+
+/* Section header rows */
+.bink-row--section-header { background: #e5e7eb; }
+.bink-section-label { font-weight: bold; font-size: 11px; }
+
+/* ── Cell ── */
+.bink-cell {
+  padding: 5px 8px;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10.5px;
+  flex: 1;
 }
 
-/* Estilos adicionales para mejorar la visualización en el PDF */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="password"],
-input[type="url"] {
-  min-height: 24px;
+.bink-cell:last-child { border-right: none; }
+
+/* Label cell (grey tint, bold) */
+.bink-cell--label { font-weight: normal; background: #fafafa; }
+
+/* Right-aligned label */
+.bink-cell--right { text-align: right; background: #fafafa; font-weight: normal; }
+
+/* Narrow fixed-width label column */
+.bink-cell--narrow { flex: 0 0 200px; max-width: 200px; }
+
+/* Input-only cell */
+.bink-cell--input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.border-black {
-  border-color: #000000 !important;
+.bink-cell--input input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
 }
 
-/* Asegurar que los checkboxes sean visibles en el PDF */
-input[type="checkbox"] {
-  min-width: 16px;
-  min-height: 16px;
-  border: 1px solid black;
+/* Stack = label text on top, input below */
+.bink-cell--stack {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
 }
+
+.bink-cell--stack input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
+}
+
+/* Inline row of items */
+.bink-cell--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* List of text lines */
+.bink-cell--list {
+  flex-direction: column;
+  gap: 2px;
+  font-size: 10px;
+}
+
+/* Address cells */
+.bink-cell--addr-main  { flex: 1; }
+.bink-cell--addr-city  { flex: 0 0 150px; max-width: 150px; }
+.bink-cell--addr-state { flex: 0 0 80px;  max-width: 80px; }
+.bink-cell--addr-zip   { flex: 0 0 90px;  max-width: 90px; border-right: none; }
+
+.bink-cell--addr-main span,
+.bink-cell--addr-city span,
+.bink-cell--addr-state span,
+.bink-cell--addr-zip span {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.bink-cell--addr-main input,
+.bink-cell--addr-city input,
+.bink-cell--addr-state input,
+.bink-cell--addr-zip input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
+}
+
+/* label cells in phone/email rows (label + input stacked) */
+.bink-row--3 .bink-cell,
+.bink-row--2 .bink-cell {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bink-row--3 .bink-cell span,
+.bink-row--2 .bink-cell span {
+  font-size: 9.5px;
+  font-weight: bold;
+}
+
+.bink-row--3 .bink-cell input,
+.bink-row--2 .bink-cell input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
+}
+
+/* ── Inline input widths ── */
+.bink-short { width: 55px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+.bink-med   { width: 130px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+.bink-xs    { width: 40px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+
+/* inline pair helper */
+.bink-inline-pair { display: flex; align-items: center; }
+
+/* ── Spacing utils ── */
+.ml4  { margin-left: 4px; }
+.ml8  { margin-left: 8px; }
+.mt4  { margin-top: 4px; }
+
+/* ── DOB group ── */
+.dob-group { display: flex; align-items: center; gap: 2px; }
+.dob-group span { font-size: 12px; }
+.dob-group input { border: none; border-bottom: 1px solid #000; text-align: center; font-size: 11px; outline: none; background: transparent; min-height: 18px; padding: 1px; font-family: Arial, Helvetica, sans-serif; }
+.dob-mm, .dob-dd   { width: 26px; }
+.dob-yyyy           { width: 42px; }
+
+/* ── Checkbox ── */
+.chk { width: 13px; height: 13px; border: 1px solid #000 !important; accent-color: #000; flex-shrink: 0; cursor: pointer; }
+
+/* ── Button ── */
+.btn-container { display: flex; justify-content: center; margin: 18px 0 32px; }
+
+.send-btn {
+  background: #16a34a; color: white; padding: 10px 36px;
+  border: none; border-radius: 6px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) { background: #15803d; }
+.send-btn[disabled]             { opacity: 0.6; cursor: not-allowed; }

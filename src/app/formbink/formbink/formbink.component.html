@@ -1,384 +1,379 @@
-<head><meta name="viewport" content="width=1024">
-</head>
-<!-- Contenedor principal del formulario -->
-<div class="min-h-screen bg-white p-6 relative" id="form-container" >
-    <!-- Encabezado con información de contacto -->
-    <div class="w-full max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-8 text-sm">
-            <!-- Columna del logo -->
-            <div class="w-1/3">
-                <img src="/assets/logo1.png" alt="Qualitech Boston" class="w-full max-w-[350px]">
-            </div>
-            
-            <!-- Columna de la información -->
-            <div class="text-right">
-                <p class="font-semibold">671 Adams St.</p>
-                <p>Boston, Ma 02122</p>
-                <p>Phone: (617) 288-1333</p>
-                <p>Fax: (617) 249-1859</p>
-                <p>E-mail: qualitech&#64;qualitechboston.com</p>
-            </div>
+<div class="form-outer">
+<div class="form-wrapper">
+  <form #formRef="ngForm" novalidate>
+
+    <!-- ══════════════════ PAGE 1 ══════════════════ -->
+    <div id="page-1" class="form-page">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="header-logo">
+          <img src="/assets/logo1.png" alt="Qualitech Boston" class="logo-img">
         </div>
-    </div>
-
-    <div class="h-4"></div>
-    <div class="h-4"></div>
-    
-    <!-- Título del formulario -->
-    <h1 class="text-2xl font-bold text-center mb-8">BUSINESS INTAKE FORM</h1>
-
-    <div class="h-4"></div>
-
-    <div class="h-4"></div>
-    <!-- Formulario principal -->
-    <form #formRef="ngForm">
-        <!-- Bloque 1 - Información básica -->
-        <div class="border border-black form-section">
-            <!-- Business Name -->
-            <div class="border-b border-black">
-                <label class="block p-2">Business Name:</label>
-                <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-            </div>
-
-            <!-- Business FID -->
-            <div class="border-b border-black">
-                <label class="block p-2">Business FID OR EIN:</label>
-                <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-            </div>
-
-            <!-- Dirección completa -->
-            <div class="border-b border-black flex">
-                <div class="flex-1 border-r border-black">
-                    <label class="block p-2">Business Address:</label>
-                    <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div class="w-48 border-r border-black">
-                    <label class="block p-2">City:</label>
-                    <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div class="w-32 border-r border-black">
-                    <label class="block p-2">State:</label>
-                    <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div class="w-32">
-                    <label class="block p-2">Zip Code:</label>
-                    <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Teléfonos -->
-            <div class="border-b border-black grid grid-cols-3">
-                <div class="border-r border-black">
-                    <label class="block p-2">Phone:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div class="border-r border-black">
-                    <label class="block p-2">Fax:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div>
-                    <label class="block p-2">Cell:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Email y Website -->
-            <div class="border-b border-black grid grid-cols-2">
-                <div class="border-r border-black">
-                    <label class="block p-2">Business Email:</label>
-                    <input type="email" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div>
-                    <label class="block p-2">Website:</label>
-                    <input type="url" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Primary Contact -->
-            <div class="border-b border-black">
-                <label class="block p-2">Primary Contact Name:</label>
-                <input type="text" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-            </div>
-
-            <!-- Teléfonos del contacto -->
-            <div class="border-b border-black grid grid-cols-3">
-                <div class="border-r border-black">
-                    <label class="block p-2">Phone:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div class="border-r border-black">
-                    <label class="block p-2">Fax:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-                <div>
-                    <label class="block p-2">Cell:</label>
-                    <input type="tel" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Email -->
-            <div class="border-b border-black">
-                <label class="block p-2">Email:</label>
-                <input 
-                type="email" 
-                name="email" class="w-full p-2 border-t border-black text-size-2xl font-bold"
-                [(ngModel)]="formData.email" 
-                required 
-                #email="ngModel">
-            </div>
-
-            <!-- Business Start -->
-            <div>
-                <label class="block p-2">When did the business start?</label>
-                <input type="date" class="w-full p-2 border-t border-black text-size-2xl font-bold">
-            </div>
+        <div class="header-address">
+          <p>671 Adams St.</p>
+          <p>Boston, Ma 02122</p>
+          <p>Phone: (617) 288-1333</p>
+          <p>Fax: (617) 249-1859</p>
+          <p>E-mail: qualitech&#64;qualitechboston.com</p>
         </div>
-        <!-- Bloque 2 - Información detallada de la empresa -->
-        <div class="border border-black">
-            <!-- Type of business -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Type of business</div>
-                <div class="p-2">
-                    Services<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    Merchandise<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                </div>
-            </div>
+      </div>
 
-            <!-- Business structure -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Business structure</div>
-                <div class="p-2">
-                    Sole Proprietor<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    Partnership<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    (#<input type="text" class="mx-1 border-b border-black text-size-2xl font-bold w-12 inline">of members)
-                </div>
-            </div>
+      <!-- Title -->
+      <div class="form-title">
+        <div class="title-main">BUSINESS INTAKE FORM</div>
+      </div>
 
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="border-r border-black"></div>
-                <div class="p-2">
-                    Limited liability corporation LLC<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    S Corp<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                </div>
-            </div>
+      <!-- ── Block 1: Basic Info ── -->
+      <div class="bink-block">
 
-            <!-- Información bancaria y accesos -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Ind Contractors</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Employees:</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Bank Name:</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Información bancaria detallada -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">RTN</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">Number</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">Additional Bank Inf.</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Credenciales -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">Username</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">Password</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black text-right">Security Question</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <!-- Información corporativa -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">
-                    <div>Corporations Division</div>
-                    <div>Date Incorporated</div>
-                </div>
-                <div class="p-2">
-                    <div>CID-<input type="text" class="border-b border-black text-size-2xl font-bold w-48 ml-2"></div>
-                    <div class="mt-2">PIN-<input type="text" class="border-b border-black text-size-2xl font-bold w-48 ml-2"></div>
-                </div>
-            </div>
-
-            <!-- Documentación requerida -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">
-                    <div>Please include the</div>
-                    <div>Following with this</div>
-                    <div>form:</div>
-                </div>
-                <div class="p-2">
-                    <div>12 Months Bank Statements</div>
-                    <div>Inventory quantity, values & date of purchase</div>
-                    <div>(equipment, supplies, etc)</div>
-                    <div>2-3 years income taxes</div>
-                </div>
-            </div>
-
-            <!-- Información adicional -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">DUA Acct #</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black">FID</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="bink-row">
+          <div class="bink-cell bink-cell--label">Business Name:</div>
+          <div class="bink-cell bink-cell--input">
+            <input type="text" name="businessName">
+          </div>
         </div>
 
-        <!-- Bloque 3 - Mass Dept of Revenue y Payroll -->
-        <div class="border border-black form-section section-payroll">
-            <!-- Mass Dept of Revenue -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Mass Dept. of Revenue</div>
-                <div class="p-2">
-                    <div>www.mass.gov/dor/business</div>
-                    <div>(web file for business)</div>
-                </div>
-            </div>
-
-            <!-- Employee count -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="border-r border-black"></div>
-                <div class="p-2">
-                    <div>How many employees do you have?</div>
-                    <div class="mt-2">
-                        Full time<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-32 inline">
-                        Part time<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-32 inline">
-                    </div>
-                    <div class="mt-2">
-                        Contractors<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-32 inline">
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAYROLL section -->
-            <div class="grid grid-cols-2 border-b border-black bg-gray-100">
-                <div class="p-2 border-r border-black text-center font-bold">PAYROLL</div>
-                <div></div>
-            </div>
-
-            <!-- Payroll questions -->
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">Are you interested in Payroll?</div>
-                <div class="p-2">How many Employees?</div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black flex items-center">
-                    <span>Yes</span>
-                    <input type="checkbox" 
-                           class="mx-2 w-4 h-4 cursor-pointer accent-black">
-                    <span>/</span>
-                    <span>No</span>
-                    <input type="checkbox" 
-                           class="mx-2 w-4 h-4 cursor-pointer accent-black">
-                </div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="border-r border-black"></div>
-                <div class="p-2">
-                    <div>Contractors?</div>
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">How frequently do you want to run payroll?</div>
-                <div class="p-2">
-                    Weekly<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    Biweekly<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                    Monthly<input type="text" class="mx-2 border-b border-black text-size-2xl font-bold w-16 inline">
-                </div>
-            </div>
-
-            <!-- BOOKKEEPING section -->
-            <div class="grid grid-cols-2 border-b border-black bg-gray-100">
-                <div class="p-2 border-r border-black text-center font-bold">BOOKKEEPING</div>
-                <div></div>
-            </div>
-
-            <div class="grid grid-cols-2 border-b border-black">
-                <div class="p-2 border-r border-black">
-                    <div>Are you interested in</div>
-                    <div>Monthly bookkeeping?</div>
-                </div>
-                <div class="p-2">If you are interested, please provide previous records</div>
-            </div>
-
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black">Yes/No</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="bink-row">
+          <div class="bink-cell bink-cell--label">Business FID OR EIN:</div>
+          <div class="bink-cell bink-cell--input">
+            <input type="text" name="businessFid">
+          </div>
         </div>
 
-        <!-- Botones de acción -->
-        <!--input type="hidden" name="_next" value="https://blackocean-gamma.vercel.app/home"-->
-      <input type="hidden" name="_subject" value="New submission!">
-      <!--input type="hidden" name="_cc" value="another@email.com"-->
-      <input type="hidden" name="_captcha" value="false">
-      
-     
-      
-    </form>
-    
-    
+        <!-- Address row -->
+        <div class="bink-row bink-row--addr">
+          <div class="bink-cell bink-cell--label bink-cell--addr-main">
+            <span>Business Address:</span>
+            <input type="text" name="businessAddress">
+          </div>
+          <div class="bink-cell bink-cell--label bink-cell--addr-city">
+            <span>City:</span>
+            <input type="text" name="city">
+          </div>
+          <div class="bink-cell bink-cell--label bink-cell--addr-state">
+            <span>State:</span>
+            <input type="text" name="state">
+          </div>
+          <div class="bink-cell bink-cell--label bink-cell--addr-zip">
+            <span>Zip Code:</span>
+            <input type="text" name="zip">
+          </div>
+        </div>
+
+        <!-- Business phones -->
+        <div class="bink-row bink-row--3">
+          <div class="bink-cell bink-cell--label">
+            <span>Phone:</span>
+            <input type="tel" name="bizPhone">
+          </div>
+          <div class="bink-cell bink-cell--label">
+            <span>Fax:</span>
+            <input type="tel" name="bizFax">
+          </div>
+          <div class="bink-cell bink-cell--label">
+            <span>Cell:</span>
+            <input type="tel" name="bizCell">
+          </div>
+        </div>
+
+        <!-- Email + Website -->
+        <div class="bink-row bink-row--2">
+          <div class="bink-cell bink-cell--label">
+            <span>Business Email:</span>
+            <input type="email" name="bizEmail">
+          </div>
+          <div class="bink-cell bink-cell--label">
+            <span>Website:</span>
+            <input type="url" name="website">
+          </div>
+        </div>
+
+        <div class="bink-row">
+          <div class="bink-cell bink-cell--label">Primary Contact Name:</div>
+          <div class="bink-cell bink-cell--input">
+            <input type="text" name="contactName">
+          </div>
+        </div>
+
+        <!-- Contact phones -->
+        <div class="bink-row bink-row--3">
+          <div class="bink-cell bink-cell--label">
+            <span>Phone:</span>
+            <input type="tel" name="contactPhone">
+          </div>
+          <div class="bink-cell bink-cell--label">
+            <span>Fax:</span>
+            <input type="tel" name="contactFax">
+          </div>
+          <div class="bink-cell bink-cell--label">
+            <span>Cell:</span>
+            <input type="tel" name="contactCell">
+          </div>
+        </div>
+
+        <!-- Contact email (required for submission) -->
+        <div class="bink-row">
+          <div class="bink-cell bink-cell--label">Email:</div>
+          <div class="bink-cell bink-cell--input">
+            <input type="email" name="email" [(ngModel)]="formData.email" required #email="ngModel">
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--last">
+          <div class="bink-cell bink-cell--label">When did the business start?</div>
+          <div class="bink-cell bink-cell--input">
+            <div class="dob-group">
+              <input type="text" maxlength="2" placeholder="MM" class="dob-mm">
+              <span>/</span>
+              <input type="text" maxlength="2" placeholder="DD" class="dob-dd">
+              <span>/</span>
+              <input type="text" maxlength="4" placeholder="YYYY" class="dob-yyyy">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end block 1 -->
+
+      <!-- ── Block 2: Company Details ── -->
+      <div class="bink-block">
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Type of business</div>
+          <div class="bink-cell bink-cell--inline">
+            <span>Services</span>
+            <input type="text" class="bink-short">
+            <span>Merchandise</span>
+            <input type="text" class="bink-short">
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Business structure</div>
+          <div class="bink-cell bink-cell--inline">
+            <span>Sole Proprietor</span>
+            <input type="text" class="bink-short">
+            <span>Partnership</span>
+            <input type="text" class="bink-short">
+            <span>(#</span>
+            <input type="text" class="bink-xs">
+            <span>of members)</span>
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--narrow"></div>
+          <div class="bink-cell bink-cell--inline">
+            <span>Limited liability corporation LLC</span>
+            <input type="text" class="bink-short">
+            <span>S Corp</span>
+            <input type="text" class="bink-short">
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Ind Contractors</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="indContractors"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Employees:</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="employees"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Bank Name:</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="bankName"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">RTN</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="rtn"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">Number</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="accountNumber"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">Additional Bank Inf.</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="additionalBankInfo"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">Username</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="username"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">Password</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="password"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--right bink-cell--narrow">Security Question</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="securityQuestion"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">
+            <div>Corporations Division</div>
+            <div>Date Incorporated</div>
+          </div>
+          <div class="bink-cell bink-cell--stack">
+            <div class="bink-inline-pair">CID-<input type="text" name="cid" class="bink-med ml4"></div>
+            <div class="bink-inline-pair mt4">PIN-<input type="text" name="pin" class="bink-med ml4"></div>
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">
+            <div>Please include the</div>
+            <div>following with this form:</div>
+          </div>
+          <div class="bink-cell bink-cell--list">
+            <div>12 Months Bank Statements</div>
+            <div>Inventory quantity, values &amp; date of purchase (equipment, supplies, etc)</div>
+            <div>2–3 years income taxes</div>
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">DUA Acct #</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="duaAcct"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col bink-row--last">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">FID</div>
+          <div class="bink-cell bink-cell--input"><input type="text" name="fid"></div>
+        </div>
+
+      </div><!-- end block 2 -->
+
+    </div><!-- end page-1 -->
+
+    <!-- ══════════════════ PAGE 2 ══════════════════ -->
+    <div id="page-2" class="form-page">
+
+      <!-- Header repeated -->
+      <div class="form-header">
+        <div class="header-logo">
+          <img src="/assets/logo1.png" alt="Qualitech Boston" class="logo-img">
+        </div>
+        <div class="header-address">
+          <p>671 Adams St.</p>
+          <p>Boston, Ma 02122</p>
+          <p>Phone: (617) 288-1333</p>
+          <p>Fax: (617) 249-1859</p>
+          <p>E-mail: qualitech&#64;qualitechboston.com</p>
+        </div>
+      </div>
+
+      <!-- ── Block 3: Mass DOR + Payroll + Bookkeeping ── -->
+      <div class="bink-block">
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Mass Dept. of Revenue</div>
+          <div class="bink-cell bink-cell--list">
+            <div>www.mass.gov/dor/business</div>
+            <div>(web file for business)</div>
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--narrow"></div>
+          <div class="bink-cell bink-cell--stack">
+            <div>How many employees do you have?</div>
+            <div class="bink-inline-pair mt4">
+              <span>Full time</span>
+              <input type="text" name="fullTime" class="bink-med ml4">
+              <span class="ml8">Part time</span>
+              <input type="text" name="partTime" class="bink-med ml4">
+            </div>
+            <div class="bink-inline-pair mt4">
+              <span>Contractors</span>
+              <input type="text" name="contractors" class="bink-med ml4">
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYROLL header -->
+        <div class="bink-row bink-row--2col bink-row--section-header">
+          <div class="bink-cell bink-cell--narrow bink-section-label">PAYROLL</div>
+          <div class="bink-cell"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Are you interested in Payroll?</div>
+          <div class="bink-cell bink-cell--label">How many Employees?</div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--narrow bink-cell--inline">
+            <span>Yes</span>
+            <input type="checkbox" class="chk" name="payrollYes">
+            <span class="ml4">/</span>
+            <span class="ml4">No</span>
+            <input type="checkbox" class="chk" name="payrollNo">
+          </div>
+          <div class="bink-cell bink-cell--input">
+            <input type="text" name="payrollEmployees">
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--narrow"></div>
+          <div class="bink-cell bink-cell--stack">
+            <div>Contractors?</div>
+            <input type="text" name="payrollContractors" class="mt4">
+          </div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">How frequently do you want to run payroll?</div>
+          <div class="bink-cell bink-cell--inline">
+            <span>Weekly</span>
+            <input type="text" class="bink-short ml4">
+            <span class="ml8">Biweekly</span>
+            <input type="text" class="bink-short ml4">
+            <span class="ml8">Monthly</span>
+            <input type="text" class="bink-short ml4">
+          </div>
+        </div>
+
+        <!-- BOOKKEEPING header -->
+        <div class="bink-row bink-row--2col bink-row--section-header">
+          <div class="bink-cell bink-cell--narrow bink-section-label">BOOKKEEPING</div>
+          <div class="bink-cell"></div>
+        </div>
+
+        <div class="bink-row bink-row--2col">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">
+            <div>Are you interested in</div>
+            <div>Monthly bookkeeping?</div>
+          </div>
+          <div class="bink-cell bink-cell--label">If you are interested, please provide previous records</div>
+        </div>
+
+        <div class="bink-row bink-row--2col bink-row--last">
+          <div class="bink-cell bink-cell--label bink-cell--narrow">Yes / No</div>
+          <div class="bink-cell bink-cell--input">
+            <input type="text" name="bookkeepingYesNo">
+          </div>
+        </div>
+
+      </div><!-- end block 3 -->
+
+    </div><!-- end page-2 -->
+
+  </form>
 </div>
-<div class="flex justify-center space-x-4 mt-8">
-    
-    <button type="button" (click)="exportToPDF(formRef)"
-        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Send Form
-    </button>
+</div>
+
+<div class="btn-container">
+  <button type="button" (click)="exportToPDF(formRef)" [disabled]="isProcessing" class="send-btn">
+    <span *ngIf="!isProcessing">📤 Send Form</span>
+    <span *ngIf="isProcessing">⏳ Sending...</span>
+  </button>
 </div>

@@ -1,34 +1,670 @@
+/* ===========================
+   Global reset for form pages
+   =========================== */
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ===========================
+   Wrapper
+   =========================== */
+.form-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000;
+}
+
+/* ===========================
+   Each page (letter-size)
+   =========================== */
+.form-page {
+  width: min(95vw, 1050px);
+  min-height: 1056px;
+  background: #ffffff;
+  padding: 28px 38px 28px 38px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+  position: relative;
+}
+
+/* ===========================
+   Header
+   =========================== */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.logo-img {
+  width: 200px;
+  max-width: 100%;
+}
+
+.header-address {
+  text-align: right;
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.header-address p {
+  margin: 0;
+}
+
+/* ===========================
+   Title
+   =========================== */
+.form-title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.title-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.title-main {
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.year-input {
+  border: none;
+  border-bottom: 2px solid #000;
+  width: 70px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  padding: 0 2px;
+  background: transparent;
+}
+
+.title-sub {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   Form Section
+   =========================== */
 .form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    }
+  border: 1px solid #000;
+  padding: 8px 12px;
+  margin-bottom: 7px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 11.5px;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+/* ===========================
+   Initial questions
+   =========================== */
+.init-questions {
+  padding: 7px 12px;
+}
+
+.init-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.init-row:last-child {
+  margin-bottom: 0;
+}
+
+.q-label {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* ===========================
+   Checkbox / Yes-No
+   =========================== */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.checkbox-group label,
+.yes-no label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.yes-no {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.chk {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000 !important;
+  cursor: pointer;
+  accent-color: #000;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   Field
+   =========================== */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #222;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="number"],
+.field input[type="password"],
+.field input[type="url"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 2px 1px;
+  font-size: 11px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  min-height: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   Row layouts
+   =========================== */
+.mb6  { margin-bottom: 6px; }
+.mb8  { margin-bottom: 8px; }
+.ml8  { margin-left: 8px; }
+.ml12 { margin-left: 12px; }
+
+.row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.row-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.row-4col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.col-span2 {
+  grid-column: span 2;
+}
+
+.col-pin {
+  width: 60px;
+}
+
+.row-addr {
+  display: grid;
+  grid-template-columns: 2.2fr 1.4fr 0.7fr 0.9fr;
+  gap: 8px;
+}
+
+.row-flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.align-center { align-items: center; }
+
+/* ===========================
+   SSN
+   =========================== */
+.ssn-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.ssn-wrap label {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.ssn-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ssn-group span { font-size: 13px; }
+
+.ssn-group input {
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  font-size: 11px;
+  outline: none;
+  background: transparent;
+  min-height: 19px;
+  padding: 2px 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ssn-3  { width: 34px; }
+.ssn-2  { width: 26px; }
+.ssn-4  { width: 42px; }
+
+/* ===========================
+   DOB
+   =========================== */
+.dob-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.dob-wrap label {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.dob-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dob-group span { font-size: 12px; }
+
+.dob-group input {
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  font-size: 11px;
+  outline: none;
+  background: transparent;
+  min-height: 19px;
+  padding: 2px 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dob-mm   { width: 26px; }
+.dob-dd   { width: 26px; }
+.dob-yyyy { width: 42px; }
+.dob-yyyy-sm { width: 36px; }
+
+.dob-compact .dob-mm,
+.dob-compact .dob-dd { width: 22px; }
+.dob-compact .dob-yyyy-sm { width: 32px; }
+
+/* ===========================
+   Identification section
+   =========================== */
+.id-section {
+  border-top: 1px solid #ccc;
+  margin-top: 6px;
+  padding-top: 5px;
+}
+
+.id-title {
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.id-row1 {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.id-row1 label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.id-num-field {
+  flex: 1;
+  min-width: 130px;
+}
+
+.id-row2 {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.id-state-field { width: 60px; }
+.id-date-field  { min-width: 120px; }
+
+/* ===========================
+   Dependents table
+   =========================== */
+.dep-questions { }
+
+.dep-q-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  font-size: 10.5px;
+  flex-wrap: wrap;
+}
+
+.dep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  margin-top: 6px;
+}
+
+.dep-table th {
+  border: 1px solid #000;
+  padding: 4px 5px;
+  font-weight: bold;
+  text-align: center;
+  background: #f2f2f2;
+  font-size: 9.5px;
+  line-height: 1.3;
+}
+
+.dep-table td {
+  border: 1px solid #000;
+  padding: 2px 4px;
+}
+
+.dep-table td input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  background: transparent;
+  min-height: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px;
+}
+
+/* ===========================
+   Sub-questions (indented)
+   =========================== */
+.sub-questions {
+  padding-left: 8px;
+}
+
+.sub-q-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 10.5px;
+}
+
+/* ===========================
+   Yes/No rows (sections 7-11)
+   =========================== */
+.yn-section-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.yn-section-row:last-child { margin-bottom: 0; }
+
+.yn-label {
+  font-weight: 600;
+  font-size: 11px;
+  min-width: 260px;
+}
+
+.amount-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.amount-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 70px;
+  font-size: 11px;
+  outline: none;
+  background: transparent;
+  min-height: 19px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   Health insurance layout
+   =========================== */
+.hi-questions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.hi-col { }
+
+/* ===========================
+   Homeowner inline number
+   =========================== */
+.inline-num-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.inline-num-field label {
+  font-size: 9.5px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.inline-num-field input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 11px;
+  min-height: 19px;
+  padding: 2px 1px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   Signatures
+   =========================== */
+.sig-section { }
+
+.sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.sig-block { }
+
+.sig-label {
+  font-weight: bold;
+  font-size: 10.5px;
+  margin-bottom: 4px;
+}
+
+.sig-line {
+  border-bottom: 1px solid #000;
+  min-height: 36px;
+  margin-bottom: 5px;
+}
+
+.sig-date-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+/* ===========================
+   Fees notice
+   =========================== */
+.fees-notice {
+  background: #d8d8d8;
+  text-align: center;
+  font-weight: bold;
+  padding: 7px;
+  font-size: 11.5px;
+  margin-bottom: 7px;
+  letter-spacing: 0.3px;
+}
+
+/* ===========================
+   Office use only
+   =========================== */
+.office-use {
+  background: #f7f7f7;
+}
+
+.office-list {
+  padding-left: 18px;
+  margin: 0;
+  font-size: 9.5px;
+  line-height: 1.6;
+}
+
+.office-list li { margin-bottom: 1px; }
+
+/* ===========================
+   Certification
+   =========================== */
+.certification p {
+  font-size: 9.5px;
+  line-height: 1.55;
+  margin: 0;
+  text-align: justify;
+}
+
+/* ===========================
+   Note text
+   =========================== */
+.note-text {
+  font-style: italic;
+  font-size: 9px;
+  color: #333;
+  margin: 2px 0;
+}
+
+/* ===========================
+   Send button
+   =========================== */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 32px;
+}
+
+.send-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 36px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) {
+  background: #15803d;
+}
+
+.send-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Input overrides for all inputs
+   not in .field
+   =========================== */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  background: #fffde7;
+}
+
+
+/* ===========================
+   Responsive: scale is applied
+   dynamically via TS (applyScale).
+   Only base styles needed here.
+   =========================== */
+.form-outer {
+  width: 100%;
+  /* Do NOT use overflow-x: hidden here — it clips the scaled pages */
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Clip only the body scroll, not the container itself */
+  padding: 0;
+}
+
+/* Prevent horizontal body scroll on mobile */
+:host {
+  display: block;
+  overflow-x: hidden;
+  width: 100%;
+}

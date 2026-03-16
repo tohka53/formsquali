@@ -1,34 +1,157 @@
-.form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.form-outer  { width: 100%; overflow: visible; display: flex; flex-direction: column; align-items: center; padding: 0; }
+:host        { display: block; overflow-x: hidden; width: 100%; }
+.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; }
+
+/* Page */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #fff;
+  padding: 22px 30px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+}
+
+/* Header */
+.form-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.logo-img    { width: 200px; max-width: 100%; }
+.header-address { text-align: right; font-size: 9.5px; line-height: 1.5; }
+.header-address p { margin: 0; }
+
+/* Title */
+.form-title   { text-align: center; margin-bottom: 10px; }
+.title-main   { font-size: 17px; font-weight: bold; letter-spacing: 1px; }
+.title-sub    { font-size: 10px; color: #333; margin-top: 2px; }
+
+/* ── Block = bordered group of rows ── */
+.pay-block { border: 1px solid #000; margin-bottom: 0; }
+.pay-block + .pay-block { border-top: none; }
+.mt6 { margin-top: 6px; }
+
+/* ── Row ── */
+.pay-row {
+  display: grid;
+  border-top: 1px solid #000;
+  min-height: 28px;
+}
+
+.pay-row:first-child { border-top: none; }
+
+.pay-row--2 { grid-template-columns: 1fr 2fr; }
+.pay-row--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* Row that skips first cell (used for rowspan-like second lines) */
+.pay-row--no-first { grid-template-columns: 1fr 1fr; }
+.pay-row--no-first > .pay-cell:first-child { border-left: none; }
+
+/* Header-style row */
+.pay-row--header { background: #f3f4f6; font-weight: bold; font-size: 10px; }
+.pay-row--section-header {
+  grid-column: 1 / -1;
+  display: block;
+  background: #d1d5db;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 5px 8px;
+  border-top: 1px solid #000;
+}
+
+/* ── Cell ── */
+.pay-cell {
+  padding: 5px 8px;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10.5px;
+}
+
+.pay-cell:last-child { border-right: none; }
+
+.pay-cell--label {
+  font-weight: normal;
+  color: #111;
+  font-size: 10px;
+  background: #fafafa;
+}
+
+/* span 2 columns */
+.pay-cell--span2 { grid-column: span 2; border-right: none; }
+
+/* stack: label on top, input below */
+.pay-cell--stack { gap: 3px; }
+
+/* 2-col checkbox grid inside a cell */
+.pay-cell--chk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+  padding: 6px 8px;
+}
+
+/* ── Inputs ── */
+.pay-cell input[type="text"],
+.pay-cell input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 2px 1px;
+  font-size: 11px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  min-height: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pay-cell input:focus { background: #fffde7; }
+
+/* ── Field (label + input pair) ── */
+.field { display: flex; flex-direction: column; gap: 1px; margin-bottom: 4px; }
+.field:last-child { margin-bottom: 0; }
+.field label { font-size: 9px; font-weight: bold; color: #333; }
+.field input { border: none; border-bottom: 1px solid #000; font-size: 11px; outline: none; background: transparent; min-height: 18px; font-family: Arial, Helvetica, sans-serif; }
+
+/* ── Small label inside cell ── */
+.cell-label { font-size: 9px; font-weight: bold; color: #333; margin-bottom: 1px; }
+
+/* ── Checkboxes ── */
+.chk-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.chk {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000 !important;
+  accent-color: #000;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Footnote */
+.footnote { font-size: 8.5px; font-style: italic; color: #444; margin: 3px 0 0 0; }
+
+/* Button */
+.btn-container { display: flex; justify-content: center; margin: 18px 0 32px; }
+
+.send-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 36px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) { background: #15803d; }
+.send-btn[disabled]             { opacity: 0.6; cursor: not-allowed; }
