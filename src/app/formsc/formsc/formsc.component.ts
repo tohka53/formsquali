@@ -1,7 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { NgForm } from '@angular/forms';
+
+const PAGE_HEIGHT = 1056;
 
 @Component({
   selector: 'app-formsc',
@@ -9,175 +11,184 @@ import { NgForm } from '@angular/forms';
   templateUrl: './formsc.component.html',
   styleUrl: './formsc.component.css'
 })
-export class FormscComponent implements OnInit {
-  private isProcessing = false;
-  pdfFile: File | null = null;
-  formData = {
-    email: ''
-  };
+export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
+  isProcessing = false;
+  formData = { email: '' };
+
   ngOnInit() {}
 
-  // Prevenir cierre de pestaña durante el proceso
+  ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
+
+  ngOnDestroy() {}
+
+  @HostListener('window:resize')
+  onResize() { this.applyScale(); }
+
+  private applyScale(): void {
+    const pages = document.querySelectorAll<HTMLElement>('.form-page');
+    if (!pages.length) return;
+
+    pages.forEach(page => {
+      page.style.transform = '';
+      const naturalW = page.offsetWidth || 1050;
+      const h        = page.offsetHeight || PAGE_HEIGHT;
+      const scale    = window.innerWidth < naturalW ? window.innerWidth / naturalW : 1;
+
+      if (scale < 1) {
+        page.style.transform       = `scale(${scale})`;
+        page.style.transformOrigin = 'top center';
+        page.style.marginBottom    = `${(h * scale) - h + 20}px`;
+        page.style.marginLeft      = '0';
+        page.style.marginRight     = '0';
+      } else {
+        page.style.transform    = '';
+        page.style.marginBottom = '24px';
+        page.style.marginLeft   = '';
+        page.style.marginRight  = '';
+      }
+    });
+  }
+
   @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload(event: BeforeUnloadEvent) {
     if (this.isProcessing) {
       event.preventDefault();
-      event.returnValue = 'Are you sure you want to go out? The shipping process is in progress.';
+      event.returnValue = 'The form is being submitted. Are you sure you want to leave?';
       return event.returnValue;
     }
     return true;
   }
 
-  // Generar ID único para el correo
   private generateUniqueId(): string {
     return `form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }
 
-  // Método para exportar PDF y enviar por correo
+  private async captureElement(element: HTMLElement, scale = 2): Promise<HTMLCanvasElement> {
+    const prevTransform       = element.style.transform;
+    const prevTransformOrigin = element.style.transformOrigin;
+    const prevMarginBottom    = element.style.marginBottom;
+
+    element.style.transform       = 'none';
+    element.style.transformOrigin = '';
+    element.style.marginBottom    = '';
+    void element.offsetWidth;
+
+    const canvas = await html2canvas(element, {
+      scale,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#ffffff',
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      width:  element.offsetWidth,
+      height: element.offsetHeight
+    });
+
+    element.style.transform       = prevTransform;
+    element.style.transformOrigin = prevTransformOrigin;
+    element.style.marginBottom    = prevMarginBottom;
+    return canvas;
+  }
+
+  /**
+   * Adds a canvas image to the current PDF page, scaled to fill the page width.
+   * If the content is taller than one page, it paginates automatically.
+   * Scaling by width only (never by height) keeps text readable.
+   */
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+    const pw = pdf.internal.pageSize.getWidth();
+    const ph = pdf.internal.pageSize.getHeight();
+    const cw = pw - margin * 2;
+    const ch = ph - margin * 2;
+
+    const imgData  = canvas.toDataURL('image/jpeg', 0.97);
+    const imgProps = pdf.getImageProperties(imgData);
+
+    // Scale by width only — never shrink to fit height (makes text tiny)
+    const s    = cw / imgProps.width;
+    const drawW = imgProps.width  * s;
+    const drawH = imgProps.height * s;
+
+    // First page
+    pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
+
+    // Paginate if content overflows one page
+    let heightLeft = drawH - ch;
+    let page = 1;
+    while (heightLeft > 0) {
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', margin, margin - (ch * page), drawW, drawH);
+      heightLeft -= ch;
+      page++;
+    }
+  }
+
   async exportToPDF(form: NgForm) {
+    if (this.isProcessing) return;
     this.isProcessing = true;
-    
+
     try {
-      if (form.invalid) {
-        alert('Please complete all required fields');
-        this.isProcessing = false;
-        return;
-        
-      }
-      if (!this.formData.email) {
-        alert('Please enter a valid email address');
+      if (form.invalid || !this.formData.email) {
+        alert('Please enter a valid email address before submitting.');
         this.isProcessing = false;
         return;
       }
 
+      alert('Please wait — generating your PDF and sending the form (up to 2 minutes).');
 
+      const page1El = document.getElementById('page-1');
+      if (!page1El) throw new Error('Form page not found in the DOM.');
 
-      alert('Please allow up to 2 minutes, for form to be sent..');
-      
-      const element = document.getElementById('form-container');
-      if (!element) {
-        throw new Error('Form element not found');
-      }
+      const canvas = await this.captureElement(page1El, 2);
 
-      // Configuración para capturar todo el contenido
-      const canvas = await html2canvas(element, {
-        scale: 1.5,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        windowWidth: 1024,
-        logging: false,
-        scrollX: 0,
-        scrollY: -window.scrollY
-      });
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'letter', compress: true });
+      this.addCanvasToPdf(pdf, canvas);
 
-      const pdf = new jsPDF({
-        orientation: 'p',
-        unit: 'mm',
-        format: 'a4',
-        compress: true
-      });
-
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const margin = 10;
-      const contentWidth = pageWidth - (2 * margin);
-      
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgHeight = (imgProps.height * contentWidth) / imgProps.width;
-      
-      let heightLeft = imgHeight;
-      let position = margin;
-      let page = 1;
-
-      pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, imgHeight);
-      heightLeft -= (pageHeight - 2 * margin);
-
-      while (heightLeft > 0) {
-        pdf.addPage();
-        position = -pageHeight * page + margin;
-        pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, imgHeight);
-        heightLeft -= (pageHeight - 2 * margin);
-        page++;
-      }
-      
-      const pdfBlob = pdf.output('blob');
-      this.pdfFile = new File([pdfBlob], 'form-schedulec.pdf', { 
-        type: 'application/pdf' 
-      });
-
-      const formData = new FormData();
       const uniqueId = this.generateUniqueId();
+      const pdfBlob  = pdf.output('blob');
+      const pdfFile  = new File([pdfBlob], `schedule-c-${uniqueId}.pdf`, { type: 'application/pdf' });
 
-      // Agregar ID único al formData
-      formData.append('form_id', uniqueId);
-  // Asegurarse de que el email se adjunte correctamente
-      formData.append('email', this.formData.email);
+      const payload = new FormData();
+      payload.append('form_id',       uniqueId);
+      payload.append('email',         this.formData.email);
+      payload.append('_captcha',      'false');
+      payload.append('_next',         'https://formsqualitechboston.vercel.app/');
+      payload.append('_subject',      `Schedule C — ID: ${uniqueId}`);
+      payload.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
+      payload.append('_template',     'table');
+      payload.append('_replyto',      this.formData.email);
+      payload.append('_cc',           this.formData.email);
+      payload.append('pdf',           pdfFile, pdfFile.name);
 
-      // Obtener todos los campos del formulario
       const formValues = form.value;
       Object.keys(formValues).forEach(key => {
-        if (formValues[key] !== null && formValues[key] !== undefined) {
-          formData.append(key, formValues[key]);
+        const val = formValues[key];
+        if (val !== null && val !== undefined && val !== '') {
+          payload.append(key, String(val));
         }
       });
 
-      // Campos adicionales de FormSubmit
-      formData.append('_captcha', 'false');
-      formData.append('_next', 'https://formsqualitechboston.vercel.app/');
-      formData.append('_subject', `Form Schedule C - ID: ${uniqueId}`);
-      formData.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
-      formData.append('_template', 'table');
-      formData.append('_replyto', formValues.email);
-      formData.append('_replyto', this.formData.email); // Usar el email del formulario
-      formData.append('_cc', this.formData.email); // Enviar copia al email proporcionado
-      
+      const submitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      const response  = await fetch(submitUrl, { method: 'POST', body: payload });
 
-      if (this.pdfFile) {
-        formData.append('pdf', this.pdfFile, `form-schedulec-${uniqueId}.pdf`);
-      }
+      if (!response.ok) throw new Error(`Server returned ${response.status}: ${await response.text()}`);
 
-      const formSubmitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
+      pdf.save(`schedule-c-${uniqueId}.pdf`);
+      alert('✅ Form submitted and PDF downloaded successfully!');
 
-
-
-      const response = await fetch(formSubmitUrl, {
-        method: 'POST',
-        body: formData
-      });
-
-      console.log('Complete answer::', response);
-      const responseText = await response.text();
-      console.log('Response text:', responseText);
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-
-      pdf.save(`form-schedulec-${uniqueId}.pdf`);
-
-      alert('Form submitted and PDF generated successfully!');
-
-       // Resetear el formulario y los datos
-       form.reset();
-       this.formData.email = '';
-       this.pdfFile = null;
+      form.reset();
+      this.formData.email = '';
 
     } catch (error) {
-      console.error('Error al enviar formulario:', error);
-      
+      console.error('Error submitting form:', error);
       if (error instanceof Error) {
-        alert(`The form could not be submitted: ${error.message}`);
+        alert(`❌ Could not submit the form: ${error.message}`);
       } else {
-        alert('There was an unknown error submitting the form');
+        alert('❌ An unknown error occurred while submitting the form.');
       }
     } finally {
       this.isProcessing = false;
     }
-  }
-
-  saveForm() {
-    alert('Guardando formulario...');
   }
 }

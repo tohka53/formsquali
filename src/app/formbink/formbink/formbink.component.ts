@@ -91,7 +91,12 @@ export class FormbinkComponent implements OnInit, AfterViewInit, OnDestroy {
     return canvas;
   }
 
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 8): void {
+  /**
+   * Adds a canvas image to the current PDF page, scaled to fill the page width.
+   * If the content is taller than one page, it paginates automatically.
+   * Scaling by width only (never by height) keeps text readable.
+   */
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
@@ -99,12 +104,24 @@ export class FormbinkComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
-    const s        = Math.min(cw / imgProps.width, ch / imgProps.height);
-    const dw       = imgProps.width  * s;
-    const dh       = imgProps.height * s;
-    const ox       = margin + (cw - dw) / 2;
 
-    pdf.addImage(imgData, 'JPEG', ox, margin, dw, dh);
+    // Scale by width only — never shrink to fit height (makes text tiny)
+    const s    = cw / imgProps.width;
+    const drawW = imgProps.width  * s;
+    const drawH = imgProps.height * s;
+
+    // First page
+    pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
+
+    // Paginate if content overflows one page
+    let heightLeft = drawH - ch;
+    let page = 1;
+    while (heightLeft > 0) {
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', margin, margin - (ch * page), drawW, drawH);
+      heightLeft -= ch;
+      page++;
+    }
   }
 
   async exportToPDF(form: NgForm) {
