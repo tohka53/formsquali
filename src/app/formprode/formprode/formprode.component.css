@@ -1,34 +1,212 @@
-.form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.form-outer  { width: 100%; overflow: visible; display: flex; flex-direction: column; align-items: center; padding: 0; }
+:host        { display: block; overflow-x: hidden; width: 100%; }
+.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000; }
+
+/* Page */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #fff;
+  padding: 22px 30px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+}
+
+/* Header */
+.form-header  { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.logo-img     { width: 200px; max-width: 100%; }
+.header-address { text-align: right; font-size: 11px; line-height: 1.5; }
+.header-address p { margin: 0; }
+
+/* Title */
+.form-title   { text-align: center; margin-bottom: 10px; }
+.title-main   { font-size: 17px; font-weight: bold; letter-spacing: 1px; }
+.re-subtitle  { background: #fde047; font-size: 15px; font-weight: bold; padding: 4px 20px; display: inline-block; margin-top: 4px; }
+
+/* ── Block ── */
+.re-block { border: 1px solid #000; margin-bottom: 6px; }
+
+/* ── Row ── */
+.re-row {
+  display: flex;
+  border-top: 1px solid #000;
+  min-height: 32px;
+}
+.re-row:first-child { border-top: none; }
+.re-row--2  { }
+.re-row--last { }
+
+/* ── Cell ── */
+.re-cell {
+  padding: 5px 8px;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 12px;
+  flex: 1;
+}
+.re-cell:last-child { border-right: none; }
+
+.re-cell--label {
+  flex: 0 0 220px;
+  max-width: 220px;
+  font-weight: bold;
+  background: #fafafa;
+}
+
+.re-cell--input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.re-cell--input input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: bold;
+  min-height: 20px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
+}
+
+.re-cell--stack {
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  padding: 6px 8px;
+}
+
+.re-cell--stack input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: bold;
+  min-height: 20px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1px 2px;
+}
+
+/* ── Section headers ── */
+.re-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #000;
+  font-size: 13px;
+}
+
+.re-header--yellow { background: #fde047; }
+
+/* ── Expense rows ── */
+.re-exp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  min-height: 28px;
+  padding: 0 8px;
+  gap: 8px;
+}
+.re-exp-row:last-child { border-bottom: none; }
+
+.re-exp-row span {
+  font-size: 12px;
+  flex: 1;
+  padding: 3px 0;
+}
+
+.re-exp-row input[type="number"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 140px;
+  flex-shrink: 0;
+  text-align: right;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: bold;
+  min-height: 22px;
+  padding: 1px 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.re-exp-row input:focus { background: #fffde7; }
+
+.re-exp-row--indent span { padding-left: 22px; }
+
+.re-exp-row--total {
+  background: #f3f4f6;
+}
+.re-exp-row--total span { font-weight: bold; font-size: 13px; }
+.re-exp-row--total input { background: #e5e7eb; }
+
+/* Total field — clearly read-only */
+.re-total-display {
+  background: #e5e7eb !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  cursor: not-allowed;
+  border-bottom: 2px solid #000 !important;
+}
+
+/* ── DOB ── */
+.dob-group { display: flex; align-items: center; gap: 2px; }
+.dob-group span { font-size: 13px; }
+.dob-group input {
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  background: transparent;
+  min-height: 20px;
+  padding: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.dob-mm, .dob-dd   { width: 28px; }
+.dob-yyyy           { width: 44px; }
+
+/* ── Utility ── */
+.mt4 { margin-top: 4px; }
+
+/* ── Autofill reset ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ── Bold all inputs ── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"] {
+  font-weight: bold !important;
+  color: #000 !important;
+  background: #fff !important;
+}
+
+/* ── Button ── */
+.btn-container { display: flex; justify-content: center; margin: 18px 0 32px; }
+
+.send-btn {
+  background: #16a34a; color: white; padding: 10px 36px;
+  border: none; border-radius: 6px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; font-family: Arial, Helvetica, sans-serif;
+}
+.send-btn:hover:not([disabled]) { background: #15803d; }
+.send-btn[disabled]             { opacity: 0.6; cursor: not-allowed; }

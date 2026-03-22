@@ -2,7 +2,7 @@
 
 .form-outer  { width: 100%; overflow: visible; display: flex; flex-direction: column; align-items: center; padding: 0; }
 :host        { display: block; overflow-x: hidden; width: 100%; }
-.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; }
+.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000; }
 
 /* Page */
 .form-page {
@@ -16,7 +16,7 @@
 /* Header */
 .form-header  { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
 .logo-img     { width: 200px; max-width: 100%; }
-.header-address { text-align: right; font-size: 9.5px; line-height: 1.5; }
+.header-address { text-align: right; font-size: 11px; line-height: 1.5; }
 .header-address p { margin: 0; }
 
 /* Title */
@@ -43,7 +43,7 @@
 
 /* Section header rows */
 .bink-row--section-header { background: #e5e7eb; }
-.bink-section-label { font-weight: bold; font-size: 11px; }
+.bink-section-label { font-weight: bold; font-size: 13px; }
 
 /* ── Cell ── */
 .bink-cell {
@@ -52,7 +52,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 10.5px;
+  font-size: 12px;
   flex: 1;
 }
 
@@ -80,7 +80,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   min-height: 18px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -99,7 +99,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   min-height: 18px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -118,7 +118,7 @@
 .bink-cell--list {
   flex-direction: column;
   gap: 2px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* Address cells */
@@ -131,7 +131,7 @@
 .bink-cell--addr-city span,
 .bink-cell--addr-state span,
 .bink-cell--addr-zip span {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: bold;
   margin-bottom: 2px;
 }
@@ -144,7 +144,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   min-height: 18px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -160,7 +160,7 @@
 
 .bink-row--3 .bink-cell span,
 .bink-row--2 .bink-cell span {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: bold;
 }
 
@@ -170,7 +170,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   min-height: 18px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -178,9 +178,9 @@
 }
 
 /* ── Inline input widths ── */
-.bink-short { width: 55px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
-.bink-med   { width: 130px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
-.bink-xs    { width: 40px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 11px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+.bink-short { width: 55px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 13px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+.bink-med   { width: 130px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 13px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
+.bink-xs    { width: 40px; border: none; border-bottom: 1px solid #000; outline: none; background: transparent; font-size: 13px; min-height: 18px; font-family: Arial, Helvetica, sans-serif; padding: 1px 2px; }
 
 /* inline pair helper */
 .bink-inline-pair { display: flex; align-items: center; }
@@ -193,7 +193,7 @@
 /* ── DOB group ── */
 .dob-group { display: flex; align-items: center; gap: 2px; }
 .dob-group span { font-size: 12px; }
-.dob-group input { border: none; border-bottom: 1px solid #000; text-align: center; font-size: 11px; outline: none; background: transparent; min-height: 18px; padding: 1px; font-family: Arial, Helvetica, sans-serif; }
+.dob-group input { border: none; border-bottom: 1px solid #000; text-align: center; font-size: 13px; outline: none; background: transparent; min-height: 18px; padding: 1px; font-family: Arial, Helvetica, sans-serif; }
 .dob-mm, .dob-dd   { width: 26px; }
 .dob-yyyy           { width: 42px; }
 
@@ -211,3 +211,45 @@
 
 .send-btn:hover:not([disabled]) { background: #15803d; }
 .send-btn[disabled]             { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Bold inputs for PDF readability ── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+input[type="password"] {
+  font-weight: bold !important;
+  font-size: 13px !important;
+}
+
+.field label,
+.cell-label,
+.section-title,
+.id-title,
+.yn-label,
+.dep-table th,
+.care-section-header,
+.emp-box-header,
+.bink-cell--label,
+.pay-cell--label,
+.sc-gross-label {
+  font-weight: bold !important;
+}
+
+/* ── Remove browser autofill blue background ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}

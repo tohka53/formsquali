@@ -1,290 +1,133 @@
-<head><meta name="viewport" content="width=1024">
-</head>
-<!-- Contenedor principal del formulario -->
-<div class="min-h-screen bg-white p-6" id="form-container">
-    <!-- Encabezado con información de contacto -->
-    <div class="w-full max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-8 text-sm">
-            <!-- Columna del logo -->
-            <div class="w-1/3">
-                <img src="/assets/logo1.png" alt="Qualitech Boston" class="w-full max-w-[350px]">
-            </div>
-            
-            <!-- Columna de la información -->
-            <div class="text-right">
-                <p class="font-semibold">671 Adams Street</p>
-                <p>Dorchester MA 02122</p>
-                <p>Ph (617)288-1333</p>
-                <p>Fax: 617-249-1859</p>
-                <p>Email: qualitech&#64;qualitechboston.com</p>
-            </div>
+<div class="form-outer">
+<div class="form-wrapper">
+  <form #formRef="ngForm" novalidate>
+
+    <div id="page-1" class="form-page">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="header-logo">
+          <img src="/assets/logo1.png" alt="Qualitech Boston" class="logo-img">
         </div>
-    </div>
+        <div class="header-address">
+          <p>671 Adams Street</p>
+          <p>Dorchester MA 02122</p>
+          <p>Ph (617)288-1333</p>
+          <p>Fax: 617-249-1859</p>
+          <p>Email: qualitech&#64;qualitechboston.com</p>
+        </div>
+      </div>
 
-    <!-- Título del formulario -->
-    <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold">REAL ESTATE PROPERTY DETAIL FORM</h1>
-        <h2 class="text-xl font-bold bg-yellow-300 p-2">SCHEDULE E</h2>
-    </div>
+      <!-- Title -->
+      <div class="form-title">
+        <div class="title-main">REAL ESTATE PROPERTY DETAIL FORM</div>
+        <div class="re-subtitle">SCHEDULE E</div>
+      </div>
 
-    <!-- Formulario principal -->
-    <form #formRef="ngForm">
-        <!-- Información básica -->
-
-        
-        <div class="border border-black text-size-2xl font-bold">
-            
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Email</div>
-                <div class="p-2">
-                    <input type="email" name="email" class="w-full border-b border-black text-size-2xl font-bold" [(ngModel)]="formData.email" 
-                    required 
-                    #email="ngModel">
-                </div>
+      <!-- ── Basic Info ── -->
+      <div class="re-block">
+        <div class="re-row re-row--2">
+          <div class="re-cell re-cell--label">Email</div>
+          <div class="re-cell re-cell--input">
+            <input type="email" name="email" [(ngModel)]="formData.email" required #email="ngModel">
+          </div>
+        </div>
+        <div class="re-row re-row--2">
+          <div class="re-cell re-cell--label">Tax year</div>
+          <div class="re-cell re-cell--input">
+            <input type="text" name="taxYear">
+          </div>
+        </div>
+        <div class="re-row re-row--2">
+          <div class="re-cell re-cell--label">Property Address</div>
+          <div class="re-cell re-cell--stack">
+            <input type="text" name="propertyAddress1">
+            <input type="text" name="propertyAddress2" class="mt4">
+          </div>
+        </div>
+        <div class="re-row re-row--2">
+          <div class="re-cell re-cell--label">Date of Purchase</div>
+          <div class="re-cell re-cell--input">
+            <div class="dob-group">
+              <input type="text" maxlength="2" placeholder="MM" class="dob-mm">
+              <span>/</span>
+              <input type="text" maxlength="2" placeholder="DD" class="dob-dd">
+              <span>/</span>
+              <input type="text" maxlength="4" placeholder="YYYY" class="dob-yyyy">
             </div>
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Tax year</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+          </div>
+        </div>
+        <div class="re-row re-row--2">
+          <div class="re-cell re-cell--label">Original Cost</div>
+          <div class="re-cell re-cell--input">
+            <input type="number" name="originalCost">
+          </div>
+        </div>
+        <div class="re-row re-row--2 re-row--last">
+          <div class="re-cell re-cell--label">Carryforward losses</div>
+          <div class="re-cell re-cell--input">
+            <input type="number" name="carryforwardLosses">
+          </div>
+        </div>
+      </div>
 
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Property Address</div>
-                <div class="p-2">
-                    <input type="text" class="w-full border-b border-black text-size-2xl font-bold">
-                    <input type="text" class="w-full border-b border-black  text-size-2xl font-bold mt-2">
-                </div>
-            </div>
+      <!-- ── Annual Rent Income ── -->
+      <div class="re-block">
+        <div class="re-header re-header--yellow">ANNUAL RENT INCOME</div>
+        <div class="re-row re-row--2 re-row--last">
+          <div class="re-cell re-cell--label">Gross Income (100%)</div>
+          <div class="re-cell re-cell--input">
+            <input type="number" name="grossIncome">
+          </div>
+        </div>
+      </div>
 
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Date of Purchase</div>
-                <div class="p-2">
-                    <input type="date" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+      <!-- ── Annual Operating Expenses ── -->
+      <div class="re-block">
+        <div class="re-header re-header--yellow">ANNUAL OPERATING EXPENSE (Actual)</div>
 
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Original Cost</div>
-                <div class="p-2">
-                    <input type="number" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Carryforward losses</div>
-                <div class="p-2">
-                    <input type="number" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
+        <div class="re-exp-row"><span>Advertising</span><input type="number" name="advertising" [(ngModel)]="expenses.advertising" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Auto &amp; Travel</span><input type="number" name="autoTravel" [(ngModel)]="expenses.autoTravel" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Cleaning &amp; Maintenance</span><input type="number" name="cleaningMaintenance" [(ngModel)]="expenses.cleaningMaintenance" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Commissions</span><input type="number" name="commissions" [(ngModel)]="expenses.commissions" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Insurance</span><input type="number" name="insurance" [(ngModel)]="expenses.insurance" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Legal and other fees</span><input type="number" name="legalFees" [(ngModel)]="expenses.legalFees" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Management fees</span><input type="number" name="managementFees" [(ngModel)]="expenses.managementFees" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Mortgage Interest</span><input type="number" name="mortgageInterest" [(ngModel)]="expenses.mortgageInterest" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Other Interest</span><input type="number" name="otherInterest" [(ngModel)]="expenses.otherInterest" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Painting &amp; Decorating</span><input type="number" name="paintingDecorating" [(ngModel)]="expenses.paintingDecorating" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Repair</span><input type="number" name="repair" [(ngModel)]="expenses.repair" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Plumbing &amp; Heating</span><input type="number" name="plumbingHeating" [(ngModel)]="expenses.plumbingHeating" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Carpentry</span><input type="number" name="carpentry" [(ngModel)]="expenses.carpentry" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Electrical</span><input type="number" name="electrical" [(ngModel)]="expenses.electrical" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Supplies</span><input type="number" name="supplies" [(ngModel)]="expenses.supplies" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Real Estate Taxes</span><input type="number" name="realEstateTaxes" [(ngModel)]="expenses.realEstateTaxes" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Utilities (Electricity)</span><input type="number" name="utilities" [(ngModel)]="expenses.utilities" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Depreciation Expense</span><input type="number" name="depreciation" [(ngModel)]="expenses.depreciation" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row"><span>Others</span><input type="number" name="others" [(ngModel)]="expenses.others" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Water &amp; Sewer</span><input type="number" name="waterSewer" [(ngModel)]="expenses.waterSewer" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Trash &amp; Snow Removal</span><input type="number" name="trashSnow" [(ngModel)]="expenses.trashSnow" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Contractor Labor</span><input type="number" name="contractorLabor" [(ngModel)]="expenses.contractorLabor" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Heat</span><input type="number" name="heat" [(ngModel)]="expenses.heat" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Condo Fee</span><input type="number" name="condoFee" [(ngModel)]="expenses.condoFee" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Gas</span><input type="number" name="gas" [(ngModel)]="expenses.gas" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--indent"><span>Other</span><input type="number" name="otherExpense" [(ngModel)]="expenses.otherExpense" (ngModelChange)="calcTotal()"></div>
+        <div class="re-exp-row re-exp-row--total">
+          <span>TOTAL EXPENSES</span>
+          <input type="number" name="totalExpenses" [value]="totalExpenses" readonly class="re-total-display">
         </div>
 
-        <!-- Sección de ingresos -->
-        <div class="border border-black text-size-2xl font-bold">
-            <div class="bg-yellow-300 p-2  text-center border-b border-black text-size-2xl font-bold">
-                ANNUAL RENT INCOME
-            </div>
-            <div class="grid grid-cols-2 border-b border-black text-size-2xl font-bold">
-                <div class="p-2 border-r border-black text-size-2xl font-bold">Gross Income (100%)</div>
-                <div class="p-2">
-                    <input type="number" class="w-full border-b border-black text-size-2xl font-bold">
-                </div>
-            </div>
-        </div>
+      </div>
 
+    </div><!-- end page-1 -->
 
-
-        <!-- Sección de gastos operativos anuales -->
-        <div class="border border-black text-size-2xl font-bold">
-     <div class="bg-yellow-300 p-2 font-bold text-center border-b border-black text-size-2xl font-bold">
-         ANNUAL OPERATING EXPENSE (Actual)
-        </div>
-
-             <!-- Lista de gastos -->
-
-           <!-- Lista de gastos -->
-<div class="grid grid-cols-2 section-gastos">
-   <!-- Columna izquierda: etiquetas -->
-   <div class="border-r border-black text-size-2xl font-bold">
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Advertising</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Auto & Travel</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Cleaning & Maintenance</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Commissions</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Insurance</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Legal and other fees</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Management fees</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Mortgage Interest</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Other Interest</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Painting & Decorating</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Repair</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Plumbing & Heating</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Carpentry</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Electrical</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Supplies</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Real StateTaxes</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Utilities(Electricity)</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Depreciation Expense</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2">Others</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Water & Sewer</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Trash & Snow Removal</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Contractor Labor</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Heat</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Condo Fee</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Gas</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 pl-8">Other</span>
-       </div>
-       <div class="h-10 flex items-center border-b border-black text-size-2xl font-bold">
-           <span class="p-2 font-bold">TOTAL EXPENSES</span>
-       </div>
-   </div>
-
-   <!-- Columna derecha: inputs -->
-   <div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-       <div class="h-10 border-b border-black text-size-2xl font-bold">
-           <input type="number" class="w-full h-full px-2">
-       </div>
-      
-   </div>
+  </form>
 </div>
-    
-    </div>
-
-    </form> 
 </div>
 
-<div class="flex justify-center space-x-4 mt-8">
-    
-    <button type="button" (click)="exportToPDF(formRef)"
-        class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
-        Send Form
-    </button>
+<div class="btn-container">
+  <button type="button" (click)="exportToPDF(formRef)" [disabled]="isProcessing" class="send-btn">
+    <span *ngIf="!isProcessing">📤 Send Form</span>
+    <span *ngIf="isProcessing">⏳ Sending...</span>
+  </button>
 </div>

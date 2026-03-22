@@ -15,6 +15,43 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
   isProcessing = false;
   formData = { email: '' };
 
+  /** All expense fields bound via ngModel */
+  expenses = {
+    advertising:       null as number | null,
+    carAndTruck:       null as number | null,
+    commissions:       null as number | null,
+    contractLabor:     null as number | null,
+    depreciation:      null as number | null,
+    insurance:         null as number | null,
+    mortgageInterest:  null as number | null,
+    otherInterest:     null as number | null,
+    legalProfessional: null as number | null,
+    officeExpense:     null as number | null,
+    rentLease:         null as number | null,
+    rentVehicles:      null as number | null,
+    rentOtherProperty: null as number | null,
+    repairMaintenance: null as number | null,
+    supplies:          null as number | null,
+    taxes:             null as number | null,
+    licenses:          null as number | null,
+    travel:            null as number | null,
+    mealsEnt:          null as number | null,
+    utilities:         null as number | null,
+    wages:             null as number | null,
+    otherExpenses:     null as number | null,
+    cellPhone:         null as number | null,
+    telephone:         null as number | null,
+  };
+
+  /** Auto-calculated read-only total */
+  totalExpenses: number = 0;
+
+  /** Sums all expense fields whenever any value changes */
+  calcTotal(): void {
+    this.totalExpenses = Object.values(this.expenses)
+      .reduce((sum: number, v) => sum + (Number(v) || 0), 0);
+  }
+
   ngOnInit() {}
 
   ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
@@ -82,7 +119,42 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
       scrollX: 0,
       scrollY: 0,
       width:  element.offsetWidth,
-      height: element.offsetHeight
+      height: element.offsetHeight,
+      onclone: (_doc: Document, cloned: HTMLElement) => {
+        // Replace every input/textarea with a div so full text renders without clipping
+        cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
+          const div = _doc.createElement('div');
+          div.textContent = input.value || '';
+
+          // Copy computed style so size/position stay identical
+          const cs = window.getComputedStyle(input);
+          div.style.cssText = `
+            display: block;
+            width: 100%;
+            min-height: ${cs.height};
+            font-family: ${cs.fontFamily};
+            font-size: ${cs.fontSize};
+            font-weight: bold;
+            color: #000;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #000;
+            padding: ${cs.paddingTop} ${cs.paddingRight} ${cs.paddingBottom} ${cs.paddingLeft};
+            box-sizing: border-box;
+            word-break: break-word;
+            white-space: pre-wrap;
+            overflow: visible;
+          `;
+          input.parentNode?.replaceChild(div, input);
+        });
+
+        // Also handle checkboxes — keep them but ensure they render
+        cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
+          chk.style.minWidth  = '14px';
+          chk.style.minHeight = '14px';
+          chk.style.border    = '1px solid #000';
+        });
+      }
     });
 
     element.style.transform       = prevTransform;
@@ -113,13 +185,14 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
     // First page
     pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
 
-    // Paginate if content overflows one page
-    let heightLeft = drawH - ch;
+    // Paginate if content overflows — correct formula: shift by (ph - margin) per page
+    let heightLeft = drawH - (ph - margin);
     let page = 1;
     while (heightLeft > 0) {
       pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', margin, margin - (ch * page), drawW, drawH);
-      heightLeft -= ch;
+      // For page N, shift image up by N × (ph - margin) so content continues seamlessly
+      pdf.addImage(imgData, 'JPEG', margin, -(page * (ph - margin)), drawW, drawH);
+      heightLeft -= ph;
       page++;
     }
   }

@@ -24,7 +24,7 @@
   width: 100%;
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   color: #000;
 }
 
@@ -50,7 +50,7 @@
 
 .header-address {
   text-align: right;
-  font-size: 9.5px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -111,7 +111,7 @@
 .emp-photo-btn {
   background: #3b82f6;
   color: #fff;
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
   padding: 3px 0;
   cursor: pointer;
@@ -147,7 +147,7 @@
 }
 
 .field label {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: bold;
   margin-bottom: 1px;
   color: #222;
@@ -159,7 +159,7 @@
   border: none;
   border-bottom: 1px solid #000;
   padding: 2px 1px;
-  font-size: 11px;
+  font-size: 13px;
   width: 100%;
   outline: none;
   background: transparent;
@@ -195,7 +195,7 @@
 .emp-box-header {
   background: #d1d5db;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   padding: 4px 6px;
   border-bottom: 1px solid #000;
 }
@@ -233,7 +233,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 10.5px;
+  font-size: 12px;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -242,7 +242,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -261,7 +261,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   min-height: 18px;
   flex: 1;
   min-width: 40px;
@@ -304,7 +304,7 @@
   width: 100%;
   outline: none;
   background: transparent;
-  font-size: 10.5px;
+  font-size: 12px;
   min-height: 18px;
   padding: 1px 2px;
   font-family: Arial, Helvetica, sans-serif;
@@ -319,8 +319,8 @@
   flex-wrap: wrap;
 }
 
-.warning-red  { color: #dc2626; font-weight: bold; font-size: 10.5px; }
-.warning-note { color: #555;    font-size: 9px; }
+.warning-red  { color: #dc2626; font-weight: bold; font-size: 12px; }
+.warning-note { color: #555;    font-size: 12px; }
 
 /* ── Deductions ──────────────────────────── */
 .deduct-table {
@@ -332,7 +332,7 @@
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 9px;
+  font-size: 12px;
   padding: 3px 6px;
   border-bottom: 1px solid #000;
   background: #f3f4f6;
@@ -353,7 +353,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   flex: 1;
   min-height: 16px;
   font-family: Arial, Helvetica, sans-serif;
@@ -371,7 +371,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   width: 50px;
   min-height: 16px;
   font-family: Arial, Helvetica, sans-serif;
@@ -380,12 +380,12 @@
 /* ── Tax sections ────────────────────────── */
 .tax-sub-label {
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 2px;
 }
 
 .tax-note {
-  font-size: 8.5px;
+  font-size: 10px;
   color: #333;
   margin: 4px 0;
   line-height: 1.3;
@@ -397,7 +397,7 @@
   justify-content: space-between;
   gap: 4px;
   margin-bottom: 3px;
-  font-size: 9.5px;
+  font-size: 11px;
 }
 
 .tax-short {
@@ -405,7 +405,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   width: 50px;
   min-height: 16px;
   flex-shrink: 0;
@@ -417,7 +417,7 @@
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   width: 80px;
   min-height: 16px;
   flex-shrink: 0;
@@ -452,4 +452,46 @@
 .send-btn[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* ── Bold inputs for PDF readability ── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+input[type="password"] {
+  font-weight: bold !important;
+  font-size: 13px !important;
+}
+
+.field label,
+.cell-label,
+.section-title,
+.id-title,
+.yn-label,
+.dep-table th,
+.care-section-header,
+.emp-box-header,
+.bink-cell--label,
+.pay-cell--label,
+.sc-gross-label {
+  font-weight: bold !important;
+}
+
+/* ── Remove browser autofill blue background ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }

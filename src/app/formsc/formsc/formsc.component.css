@@ -1,34 +1,274 @@
-.form-section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-  }
-  
-  .section-payroll {
-    page-break-before: always;
-  }
-  
-  #form-container {
-    overflow: visible !important;
-    min-height: 100vh;
-  }
-  
-  /* Estilos adicionales para mejorar la visualización en el PDF */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  input[type="url"] {
-    min-height: 24px;
-  }
-  
-  .border-black {
-    border-color: #000000 !important;
-  }
-  
-  /* Asegurar que los checkboxes sean visibles en el PDF */
-  input[type="checkbox"] {
-    min-width: 16px;
-    min-height: 16px;
-    border: 1px solid black;
-    }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.form-outer  { width: 100%; overflow: visible; display: flex; flex-direction: column; align-items: center; padding: 0; }
+:host        { display: block; overflow-x: hidden; width: 100%; }
+.form-wrapper{ width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000; }
+
+/* Page */
+.form-page {
+  width: min(95vw, 1050px);
+  background: #fff;
+  padding: 22px 30px;
+  margin: 0 auto 24px auto;
+  border: 1px solid #bbb;
+}
+
+/* Header */
+.form-header  { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.logo-img     { width: 200px; max-width: 100%; }
+.header-address { text-align: right; font-size: 11px; line-height: 1.5; }
+.header-address p { margin: 0; }
+
+/* Title */
+.form-title   { text-align: center; margin-bottom: 10px; }
+.title-main   { font-size: 17px; font-weight: bold; letter-spacing: 1px; }
+.sc-subtitle  { background: #fde047; font-size: 14px; font-weight: bold; padding: 4px 16px; display: inline-block; margin-top: 4px; }
+
+/* Utility */
+.mb6 { margin-bottom: 6px; }
+
+/* ── Top 2-col grid ── */
+.sc-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+/* ── Generic box ── */
+.sc-box {
+  border: 1px solid #000;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sc-box label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+}
+
+.sc-box input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Row-direction box */
+.sc-box--row {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── Business Name / Tax ID / Email row ── */
+.sc-inline-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sc-inline-field label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+}
+
+.sc-inline-field input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  min-height: 18px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sc-inline-field--wide { flex: 2; }
+
+/* ── Notes ── */
+.sc-notes { font-style: italic; font-size: 11px; color: #444; line-height: 1.5; }
+.sc-notes p { margin: 0; }
+
+/* ── Gross Receipts ── */
+.sc-gross {
+  justify-content: space-between;
+}
+
+.sc-gross-label { font-weight: bold; font-size: 13px; white-space: nowrap; }
+
+.sc-gross input {
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  min-height: 18px;
+  width: 180px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Expenses section ── */
+.sc-expenses { border: 1px solid #000; }
+
+.sc-expenses-header {
+  background: #fde047;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #000;
+  font-size: 12px;
+}
+
+.sc-expense-body { display: flex; flex-direction: column; }
+
+/* Each expense row */
+.sc-exp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  min-height: 28px;
+  padding: 0 8px;
+  gap: 8px;
+}
+
+.sc-exp-row:last-child { border-bottom: none; }
+
+.sc-exp-row span {
+  font-size: 12px;
+  flex: 1;
+  padding: 4px 0;
+}
+
+.sc-exp-row input[type="number"],
+.sc-exp-row input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 130px;
+  flex-shrink: 0;
+  text-align: right;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  min-height: 22px;
+  padding: 1px 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sc-exp-row input:focus { background: #fffde7; }
+
+/* Sub-section header rows */
+.sc-exp-row--sub-header { background: #f9fafb; }
+.sc-exp-row--sub-header span { font-weight: bold; }
+
+/* Indented rows */
+.sc-exp-row--indent span { padding-left: 20px; color: #222; }
+
+/* Total row */
+.sc-exp-row--total {
+  background: #f3f4f6;
+  font-weight: bold;
+}
+
+.sc-exp-row--total span { font-weight: bold; font-size: 13px; }
+
+.sc-exp-row--total input { background: #e5e7eb; }
+
+/* ── DOB group (date purchase) ── */
+.dob-group { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+.dob-group span { font-size: 12px; }
+
+.dob-group input {
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  font-size: 12px;
+  outline: none;
+  background: transparent;
+  min-height: 22px;
+  padding: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dob-mm, .dob-dd   { width: 26px; }
+.dob-yyyy           { width: 42px; }
+
+/* ── Button ── */
+.btn-container { display: flex; justify-content: center; margin: 18px 0 32px; }
+
+.send-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 36px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.send-btn:hover:not([disabled]) { background: #15803d; }
+.send-btn[disabled]             { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Bold inputs for PDF readability ── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+input[type="password"] {
+  font-weight: bold !important;
+  font-size: 13px !important;
+}
+
+.field label,
+.cell-label,
+.section-title,
+.id-title,
+.yn-label,
+.dep-table th,
+.care-section-header,
+.emp-box-header,
+.bink-cell--label,
+.pay-cell--label,
+.sc-gross-label {
+  font-weight: bold !important;
+}
+
+/* ── Remove browser autofill blue background ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Total field — clearly read-only */
+.sc-total-display {
+  background: #e5e7eb !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  cursor: not-allowed;
+  border-bottom: 2px solid #000 !important;
+}

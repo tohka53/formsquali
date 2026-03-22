@@ -107,7 +107,42 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
       scrollX: 0,
       scrollY: 0,
       width:  element.offsetWidth,
-      height: element.offsetHeight
+      height: element.offsetHeight,
+      onclone: (_doc: Document, cloned: HTMLElement) => {
+        // Replace every input/textarea with a div so full text renders without clipping
+        cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
+          const div = _doc.createElement('div');
+          div.textContent = input.value || '';
+
+          // Copy computed style so size/position stay identical
+          const cs = window.getComputedStyle(input);
+          div.style.cssText = `
+            display: block;
+            width: 100%;
+            min-height: ${cs.height};
+            font-family: ${cs.fontFamily};
+            font-size: ${cs.fontSize};
+            font-weight: bold;
+            color: #000;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #000;
+            padding: ${cs.paddingTop} ${cs.paddingRight} ${cs.paddingBottom} ${cs.paddingLeft};
+            box-sizing: border-box;
+            word-break: break-word;
+            white-space: pre-wrap;
+            overflow: visible;
+          `;
+          input.parentNode?.replaceChild(div, input);
+        });
+
+        // Also handle checkboxes — keep them but ensure they render
+        cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
+          chk.style.minWidth  = '14px';
+          chk.style.minHeight = '14px';
+          chk.style.border    = '1px solid #000';
+        });
+      }
     });
 
     element.style.transform       = prevTransform;
@@ -138,13 +173,14 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
     // First page
     pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
 
-    // Paginate if content overflows one page
-    let heightLeft = drawH - ch;
+    // Paginate if content overflows — correct formula: shift by (ph - margin) per page
+    let heightLeft = drawH - (ph - margin);
     let page = 1;
     while (heightLeft > 0) {
       pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', margin, margin - (ch * page), drawW, drawH);
-      heightLeft -= ch;
+      // For page N, shift image up by N × (ph - margin) so content continues seamlessly
+      pdf.addImage(imgData, 'JPEG', margin, -(page * (ph - margin)), drawW, drawH);
+      heightLeft -= ph;
       page++;
     }
   }
