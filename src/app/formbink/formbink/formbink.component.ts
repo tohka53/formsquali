@@ -160,6 +160,31 @@ export class FormbinkComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+
+  /**
+   * Fits a canvas to exactly ONE PDF page (scales by both width and height).
+   * Use this for forms with explicit #page-1 / #page-2 divs so each page
+   * maps to exactly one PDF page without internal pagination.
+   */
+  private addCanvasToPdfFit(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+    const pw = pdf.internal.pageSize.getWidth();
+    const ph = pdf.internal.pageSize.getHeight();
+    const cw = pw - margin * 2;
+    const ch = ph - margin * 2;
+
+    const imgData  = canvas.toDataURL('image/jpeg', 0.97);
+    const imgProps = pdf.getImageProperties(imgData);
+
+    // Scale to fit within the page (preserving aspect ratio)
+    const s     = Math.min(cw / imgProps.width, ch / imgProps.height);
+    const drawW = imgProps.width  * s;
+    const drawH = imgProps.height * s;
+    // Center horizontally
+    const ox = margin + (cw - drawW) / 2;
+
+    pdf.addImage(imgData, 'JPEG', ox, margin, drawW, drawH);
+  }
+
   async exportToPDF(form: NgForm) {
     if (this.isProcessing) return;
     this.isProcessing = true;
@@ -183,9 +208,9 @@ export class FormbinkComponent implements OnInit, AfterViewInit, OnDestroy {
       ]);
 
       const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'letter', compress: true });
-      this.addCanvasToPdf(pdf, canvas1);
+      this.addCanvasToPdfFit(pdf, canvas1);
       pdf.addPage();
-      this.addCanvasToPdf(pdf, canvas2);
+      this.addCanvasToPdfFit(pdf, canvas2);
 
       const uniqueId = this.generateUniqueId();
       const pdfBlob  = pdf.output('blob');
