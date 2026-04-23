@@ -13,42 +13,23 @@ const PAGE_HEIGHT = 1056;
 })
 export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
   isProcessing = false;
-
-  formData = {
-    email: ''
-  };
+  formData = { email: '' };
 
   ngOnInit() {}
-
-  ngAfterViewInit() {
-    setTimeout(() => this.applyScale(), 0);
-  }
-
+  ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
   ngOnDestroy() {}
 
   @HostListener('window:resize')
-  onResize() {
-    this.applyScale();
-  }
+  onResize() { this.applyScale(); }
 
-  /**
-   * Scales .form-page to fill the viewport on small screens.
-   * Applied via JS so the PDF capture always uses the full desktop size.
-   */
   private applyScale(): void {
     const pages = document.querySelectorAll<HTMLElement>('.form-page');
     if (!pages.length) return;
-
     pages.forEach(page => {
-      // Reset first so offsetWidth reflects natural size
       page.style.transform = '';
       const naturalW = page.offsetWidth || 1050;
       const h        = page.offsetHeight || PAGE_HEIGHT;
-
-      const scale = window.innerWidth < naturalW
-        ? window.innerWidth / naturalW
-        : 1;
-
+      const scale    = window.innerWidth < naturalW ? window.innerWidth / naturalW : 1;
       if (scale < 1) {
         page.style.transform       = `scale(${scale})`;
         page.style.transformOrigin = 'top center';
@@ -78,21 +59,19 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
     return `form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }
 
-  /**
-   * Captures a page element at full desktop size regardless of current
-   * mobile scale transform, then restores the transform afterwards.
-   */
   private async captureElement(element: HTMLElement, scale = 2): Promise<HTMLCanvasElement> {
     const prevTransform       = element.style.transform;
     const prevTransformOrigin = element.style.transformOrigin;
     const prevMarginBottom    = element.style.marginBottom;
 
-    // Remove mobile scaling for the capture
     element.style.transform       = 'none';
     element.style.transformOrigin = '';
     element.style.marginBottom    = '';
-
-    // Force reflow so html2canvas measures full size
+    // Force desktop width — on mobile min(95vw,1050px) gives phone width
+    const prevWidth    = element.style.width;
+    const prevMinWidth = element.style.minWidth;
+    element.style.width    = '1050px';
+    element.style.minWidth = '1050px';
     void element.offsetWidth;
 
     const canvas = await html2canvas(element, {
@@ -103,22 +82,21 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
       logging: false,
       scrollX: 0,
       scrollY: 0,
-      width:  element.offsetWidth,
-      height: element.offsetHeight,
+      width:  1050,
+      height: element.scrollHeight,
       onclone: (_doc: Document, cloned: HTMLElement) => {
-        // Replace every input/textarea with a div so full text renders without clipping
-        cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
+        cloned.querySelectorAll<HTMLInputElement>(
+          'input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]'
+        ).forEach(input => {
           const div = _doc.createElement('div');
           div.textContent = input.value || '';
-
-          // Copy computed style so size/position stay identical
           const cs = window.getComputedStyle(input);
           div.style.cssText = `
             display: block;
             width: 100%;
             min-height: ${cs.height};
-            font-family: ${cs.fontFamily};
-            font-size: ${cs.fontSize};
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
             font-weight: bold;
             color: #000;
             background: transparent;
@@ -132,8 +110,6 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
           `;
           input.parentNode?.replaceChild(div, input);
         });
-
-        // Also handle checkboxes — keep them but ensure they render
         cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
           chk.style.minWidth  = '14px';
           chk.style.minHeight = '14px';
@@ -142,42 +118,31 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    // Restore mobile scale
     element.style.transform       = prevTransform;
     element.style.transformOrigin = prevTransformOrigin;
     element.style.marginBottom    = prevMarginBottom;
-
+    element.style.width           = prevWidth;
+    element.style.minWidth        = prevMinWidth;
     return canvas;
   }
 
-  /**
-   * Adds a canvas image to the current PDF page, scaled to fill the page width.
-   * If the content is taller than one page, it paginates automatically.
-   * Scaling by width only (never by height) keeps text readable.
-   */
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
-    const ch = ph - margin * 2;
 
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
-
-    // Scale by width only — never shrink to fit height (makes text tiny)
-    const s    = cw / imgProps.width;
+    const s     = cw / imgProps.width;
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
 
-    // First page
     pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
 
-    // Paginate if content overflows — correct formula: shift by (ph - margin) per page
     let heightLeft = drawH - (ph - margin);
     let page = 1;
     while (heightLeft > 0) {
       pdf.addPage();
-      // For page N, shift image up by N × (ph - margin) so content continues seamlessly
       pdf.addImage(imgData, 'JPEG', margin, -(page * (ph - margin)), drawW, drawH);
       heightLeft -= ph;
       page++;
@@ -200,24 +165,14 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
       const page1El = document.getElementById('page-1');
       if (!page1El) throw new Error('Form page not found in the DOM.');
 
-      // Capture at 2× resolution for crisp PDF output
       const canvas = await this.captureElement(page1El, 2);
 
-      const pdf = new jsPDF({
-        orientation: 'p',
-        unit: 'mm',
-        format: 'letter',
-        compress: true
-      });
-
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'letter', compress: true });
       this.addCanvasToPdf(pdf, canvas);
 
-      // Build FormData payload
       const uniqueId = this.generateUniqueId();
       const pdfBlob  = pdf.output('blob');
-      const pdfFile  = new File([pdfBlob], `daycare-form-${uniqueId}.pdf`, {
-        type: 'application/pdf'
-      });
+      const pdfFile  = new File([pdfBlob], `daycare-form-${uniqueId}.pdf`, { type: 'application/pdf' });
 
       const payload = new FormData();
       payload.append('form_id',       uniqueId);
@@ -240,18 +195,10 @@ export class FormcareComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       const submitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
-
-      const response = await fetch(submitUrl, {
-        method: 'POST',
-        body: payload
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server returned ${response.status}: ${await response.text()}`);
-      }
+      const response  = await fetch(submitUrl, { method: 'POST', body: payload });
+      if (!response.ok) throw new Error(`Server returned ${response.status}: ${await response.text()}`);
 
       pdf.save(`daycare-form-${uniqueId}.pdf`);
-
       alert('✅ Form submitted and PDF downloaded successfully!');
 
       form.reset();

@@ -15,49 +15,27 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
   isProcessing = false;
   formData = { email: '' };
 
-  /** All expense fields bound via ngModel */
   expenses = {
-    advertising: null as number | null,
-    autoTravel: null as number | null,
-    cleaningMaintenance: null as number | null,
-    commissions: null as number | null,
-    insurance: null as number | null,
-    legalFees: null as number | null,
-    managementFees: null as number | null,
-    mortgageInterest: null as number | null,
-    otherInterest: null as number | null,
-    paintingDecorating: null as number | null,
-    repair: null as number | null,
-    plumbingHeating: null as number | null,
-    carpentry: null as number | null,
-    electrical: null as number | null,
-    supplies: null as number | null,
-    realEstateTaxes: null as number | null,
-    utilities: null as number | null,
-    depreciation: null as number | null,
-    others: null as number | null,
-    waterSewer: null as number | null,
-    trashSnow: null as number | null,
-    contractorLabor: null as number | null,
-    heat: null as number | null,
-    condoFee: null as number | null,
-    gas: null as number | null,
-    otherExpense: null as number | null,
+    advertising: null as number | null, autoTravel: null as number | null,
+    cleaningMaintenance: null as number | null, commissions: null as number | null,
+    insurance: null as number | null, legalFees: null as number | null,
+    managementFees: null as number | null, mortgageInterest: null as number | null,
+    otherInterest: null as number | null, paintingDecorating: null as number | null,
+    repair: null as number | null, plumbingHeating: null as number | null,
+    carpentry: null as number | null, electrical: null as number | null,
+    supplies: null as number | null, realEstateTaxes: null as number | null,
+    utilities: null as number | null, depreciation: null as number | null,
+    others: null as number | null, waterSewer: null as number | null,
+    trashSnow: null as number | null, contractorLabor: null as number | null,
+    heat: null as number | null, condoFee: null as number | null,
+    gas: null as number | null, otherExpense: null as number | null,
   };
-
-  /** Auto-calculated read-only total */
   totalExpenses: number = 0;
-
-  /** Sums all expense fields whenever any value changes */
   calcTotal(): void {
-    this.totalExpenses = Object.values(this.expenses)
-      .reduce((sum: number, v) => sum + (Number(v) || 0), 0);
+    this.totalExpenses = Object.values(this.expenses).reduce((sum: number, v) => sum + (Number(v) || 0), 0);
   }
-
   ngOnInit() {}
-
   ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
-
   ngOnDestroy() {}
 
   @HostListener('window:resize')
@@ -66,13 +44,11 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
   private applyScale(): void {
     const pages = document.querySelectorAll<HTMLElement>('.form-page');
     if (!pages.length) return;
-
     pages.forEach(page => {
       page.style.transform = '';
       const naturalW = page.offsetWidth || 1050;
       const h        = page.offsetHeight || PAGE_HEIGHT;
       const scale    = window.innerWidth < naturalW ? window.innerWidth / naturalW : 1;
-
       if (scale < 1) {
         page.style.transform       = `scale(${scale})`;
         page.style.transformOrigin = 'top center';
@@ -110,6 +86,11 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = 'none';
     element.style.transformOrigin = '';
     element.style.marginBottom    = '';
+    // Force desktop width — on mobile min(95vw,1050px) gives phone width
+    const prevWidth    = element.style.width;
+    const prevMinWidth = element.style.minWidth;
+    element.style.width    = '1050px';
+    element.style.minWidth = '1050px';
     void element.offsetWidth;
 
     const canvas = await html2canvas(element, {
@@ -120,10 +101,9 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
       logging: false,
       scrollX: 0,
       scrollY: 0,
-      width:  element.offsetWidth,
-      height: element.offsetHeight,
+      width:  1050,
+      height: element.scrollHeight,
       onclone: (_doc: Document, cloned: HTMLElement) => {
-        // Replace every input with a div so full text renders without clipping
         cloned.querySelectorAll<HTMLInputElement>(
           'input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]'
         ).forEach(input => {
@@ -134,8 +114,8 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
             display: block;
             width: 100%;
             min-height: ${cs.height};
-            font-family: ${cs.fontFamily};
-            font-size: ${cs.fontSize};
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
             font-weight: bold;
             color: #000;
             background: transparent;
@@ -146,11 +126,9 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
             word-break: break-word;
             white-space: pre-wrap;
             overflow: visible;
-            text-align: ${cs.textAlign};
           `;
           input.parentNode?.replaceChild(div, input);
         });
-
         cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
           chk.style.minWidth  = '14px';
           chk.style.minHeight = '14px';
@@ -162,22 +140,18 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = prevTransform;
     element.style.transformOrigin = prevTransformOrigin;
     element.style.marginBottom    = prevMarginBottom;
+    element.style.width           = prevWidth;
+    element.style.minWidth        = prevMinWidth;
     return canvas;
   }
 
-  /**
-   * Adds canvas to PDF scaled by width only.
-   * Paginates automatically if content is taller than one page.
-   */
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
-    const ch = ph - margin * 2;
 
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
-
     const s     = cw / imgProps.width;
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
@@ -241,7 +215,6 @@ export class FormprodeComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const submitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
       const response  = await fetch(submitUrl, { method: 'POST', body: payload });
-
       if (!response.ok) throw new Error(`Server returned ${response.status}: ${await response.text()}`);
 
       pdf.save(`real-estate-property-${uniqueId}.pdf`);

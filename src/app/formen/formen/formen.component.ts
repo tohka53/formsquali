@@ -97,6 +97,11 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = 'none';
     element.style.transformOrigin = '';
     element.style.marginBottom    = '';
+    // Force desktop width — on mobile min(95vw,1050px) would give phone width
+    const prevWidth    = element.style.width;
+    const prevMinWidth = element.style.minWidth;
+    element.style.width    = '1050px';
+    element.style.minWidth = '1050px';
 
     // Force a synchronous reflow so the element measures correctly
     void element.offsetWidth;
@@ -109,8 +114,8 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
       logging: false,
       scrollX: 0,
       scrollY: 0,
-      width:  element.offsetWidth,
-      height: element.offsetHeight,
+      width:  1050,
+      height: element.scrollHeight,
       onclone: (_doc: Document, cloned: HTMLElement) => {
         // Replace every input/textarea with a div so full text renders without clipping
         cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
@@ -123,8 +128,8 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
             display: block;
             width: 100%;
             min-height: ${cs.height};
-            font-family: ${cs.fontFamily};
-            font-size: ${cs.fontSize};
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
             font-weight: bold;
             color: #000;
             background: transparent;
@@ -148,23 +153,22 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    // Restore mobile scale
+    // Restore mobile scale and width
     element.style.transform       = prevTransform;
     element.style.transformOrigin = prevTransformOrigin;
     element.style.marginBottom    = prevMarginBottom;
+    element.style.width           = prevWidth;
+    element.style.minWidth        = prevMinWidth;
 
     return canvas;
   }
 
   /**
-   * Adds a canvas image to the PDF page, scaled to fit letter size with margins.
-   */
-  /**
    * Adds a canvas image to the current PDF page, scaled to fill the page width.
    * If the content is taller than one page, it paginates automatically.
    * Scaling by width only (never by height) keeps text readable.
    */
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
@@ -193,13 +197,12 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-
   /**
    * Fits a canvas to exactly ONE PDF page (scales by both width and height).
    * Use this for forms with explicit #page-1 / #page-2 divs so each page
    * maps to exactly one PDF page without internal pagination.
    */
-  private addCanvasToPdfFit(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdfFit(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
@@ -208,14 +211,13 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
 
-    // Scale to fit within the page (preserving aspect ratio)
-    const s     = Math.min(cw / imgProps.width, ch / imgProps.height);
+    // Scale by width only — fills the full page width, no side margins.
+    // Math.min was causing side margins when height scale < width scale.
+    const s     = cw / imgProps.width;
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
-    // Center horizontally
-    const ox = margin + (cw - drawW) / 2;
 
-    pdf.addImage(imgData, 'JPEG', ox, margin, drawW, drawH);
+    pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
   }
 
   async exportToPDF(form: NgForm) {
@@ -240,10 +242,14 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       // ── Capture both pages ──────────────────────────────────────────────
-      const [canvas1, canvas2] = await Promise.all([
-        this.captureElement(page1El, 2),
-        this.captureElement(page2El, 2)
-      ]);
+      // Capture page 1
+      const canvas1 = await this.captureElement(page1El, 2);
+
+      // Show page-2 temporarily for capture (hidden from user via CSS)
+      page2El.style.display = 'block';
+      await new Promise(resolve => setTimeout(resolve, 80));
+      const canvas2 = await this.captureElement(page2El, 2);
+      page2El.style.display = 'none';
 
       // ── Build PDF (US Letter, portrait) ────────────────────────────────
       const pdf = new jsPDF({

@@ -15,47 +15,26 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
   isProcessing = false;
   formData = { email: '' };
 
-  /** All expense fields bound via ngModel */
   expenses = {
-    advertising:       null as number | null,
-    carAndTruck:       null as number | null,
-    commissions:       null as number | null,
-    contractLabor:     null as number | null,
-    depreciation:      null as number | null,
-    insurance:         null as number | null,
-    mortgageInterest:  null as number | null,
-    otherInterest:     null as number | null,
-    legalProfessional: null as number | null,
-    officeExpense:     null as number | null,
-    rentLease:         null as number | null,
-    rentVehicles:      null as number | null,
-    rentOtherProperty: null as number | null,
-    repairMaintenance: null as number | null,
-    supplies:          null as number | null,
-    taxes:             null as number | null,
-    licenses:          null as number | null,
-    travel:            null as number | null,
-    mealsEnt:          null as number | null,
-    utilities:         null as number | null,
-    wages:             null as number | null,
-    otherExpenses:     null as number | null,
-    cellPhone:         null as number | null,
-    telephone:         null as number | null,
+    advertising: null as number | null, carAndTruck: null as number | null,
+    commissions: null as number | null, contractLabor: null as number | null,
+    depreciation: null as number | null, insurance: null as number | null,
+    mortgageInterest: null as number | null, otherInterest: null as number | null,
+    legalProfessional: null as number | null, officeExpense: null as number | null,
+    rentLease: null as number | null, rentVehicles: null as number | null,
+    rentOtherProperty: null as number | null, repairMaintenance: null as number | null,
+    supplies: null as number | null, taxes: null as number | null,
+    licenses: null as number | null, travel: null as number | null,
+    mealsEnt: null as number | null, utilities: null as number | null,
+    wages: null as number | null, otherExpenses: null as number | null,
+    cellPhone: null as number | null, telephone: null as number | null,
   };
-
-  /** Auto-calculated read-only total */
   totalExpenses: number = 0;
-
-  /** Sums all expense fields whenever any value changes */
   calcTotal(): void {
-    this.totalExpenses = Object.values(this.expenses)
-      .reduce((sum: number, v) => sum + (Number(v) || 0), 0);
+    this.totalExpenses = Object.values(this.expenses).reduce((sum: number, v) => sum + (Number(v) || 0), 0);
   }
-
   ngOnInit() {}
-
   ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
-
   ngOnDestroy() {}
 
   @HostListener('window:resize')
@@ -64,13 +43,11 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
   private applyScale(): void {
     const pages = document.querySelectorAll<HTMLElement>('.form-page');
     if (!pages.length) return;
-
     pages.forEach(page => {
       page.style.transform = '';
       const naturalW = page.offsetWidth || 1050;
       const h        = page.offsetHeight || PAGE_HEIGHT;
       const scale    = window.innerWidth < naturalW ? window.innerWidth / naturalW : 1;
-
       if (scale < 1) {
         page.style.transform       = `scale(${scale})`;
         page.style.transformOrigin = 'top center';
@@ -108,6 +85,11 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = 'none';
     element.style.transformOrigin = '';
     element.style.marginBottom    = '';
+    // Force desktop width — on mobile min(95vw,1050px) gives phone width
+    const prevWidth    = element.style.width;
+    const prevMinWidth = element.style.minWidth;
+    element.style.width    = '1050px';
+    element.style.minWidth = '1050px';
     void element.offsetWidth;
 
     const canvas = await html2canvas(element, {
@@ -118,22 +100,21 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
       logging: false,
       scrollX: 0,
       scrollY: 0,
-      width:  element.offsetWidth,
-      height: element.offsetHeight,
+      width:  1050,
+      height: element.scrollHeight,
       onclone: (_doc: Document, cloned: HTMLElement) => {
-        // Replace every input/textarea with a div so full text renders without clipping
-        cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
+        cloned.querySelectorAll<HTMLInputElement>(
+          'input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]'
+        ).forEach(input => {
           const div = _doc.createElement('div');
           div.textContent = input.value || '';
-
-          // Copy computed style so size/position stay identical
           const cs = window.getComputedStyle(input);
           div.style.cssText = `
             display: block;
             width: 100%;
             min-height: ${cs.height};
-            font-family: ${cs.fontFamily};
-            font-size: ${cs.fontSize};
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
             font-weight: bold;
             color: #000;
             background: transparent;
@@ -147,8 +128,6 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
           `;
           input.parentNode?.replaceChild(div, input);
         });
-
-        // Also handle checkboxes — keep them but ensure they render
         cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
           chk.style.minWidth  = '14px';
           chk.style.minHeight = '14px';
@@ -160,37 +139,28 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = prevTransform;
     element.style.transformOrigin = prevTransformOrigin;
     element.style.marginBottom    = prevMarginBottom;
+    element.style.width           = prevWidth;
+    element.style.minWidth        = prevMinWidth;
     return canvas;
   }
 
-  /**
-   * Adds a canvas image to the current PDF page, scaled to fill the page width.
-   * If the content is taller than one page, it paginates automatically.
-   * Scaling by width only (never by height) keeps text readable.
-   */
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
-    const ch = ph - margin * 2;
 
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
-
-    // Scale by width only — never shrink to fit height (makes text tiny)
-    const s    = cw / imgProps.width;
+    const s     = cw / imgProps.width;
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
 
-    // First page
     pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
 
-    // Paginate if content overflows — correct formula: shift by (ph - margin) per page
     let heightLeft = drawH - (ph - margin);
     let page = 1;
     while (heightLeft > 0) {
       pdf.addPage();
-      // For page N, shift image up by N × (ph - margin) so content continues seamlessly
       pdf.addImage(imgData, 'JPEG', margin, -(page * (ph - margin)), drawW, drawH);
       heightLeft -= ph;
       page++;
@@ -244,7 +214,6 @@ export class FormscComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const submitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.email)}`;
       const response  = await fetch(submitUrl, { method: 'POST', body: payload });
-
       if (!response.ok) throw new Error(`Server returned ${response.status}: ${await response.text()}`);
 
       pdf.save(`schedule-c-${uniqueId}.pdf`);

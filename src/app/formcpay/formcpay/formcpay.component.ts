@@ -39,11 +39,7 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   ngOnInit() {}
-
-  ngAfterViewInit() {
-    setTimeout(() => this.applyScale(), 0);
-  }
-
+  ngAfterViewInit() { setTimeout(() => this.applyScale(), 0); }
   ngOnDestroy() {}
 
   @HostListener('window:resize')
@@ -52,13 +48,11 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
   private applyScale(): void {
     const pages = document.querySelectorAll<HTMLElement>('.form-page');
     if (!pages.length) return;
-
     pages.forEach(page => {
       page.style.transform = '';
       const naturalW = page.offsetWidth || 1050;
       const h        = page.offsetHeight || PAGE_HEIGHT;
       const scale    = window.innerWidth < naturalW ? window.innerWidth / naturalW : 1;
-
       if (scale < 1) {
         page.style.transform       = `scale(${scale})`;
         page.style.transformOrigin = 'top center';
@@ -92,55 +86,38 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
     const prevTransform       = element.style.transform;
     const prevTransformOrigin = element.style.transformOrigin;
     const prevMarginBottom    = element.style.marginBottom;
-
     element.style.transform       = 'none';
     element.style.transformOrigin = '';
     element.style.marginBottom    = '';
+    const prevWidth    = element.style.width;
+    const prevMinWidth = element.style.minWidth;
+    element.style.width    = '1050px';
+    element.style.minWidth = '1050px';
     void element.offsetWidth;
 
     const canvas = await html2canvas(element, {
-      scale,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      logging: false,
-      scrollX: 0,
-      scrollY: 0,
-      width:  element.offsetWidth,
-      height: element.offsetHeight,
+      scale, useCORS: true, allowTaint: true,
+      backgroundColor: '#ffffff', logging: false,
+      scrollX: 0, scrollY: 0,
+      width: 1050, height: element.scrollHeight,
       onclone: (_doc: Document, cloned: HTMLElement) => {
-        // Replace every input/textarea with a div so full text renders without clipping
-        cloned.querySelectorAll<HTMLInputElement>('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]').forEach(input => {
+        cloned.querySelectorAll<HTMLInputElement>(
+          'input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], input[type="password"]'
+        ).forEach(input => {
           const div = _doc.createElement('div');
           div.textContent = input.value || '';
-
-          // Copy computed style so size/position stay identical
           const cs = window.getComputedStyle(input);
           div.style.cssText = `
-            display: block;
-            width: 100%;
-            min-height: ${cs.height};
-            font-family: ${cs.fontFamily};
-            font-size: ${cs.fontSize};
-            font-weight: bold;
-            color: #000;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #000;
+            display: block; width: 100%; min-height: ${cs.height};
+            font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold;
+            color: #000; background: transparent; border: none; border-bottom: 1px solid #000;
             padding: ${cs.paddingTop} ${cs.paddingRight} ${cs.paddingBottom} ${cs.paddingLeft};
-            box-sizing: border-box;
-            word-break: break-word;
-            white-space: pre-wrap;
-            overflow: visible;
+            box-sizing: border-box; word-break: break-word; white-space: pre-wrap; overflow: visible;
           `;
           input.parentNode?.replaceChild(div, input);
         });
-
-        // Also handle checkboxes — keep them but ensure they render
         cloned.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(chk => {
-          chk.style.minWidth  = '14px';
-          chk.style.minHeight = '14px';
-          chk.style.border    = '1px solid #000';
+          chk.style.minWidth = '14px'; chk.style.minHeight = '14px'; chk.style.border = '1px solid #000';
         });
       }
     });
@@ -148,37 +125,25 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
     element.style.transform       = prevTransform;
     element.style.transformOrigin = prevTransformOrigin;
     element.style.marginBottom    = prevMarginBottom;
+    element.style.width           = prevWidth;
+    element.style.minWidth        = prevMinWidth;
     return canvas;
   }
 
-  /**
-   * Adds a canvas image to the current PDF page, scaled to fill the page width.
-   * If the content is taller than one page, it paginates automatically.
-   * Scaling by width only (never by height) keeps text readable.
-   */
-  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 6): void {
+  private addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
     const cw = pw - margin * 2;
-    const ch = ph - margin * 2;
-
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
-
-    // Scale by width only — never shrink to fit height (makes text tiny)
-    const s    = cw / imgProps.width;
-    const drawW = imgProps.width  * s;
+    const s = cw / imgProps.width;
+    const drawW = imgProps.width * s;
     const drawH = imgProps.height * s;
-
-    // First page
     pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
-
-    // Paginate if content overflows — correct formula: shift by (ph - margin) per page
     let heightLeft = drawH - (ph - margin);
     let page = 1;
     while (heightLeft > 0) {
       pdf.addPage();
-      // For page N, shift image up by N × (ph - margin) so content continues seamlessly
       pdf.addImage(imgData, 'JPEG', margin, -(page * (ph - margin)), drawW, drawH);
       heightLeft -= ph;
       page++;
@@ -188,66 +153,48 @@ export class FormcpayComponent implements OnInit, AfterViewInit, OnDestroy {
   async exportToPDF(form: NgForm) {
     if (this.isProcessing) return;
     this.isProcessing = true;
-
     try {
       if (!this.formData.contactEmail) {
         alert('Please enter a valid email address before submitting.');
         this.isProcessing = false;
         return;
       }
-
       alert('Please wait — generating your PDF and sending the form (up to 2 minutes).');
-
       const page1El = document.getElementById('page-1');
       if (!page1El) throw new Error('Form page not found in the DOM.');
-
       const canvas = await this.captureElement(page1El, 2);
-
       const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'letter', compress: true });
       this.addCanvasToPdf(pdf, canvas);
-
       const uniqueId = this.generateUniqueId();
       const pdfBlob  = pdf.output('blob');
       const pdfFile  = new File([pdfBlob], `company-payroll-setup-${uniqueId}.pdf`, { type: 'application/pdf' });
-
       const payload = new FormData();
-      payload.append('form_id',       uniqueId);
-      payload.append('email',         this.formData.contactEmail);
-      payload.append('_captcha',      'false');
-      payload.append('_next',         'https://formsqualitechboston.vercel.app/');
-      payload.append('_subject',      `Company Payroll Setup — ID: ${uniqueId}`);
+      payload.append('form_id', uniqueId);
+      payload.append('email', this.formData.contactEmail);
+      payload.append('_captcha', 'false');
+      payload.append('_next', 'https://formsqualitechboston.vercel.app/');
+      payload.append('_subject', `Company Payroll Setup — ID: ${uniqueId}`);
       payload.append('_autoresponse', 'Thank you for completing the form. We will contact you soon.');
-      payload.append('_template',     'table');
-      payload.append('_replyto',      this.formData.contactEmail);
-      payload.append('_cc',           this.formData.contactEmail);
-      payload.append('pdf',           pdfFile, pdfFile.name);
-
+      payload.append('_template', 'table');
+      payload.append('_replyto', this.formData.contactEmail);
+      payload.append('_cc', this.formData.contactEmail);
+      payload.append('pdf', pdfFile, pdfFile.name);
       const formValues = form.value;
       Object.keys(formValues).forEach(key => {
         const val = formValues[key];
-        if (val !== null && val !== undefined && val !== '') {
-          payload.append(key, String(val));
-        }
+        if (val !== null && val !== undefined && val !== '') payload.append(key, String(val));
       });
-
       const submitUrl = `https://formsubmit.co/qualitech@qualitechboston.com?_cc=${encodeURIComponent(this.formData.contactEmail)}`;
-      const response  = await fetch(submitUrl, { method: 'POST', body: payload });
-
+      const response = await fetch(submitUrl, { method: 'POST', body: payload });
       if (!response.ok) throw new Error(`Server returned ${response.status}: ${await response.text()}`);
-
       pdf.save(`company-payroll-setup-${uniqueId}.pdf`);
       alert('✅ Form submitted and PDF downloaded successfully!');
-
       form.reset();
       Object.keys(this.formData).forEach(k => this.formData[k] = '');
-
     } catch (error) {
       console.error('Error submitting form:', error);
-      if (error instanceof Error) {
-        alert(`❌ Could not submit the form: ${error.message}`);
-      } else {
-        alert('❌ An unknown error occurred while submitting the form.');
-      }
+      if (error instanceof Error) alert(`❌ Could not submit the form: ${error.message}`);
+      else alert('❌ An unknown error occurred while submitting the form.');
     } finally {
       this.isProcessing = false;
     }
