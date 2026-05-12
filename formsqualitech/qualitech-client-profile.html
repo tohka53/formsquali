@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Qualitech — Income Tax Client Profile Form</title>
+<style>
+  /* ============================================================
+     QUALITECH PROFESSIONAL SERVICES — CLIENT PROFILE FORM
+     Letter size. Bloques nunca se cortan entre páginas.
+     Texto de campos (lo "llenado"): 13pt en negrita.
+     ============================================================ */
+
+  :root{
+    --brand:#1F3A93;
+    --brand-dark:#102A6E;
+    --ink:#1a1a1a;
+    --muted:#5b6473;
+    --line:#000;
+    --line-soft:#cfd5de;
+    --block-border:#6b7484;
+    --bg-banner:#dde3ec;
+    --input-size:13pt;
+    --label-size:9.5pt;
+    --section-title:11pt;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#e9ecf1;color:var(--ink);
+    font-family:"Helvetica Neue","Arial",sans-serif;font-size:10pt;}
+
+  /* On-screen "sheet" simulación */
+  .sheet{
+    width:8.5in;
+    margin:18px auto;
+    padding:.45in .55in;
+    background:#fff;
+    border:1px solid #d6dae3;
+    box-shadow:0 8px 24px rgba(20,30,60,.10);
+  }
+
+  /* ========= HEADER ========= */
+  .brand-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding-bottom:6pt;
+  }
+  .brand{display:flex;align-items:center;}
+  .brand-mark{display:flex;align-items:center;gap:6pt;}
+  .brand-q{font-family:"Times New Roman",serif;font-weight:700;
+    color:var(--brand);font-size:36pt;line-height:1;letter-spacing:.5pt;}
+  .brand-text{display:flex;flex-direction:column;line-height:1;}
+  .brand-text .b1{font-family:"Times New Roman",serif;font-weight:700;
+    color:var(--brand);font-size:18pt;letter-spacing:.2pt;}
+  .brand-text .b2{font-family:"Times New Roman",serif;font-weight:600;
+    color:var(--brand);font-size:11pt;border-top:2px solid var(--brand);
+    margin-top:2pt;padding-top:2pt;}
+  .office{font-size:8.5pt;color:#222;text-align:right;line-height:1.45;}
+
+  .form-title{text-align:center;margin:8pt 0 10pt;}
+  .form-title h1{margin:0;font-size:16pt;font-weight:700;letter-spacing:.5pt;}
+  .form-title h1 .yr{display:inline-block;border-bottom:1.5px solid #000;
+    min-width:70pt;padding:0 6pt;font-weight:700;}
+  .form-title .sub{font-size:11pt;font-weight:700;margin-top:2pt;letter-spacing:.5pt;}
+
+  /* ========= BLOQUES ========= */
+  .block{
+    border:1.2px solid var(--block-border);
+    background:#fff;
+    border-radius:3px;
+    margin-bottom:8pt;
+    padding:6pt 9pt 8pt;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .block.tight{padding:5pt 9pt 6pt;}
+  .block-title{
+    font-weight:700;
+    font-size:var(--section-title);
+    color:#000;
+    margin:0 0 5pt;
+    letter-spacing:.2pt;
+  }
+  .block-sub{font-size:8.5pt;font-style:italic;color:#444;margin:0 0 4pt;}
+
+  /* ========= GRID & FIELDS ========= */
+  .row{display:grid;grid-template-columns:repeat(12,1fr);gap:7pt 10pt;
+    margin-top:4pt;}
+  .col-1{grid-column:span 1;} .col-2{grid-column:span 2;}
+  .col-3{grid-column:span 3;} .col-4{grid-column:span 4;}
+  .col-5{grid-column:span 5;} .col-6{grid-column:span 6;}
+  .col-7{grid-column:span 7;} .col-8{grid-column:span 8;}
+  .col-9{grid-column:span 9;} .col-10{grid-column:span 10;}
+  .col-11{grid-column:span 11;} .col-12{grid-column:span 12;}
+
+  .field{display:flex;flex-direction:column;}
+  .field label, .lbl{
+    font-size:var(--label-size);font-weight:700;color:#000;
+    margin-bottom:2pt;letter-spacing:.1pt;
+  }
+
+  /* Inputs — el texto "llenado" es 13pt en negrita */
+  input[type=text],input[type=email],input[type=tel],
+  input[type=number],input[type=date]{
+    border:0;border-bottom:1px solid #000;background:transparent;
+    height:24pt;padding:2pt 4pt 2pt;
+    font:700 var(--input-size)/1.1 "Helvetica Neue","Arial",sans-serif;
+    color:#000;width:100%;outline:none;
+  }
+  input:focus{background:#fffbe6;}
+
+  /* Date triplet (MM / DD / YYYY) */
+  .date-trip{display:flex;align-items:flex-end;gap:5pt;width:100%;}
+  .date-trip .seg{flex:1;display:flex;flex-direction:column;min-width:0;}
+  .date-trip .seg input{text-align:center;}
+  .date-trip .seg .ph{font-size:8.5pt;color:#222;text-align:center;
+    font-weight:700;margin-top:1pt;}
+  .date-trip .slash{font-weight:700;align-self:center;color:#000;
+    padding-bottom:8pt;}
+
+  /* SSN triplet */
+  .ssn{display:flex;align-items:flex-end;gap:4pt;width:100%;}
+  .ssn input{text-align:center;}
+  .ssn .a{flex:3;} .ssn .b{flex:2;} .ssn .c{flex:4;}
+  .ssn .dash{font-weight:700;padding-bottom:6pt;}
+
+  /* Checkboxes */
+  .check-row{display:flex;flex-wrap:wrap;gap:8pt 16pt;margin-top:2pt;
+    align-items:center;}
+  .check-row.nowrap{flex-wrap:nowrap;}
+  .check{display:inline-flex;align-items:center;gap:5pt;font-size:10pt;
+    font-weight:600;white-space:nowrap;}
+  .check input{appearance:none;-webkit-appearance:none;width:11pt;height:11pt;
+    border:1.3px solid #000;border-radius:2px;background:#fff;cursor:pointer;
+    position:relative;margin:0;flex:0 0 11pt;}
+  .check input:checked{background:var(--brand);border-color:var(--brand);}
+  .check input:checked::after{content:"✓";color:#fff;position:absolute;
+    left:1pt;top:-3pt;font-size:11pt;font-weight:900;}
+
+  /* Inline label + Yes/No cluster used on one line */
+  .inline-row{display:flex;align-items:center;flex-wrap:wrap;gap:10pt;
+    margin:3pt 0;}
+  .inline-row .lbl{margin:0;}
+
+  /* Tabla de dependientes */
+  table.dep{
+    width:100%;border-collapse:collapse;margin-top:4pt;
+    font-size:10pt;
+  }
+  table.dep th{
+    background:#e8ecf2;border:1px solid var(--block-border);
+    padding:5pt 4pt;font-size:9.5pt;letter-spacing:.2pt;color:#000;
+  }
+  table.dep td{
+    border:1px solid var(--block-border);padding:0;height:34pt;
+    vertical-align:middle;
+  }
+  table.dep td input{
+    border:0;background:transparent;width:100%;height:100%;
+    padding:0 6pt;
+    font:700 var(--input-size)/1.1 "Helvetica Neue","Arial",sans-serif;
+    color:#000;
+  }
+  table.dep td .date-trip{padding:0 4pt;}
+  table.dep td .date-trip input{height:30pt;border-bottom:0;text-align:center;}
+  table.dep tr{page-break-inside:avoid;}
+
+  /* Lista Q&A (con respuesta Yes/No derecha) */
+  .qna{display:grid;grid-template-columns:1fr auto;gap:6pt 16pt;
+    align-items:center;}
+  .qna .q{font-size:10pt;font-weight:600;}
+  .qna .q strong{font-weight:700;}
+  .qna .a{justify-self:end;display:inline-flex;gap:10pt;align-items:center;
+    white-space:nowrap;}
+
+  /* Banner de fees */
+  .fees-banner{
+    text-align:center;background:var(--bg-banner);
+    border:1.2px solid var(--block-border);
+    font-weight:700;padding:6pt;font-size:11pt;letter-spacing:.4pt;
+    margin:6pt 0 8pt;page-break-inside:avoid;
+  }
+
+  /* Office use */
+  .office-list{margin:2pt 0 0 12pt;padding:0;}
+  .office-list li{font-size:9pt;margin:2pt 0;}
+
+  .legal{
+    font-size:8.5pt;line-height:1.45;color:#222;
+    border:1.2px solid var(--block-border);padding:6pt 9pt;border-radius:3px;
+    page-break-inside:avoid;
+  }
+
+  /* Action bar (solo pantalla) */
+  .actionbar{
+    position:sticky;top:0;z-index:50;
+    background:#0f1a36;color:#fff;padding:10px 16px;display:flex;
+    justify-content:space-between;align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+  }
+  .actionbar strong{font-size:14px;letter-spacing:.4px;}
+  .actionbar .group{display:flex;gap:8px;}
+  .btn{
+    background:#fff;color:#0f1a36;border:0;border-radius:6px;
+    padding:8px 14px;font-weight:700;cursor:pointer;font-size:13px;
+  }
+  .btn.primary{background:#22c55e;color:#fff;}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid #ffffff66;}
+
+  /* ============================================================
+     IMPRESIÓN — exporta a PDF, flujo natural, sin huecos.
+     ============================================================ */
+  @page { size: Letter; margin: 0.5in 0.5in 0.45in; }
+
+  @media print{
+    html, body{background:#fff !important;-webkit-print-color-adjust:exact;
+      print-color-adjust:exact;}
+    .actionbar{display:none !important;}
+    .sheet{
+      width:auto;margin:0;padding:0;border:0;box-shadow:none;background:#fff;
+    }
+    input:focus{background:transparent;}
+    /* Mantener color de fondo del banner y celdas */
+    .fees-banner, table.dep th{ -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Action bar (sólo pantalla) -->
+<div class="actionbar" id="actionbar">
+  <strong>Qualitech — Income Tax Client Profile</strong>
+  <div class="group">
+    <button class="btn ghost" type="button" onclick="clearForm()">Limpiar</button>
+    <button class="btn primary" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</div>
+
+<form id="profileForm" autocomplete="off">
+
+<section class="sheet">
+
+  <!-- HEADER (visible en pantalla y como primer header de página 1) -->
+  <div class="brand-header">
+    <div class="brand">
+      <div class="brand-mark">
+        <span class="brand-q">Q</span>
+        <span class="brand-text">
+          <span class="b1">ualitech</span>
+          <span class="b2">Professional Services</span>
+        </span>
+      </div>
+    </div>
+    <div class="office">
+      671 Adams Street<br>Dorchester MA 02122<br>
+      Ph (617)288-1333<br>Fax: 617-249-1859<br>
+      Email: qualitech@qualitechboston.com
+    </div>
+  </div>
+
+  <div class="form-title">
+    <h1>INCOME TAX <span class="yr"><input type="text" name="tax_year" maxlength="4" inputmode="numeric" style="font:700 14pt/1 Helvetica;border:0;width:64pt;text-align:center;" placeholder="YYYY"></span></h1>
+    <div class="sub">CLIENT PROFILE FORM</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="block tight">
+    <div class="inline-row">
+      <span class="lbl">Were you our tax customer last year?</span>
+      <label class="check"><input type="checkbox" name="customer_last_year" value="yes"> Yes</label>
+      <label class="check"><input type="checkbox" name="customer_last_year" value="no"> No</label>
+    </div>
+    <div class="inline-row">
+      <span class="lbl">How did you hear about us?</span>
+      <label class="check"><input type="checkbox" name="referral" value="google"> Google</label>
+      <label class="check"><input type="checkbox" name="referral" value="friend"> Friend</label>
+      <label class="check"><input type="checkbox" name="referral" value="ad"> Ad</label>
+      <label class="check"><input type="checkbox" name="referral" value="other"> Other</label>
+    </div>
+  </div>
+
+  <!-- 1. FILING STATUS -->
+  <div class="block">
+    <div class="block-title">1. FILING STATUS</div>
+    <div class="check-row">
+      <label class="check"><input type="checkbox" name="filing" value="single"> Single</label>
+      <label class="check"><input type="checkbox" name="filing" value="hoh"> Head of Household</label>
+      <label class="check"><input type="checkbox" name="filing" value="mfj"> Married Filing Jointly</label>
+      <label class="check"><input type="checkbox" name="filing" value="mfs"> Married Filing Separately</label>
+      <label class="check"><input type="checkbox" name="filing" value="widow"> Widow</label>
+    </div>
+  </div>
+
+  <!-- 2. PERSONAL INFORMATION -->
+  <div class="block">
+    <div class="block-title">2. PERSONAL INFORMATION</div>
+
+    <div class="row">
+      <div class="field col-6"><label>First Name</label><input type="text" name="p_first"></div>
+      <div class="field col-6"><label>Last Name</label><input type="text" name="p_last"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-4">
+        <label>Social Security #</label>
+        <div class="ssn">
+          <input class="a" type="text" name="p_ssn1" maxlength="3" inputmode="numeric">
+          <span class="dash">-</span>
+          <input class="b" type="text" name="p_ssn2" maxlength="2" inputmode="numeric">
+          <span class="dash">-</span>
+          <input class="c" type="text" name="p_ssn3" maxlength="4" inputmode="numeric">
+        </div>
+      </div>
+      <div class="field col-4">
+        <label>Date of Birth</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="p_dob_m" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_dob_d" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_dob_y" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-6"><label>Address</label><input type="text" name="p_addr"></div>
+      <div class="field col-3"><label>City</label><input type="text" name="p_city"></div>
+      <div class="field col-1"><label>State</label><input type="text" name="p_state" maxlength="2" style="text-transform:uppercase;"></div>
+      <div class="field col-2"><label>Zip Code</label><input type="text" name="p_zip" maxlength="10"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-4"><label>Cell #</label><input type="tel" name="p_cell" data-mask="phone"></div>
+      <div class="field col-4"><label>Work #</label><input type="tel" name="p_work" data-mask="phone"></div>
+      <div class="field col-4"><label>Home #</label><input type="tel" name="p_home" data-mask="phone"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-6"><label>E-mail</label><input type="email" name="p_email"></div>
+      <div class="field col-4"><label>Occupation</label><input type="text" name="p_occ"></div>
+      <div class="field col-2"><label>PIN</label><input type="text" name="p_pin" maxlength="6"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12"><span class="lbl">Type of Identification</span></div>
+      <div class="col-4">
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="p_id_type" value="state"> State Id</label>
+          <label class="check"><input type="checkbox" name="p_id_type" value="dl"> Driver License</label>
+          <label class="check"><input type="checkbox" name="p_id_type" value="pp"> Passport</label>
+        </div>
+      </div>
+      <div class="field col-8"><label>Identification #</label><input type="text" name="p_id_num"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-2"><label>State</label><input type="text" name="p_id_state" maxlength="2" style="text-transform:uppercase;"></div>
+      <div class="field col-5">
+        <label>Issue Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="p_id_im" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_id_id" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_id_iy" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+      <div class="field col-5">
+        <label>Exp Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="p_id_em" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_id_ed" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="p_id_ey" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SPOUSE INFORMATION -->
+  <div class="block">
+    <div class="block-title">3. SPOUSE INFORMATION</div>
+
+    <div class="row">
+      <div class="field col-6"><label>First Name</label><input type="text" name="s_first"></div>
+      <div class="field col-6"><label>Last Name</label><input type="text" name="s_last"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-4">
+        <label>Social Security #</label>
+        <div class="ssn">
+          <input class="a" type="text" name="s_ssn1" maxlength="3" inputmode="numeric">
+          <span class="dash">-</span>
+          <input class="b" type="text" name="s_ssn2" maxlength="2" inputmode="numeric">
+          <span class="dash">-</span>
+          <input class="c" type="text" name="s_ssn3" maxlength="4" inputmode="numeric">
+        </div>
+      </div>
+      <div class="field col-4">
+        <label>Date of Birth</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="s_dob_m" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_dob_d" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_dob_y" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-6"><label>Address</label><input type="text" name="s_addr"></div>
+      <div class="field col-3"><label>City</label><input type="text" name="s_city"></div>
+      <div class="field col-1"><label>State</label><input type="text" name="s_state" maxlength="2" style="text-transform:uppercase;"></div>
+      <div class="field col-2"><label>Zip Code</label><input type="text" name="s_zip" maxlength="10"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-4"><label>Cell #</label><input type="tel" name="s_cell" data-mask="phone"></div>
+      <div class="field col-4"><label>Work #</label><input type="tel" name="s_work" data-mask="phone"></div>
+      <div class="field col-4"><label>Home #</label><input type="tel" name="s_home" data-mask="phone"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-6"><label>E-mail</label><input type="email" name="s_email"></div>
+      <div class="field col-4"><label>Occupation</label><input type="text" name="s_occ"></div>
+      <div class="field col-2"><label>PIN</label><input type="text" name="s_pin" maxlength="6"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12"><span class="lbl">Type of Identification</span></div>
+      <div class="col-4">
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="s_id_type" value="state"> State Id</label>
+          <label class="check"><input type="checkbox" name="s_id_type" value="dl"> Driver License</label>
+          <label class="check"><input type="checkbox" name="s_id_type" value="pp"> Passport</label>
+        </div>
+      </div>
+      <div class="field col-8"><label>Identification #</label><input type="text" name="s_id_num"></div>
+    </div>
+
+    <div class="row">
+      <div class="field col-2"><label>State</label><input type="text" name="s_id_state" maxlength="2" style="text-transform:uppercase;"></div>
+      <div class="field col-5">
+        <label>Issue Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="s_id_im" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_id_id" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_id_iy" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+      <div class="field col-5">
+        <label>Exp Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="s_id_em" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_id_ed" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="s_id_ey" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. DEPENDENTS -->
+  <div class="block">
+    <div class="block-title">4. DEPENDENTS</div>
+    <div class="block-sub">SUPPORTING DOCUMENTS: insurance enrollment, school verification letter, physical form, childcare letter, lease agreement.</div>
+
+    <div class="inline-row">
+      <span class="lbl">Dependents not living with you but supported by you for at least 6 months?</span>
+      <label class="check"><input type="checkbox" name="dep_support" value="yes"> Yes</label>
+      <label class="check"><input type="checkbox" name="dep_support" value="no"> No</label>
+    </div>
+    <div class="inline-row">
+      <span class="lbl">Daycare / Qualified after school program / Camp</span>
+      <label class="check"><input type="checkbox" name="daycare" value="yes"> Yes</label>
+      <label class="check"><input type="checkbox" name="daycare" value="no"> No</label>
+    </div>
+
+    <table class="dep">
+      <colgroup>
+        <col style="width:28%"><col style="width:22%"><col style="width:14%">
+        <col style="width:22%"><col style="width:14%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>NAME</th><th>DOB</th><th>SSN</th>
+          <th>RELATIONSHIP</th><th># MONTHS LIVING<br>W/DEPENDENT</th>
+        </tr>
+      </thead>
+      <tbody id="depBody"><!-- 6 filas vía JS --></tbody>
+    </table>
+  </div>
+
+  <!-- 4. CONTINUED -->
+  <div class="block">
+    <div class="block-title">4. DEPENDENTS (CONTINUED) — IF THE DEPENDENT IS NOT YOUR CHILD</div>
+    <div class="qna">
+      <div class="q">Do you know where the child's parents are?</div>
+      <div class="a"><label class="check"><input type="checkbox" name="dep_q1" value="yes"> Yes</label><label class="check"><input type="checkbox" name="dep_q1" value="no"> No</label></div>
+      <div class="q">Did one of the parents live with you?</div>
+      <div class="a"><label class="check"><input type="checkbox" name="dep_q2" value="yes"> Yes</label><label class="check"><input type="checkbox" name="dep_q2" value="no"> No</label></div>
+      <div class="q">Did anyone else live with you?</div>
+      <div class="a"><label class="check"><input type="checkbox" name="dep_q3" value="yes"> Yes</label><label class="check"><input type="checkbox" name="dep_q3" value="no"> No</label></div>
+      <div class="q">Can anyone else possibly claim the child?</div>
+      <div class="a"><label class="check"><input type="checkbox" name="dep_q4" value="yes"> Yes</label><label class="check"><input type="checkbox" name="dep_q4" value="no"> No</label></div>
+      <div class="q">Is there an active 8232 Release/Revocation form in place?</div>
+      <div class="a"><label class="check"><input type="checkbox" name="dep_q5" value="yes"> Yes</label><label class="check"><input type="checkbox" name="dep_q5" value="no"> No</label></div>
+    </div>
+  </div>
+
+  <!-- 5. HOMEOWNER -->
+  <div class="block">
+    <div class="block-title">5. HOMEOWNER</div>
+    <div class="row" style="align-items:end;">
+      <div class="col-3">
+        <div class="check-row nowrap">
+          <label class="check"><input type="checkbox" name="homeowner" value="yes"> Yes</label>
+          <label class="check"><input type="checkbox" name="homeowner" value="no"> No</label>
+        </div>
+      </div>
+      <div class="field col-3"><label># of Units</label><input type="text" name="home_units" inputmode="numeric"></div>
+      <div class="col-6" style="font-style:italic;font-size:9pt;padding-bottom:6pt;">
+        (COMPLETE REAL ESTATE PROPERTY FORM)
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SELF EMPLOYED -->
+  <div class="block">
+    <div class="block-title">6. SELF EMPLOYED</div>
+    <div class="row" style="align-items:end;">
+      <div class="col-3">
+        <div class="check-row nowrap">
+          <label class="check"><input type="checkbox" name="self_emp" value="yes"> Yes</label>
+          <label class="check"><input type="checkbox" name="self_emp" value="no"> No</label>
+        </div>
+      </div>
+      <div class="col-9" style="font-style:italic;font-size:9pt;padding-bottom:6pt;">
+        (COMPLETE FORM)
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col-8"><label>Business Name</label><input type="text" name="se_bizname"></div>
+      <div class="field col-4"><label>EIN</label><input type="text" name="se_ein"></div>
+    </div>
+    <div class="row">
+      <div class="field col-5"><label>Address</label><input type="text" name="se_addr"></div>
+      <div class="field col-3"><label>City</label><input type="text" name="se_city"></div>
+      <div class="field col-2"><label>State</label><input type="text" name="se_state" maxlength="2" style="text-transform:uppercase;"></div>
+      <div class="field col-2"><label>ZIP Code</label><input type="text" name="se_zip"></div>
+    </div>
+    <div class="row">
+      <div class="field col-4"><label>Phone #</label><input type="tel" name="se_phone" data-mask="phone"></div>
+      <div class="field col-4"><label>Work #</label><input type="tel" name="se_work" data-mask="phone"></div>
+      <div class="field col-4"><label>E-mail</label><input type="email" name="se_email"></div>
+    </div>
+    <div style="font-size:8.5pt;font-style:italic;color:#333;margin-top:6pt;line-height:1.4;">
+      SELF EMPLOYED SUPPORTING DOCUMENTS: forms 1099 Misc, contractor letter, records of gross receipts provided by taxpayer, taxpayer summary of income, record of expenses provided by taxpayer, summary of income and expenses, bank statement, profit and loss statements.
+    </div>
+  </div>
+
+  <!-- INCOME ITEMS 7-11 -->
+  <div class="block">
+    <div class="block-title">INCOME ITEMS</div>
+    <div class="qna">
+      <div class="q"><strong>7. Bank Interest</strong></div>
+      <div class="a">
+        <label class="check"><input type="checkbox" name="bank_int" value="yes"> Yes</label>
+        ($ <input type="text" name="bank_int_amt" inputmode="decimal" style="border:0;border-bottom:1px solid #000;width:90pt;font:700 var(--input-size)/1 'Helvetica Neue',Arial,sans-serif;text-align:right;"> )
+        <label class="check"><input type="checkbox" name="bank_int" value="no"> No</label>
+      </div>
+
+      <div class="q"><strong>8. Unemployment Compensation</strong></div>
+      <div class="a"><label class="check"><input type="checkbox" name="unemp" value="yes"> Yes</label><label class="check"><input type="checkbox" name="unemp" value="no"> No</label></div>
+
+      <div class="q"><strong>9. IRA, Pension or Annuity Distribution</strong></div>
+      <div class="a"><label class="check"><input type="checkbox" name="ira" value="yes"> Yes</label><label class="check"><input type="checkbox" name="ira" value="no"> No</label></div>
+
+      <div class="q"><strong>10. Did you purchase or sell any virtual currency?</strong>
+        <span style="font-style:italic;font-weight:400;margin-left:6pt;">(If yes attached form 8949)</span></div>
+      <div class="a"><label class="check"><input type="checkbox" name="vc" value="yes"> Yes</label><label class="check"><input type="checkbox" name="vc" value="no"> No</label></div>
+
+      <div class="q"><strong>11. Did you sell stocks?</strong></div>
+      <div class="a"><label class="check"><input type="checkbox" name="stocks" value="yes"> Yes</label><label class="check"><input type="checkbox" name="stocks" value="no"> No</label></div>
+    </div>
+  </div>
+
+  <!-- 12. HEALTH INSURANCE -->
+  <div class="block">
+    <div class="block-title">12. HEALTH INSURANCE</div>
+    <div class="check-row">
+      <label class="check"><input type="checkbox" name="ins_type" value="private"> Private</label>
+      <label class="check"><input type="checkbox" name="ins_type" value="masshealth"> MassHealth</label>
+    </div>
+    <div class="row">
+      <div class="field col-5"><label>Insurance Name</label><input type="text" name="ins_name"></div>
+      <div class="field col-4"><label>FID #</label><input type="text" name="ins_fid"></div>
+      <div class="field col-3"><label>Member #</label><input type="text" name="ins_member"></div>
+    </div>
+
+    <div class="row" style="margin-top:6pt;">
+      <div class="col-6">
+        <div class="qna">
+          <div class="q">Do you have a 1095 A?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h1095" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h1095" value="no"> No</label></div>
+          <div class="q">Covered the whole year?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h_year" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h_year" value="no"> No</label></div>
+          <div class="q">Purchase through the exchange marketplace?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h_market" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h_market" value="no"> No</label></div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="qna">
+          <div class="q">Did you make contributions to a HSA Acct?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h_hsa" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h_hsa" value="no"> No</label></div>
+          <div class="q">Do you have the insurance card with you?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h_card" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h_card" value="no"> No</label></div>
+          <div class="q">Purchase through employer?</div>
+          <div class="a"><label class="check"><input type="checkbox" name="h_emp" value="yes"> Yes</label><label class="check"><input type="checkbox" name="h_emp" value="no"> No</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. BANK -->
+  <div class="block">
+    <div class="block-title">13. BANK INFORMATION</div>
+    <div class="row">
+      <div class="field col-4"><label>Bank Name</label><input type="text" name="bank_name"></div>
+      <div class="field col-4"><label>Routing #</label><input type="text" name="bank_rout" inputmode="numeric"></div>
+      <div class="field col-4"><label>Account #</label><input type="text" name="bank_acct" inputmode="numeric"></div>
+    </div>
+  </div>
+
+  <!-- SIGNATURES -->
+  <div class="block">
+    <div class="row" style="row-gap:14pt;">
+      <div class="field col-6">
+        <label>Customer's Signature</label>
+        <input type="text" name="sig_tp" style="height:34pt;">
+      </div>
+      <div class="field col-6">
+        <label>Customer's Signature</label>
+        <input type="text" name="sig_sp" style="height:34pt;">
+      </div>
+      <div class="field col-6">
+        <label>Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="sig_tp_m" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="sig_tp_d" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="sig_tp_y" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+      <div class="field col-6">
+        <label>Date</label>
+        <div class="date-trip">
+          <div class="seg"><input type="text" name="sig_sp_m" maxlength="2" inputmode="numeric"><span class="ph">MM</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="sig_sp_d" maxlength="2" inputmode="numeric"><span class="ph">DD</span></div>
+          <span class="slash">/</span>
+          <div class="seg"><input type="text" name="sig_sp_y" maxlength="4" inputmode="numeric"><span class="ph">YYYY</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fees-banner">FILLING FEES ARE DUE AT THE TIME OF SERVICE</div>
+
+  <!-- OFFICE USE ONLY -->
+  <div class="block">
+    <div class="block-title">OFFICE USE ONLY</div>
+    <ul class="office-list">
+      <li>Please attach a copy of picture I.D., Social Card, Insurance card and original W-2 forms.</li>
+      <li>No typewritten SS Cards. All typewritten W-2's must be verified.</li>
+      <li>When Claiming EIC, dependents information must be verified.</li>
+      <li>All applicants must be 18 years of age.</li>
+      <li>All Self-employed clients must submit accurate business income &amp; expenses records at the time of filing.</li>
+      <li>Additional fees for copies of tax returns must be collected before giving them to the client.</li>
+    </ul>
+  </div>
+
+  <!-- LEGAL DISCLAIMER -->
+  <div class="legal">
+    By signing this form, I hereby certify that all information provided to Qualitech Professional Services is true, correct to the best of my knowledge and belief. (I / we) Understand that any assessments, penalties, or audits by the IRS due to omissions or erroneous information provided to Qualitech (I / We) waive the right to pursue legal action against Qualitech. (I / We) will seek proper Legal representation if necessary outside Qualitech Professional Services and agree to pay all document preparation at time of Service.
+  </div>
+
+</section>
+
+</form>
+
+<script>
+/* ===== Build 6 dependent rows ===== */
+(function(){
+  const tbody = document.getElementById('depBody');
+  let html='';
+  for(let i=1;i<=6;i++){
+    html += `
+      <tr>
+        <td><input type="text" name="dep_name_${i}"></td>
+        <td>
+          <div class="date-trip">
+            <div class="seg"><input type="text" name="dep_m_${i}" maxlength="2" inputmode="numeric"></div>
+            <span class="slash">/</span>
+            <div class="seg"><input type="text" name="dep_d_${i}" maxlength="2" inputmode="numeric"></div>
+            <span class="slash">/</span>
+            <div class="seg"><input type="text" name="dep_y_${i}" maxlength="4" inputmode="numeric"></div>
+          </div>
+        </td>
+        <td><input type="text" name="dep_ssn_${i}" maxlength="11" data-mask="ssn"></td>
+        <td><input type="text" name="dep_rel_${i}"></td>
+        <td><input type="text" name="dep_mo_${i}" inputmode="numeric"></td>
+      </tr>`;
+  }
+  tbody.innerHTML = html;
+})();
+
+/* ===== Masks ===== */
+const maskPhone = v => {
+  const d = v.replace(/\D/g,'').slice(0,10);
+  if(d.length<=3) return d;
+  if(d.length<=6) return `(${d.slice(0,3)}) ${d.slice(3)}`;
+  return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+};
+const maskSSN = v => {
+  const d = v.replace(/\D/g,'').slice(0,9);
+  if(d.length<=3) return d;
+  if(d.length<=5) return `${d.slice(0,3)}-${d.slice(3)}`;
+  return `${d.slice(0,3)}-${d.slice(3,5)}-${d.slice(5)}`;
+};
+
+document.addEventListener('input', (e)=>{
+  const t = e.target;
+  if(t.matches('[data-mask="phone"]'))  { t.value = maskPhone(t.value); return; }
+  if(t.matches('[data-mask="ssn"]'))    { t.value = maskSSN(t.value); return; }
+  /* Solo dígitos para cualquier inputmode=numeric (con o sin maxlength) */
+  if(t.matches('input[inputmode="numeric"]')){
+    const max = +t.getAttribute('maxlength') || Infinity;
+    t.value = t.value.replace(/[^\d]/g,'').slice(0, max);
+    return;
+  }
+  /* Decimal (montos $): dígitos y un solo punto */
+  if(t.matches('input[inputmode="decimal"]')){
+    let v = t.value.replace(/[^\d.]/g,'');
+    const i = v.indexOf('.');
+    if(i!==-1) v = v.slice(0,i+1) + v.slice(i+1).replace(/\./g,'');
+    t.value = v;
+  }
+});
+
+/* ===== Mutually exclusive Yes/No (same name) ===== */
+document.addEventListener('change', (e)=>{
+  const t = e.target;
+  if(t.type==='checkbox' && (t.value==='yes' || t.value==='no')){
+    document.querySelectorAll(`input[type=checkbox][name="${t.name}"]`).forEach(ch=>{
+      if(ch!==t) ch.checked=false;
+    });
+  }
+  if(t.type==='checkbox' && t.name==='filing'){
+    document.querySelectorAll('input[type=checkbox][name="filing"]').forEach(ch=>{
+      if(ch!==t) ch.checked=false;
+    });
+  }
+});
+
+/* ===== Autoguardado en localStorage =====
+   Guarda en cada input. Restaura al abrir. Limpia al hacer "Limpiar". */
+const STORAGE_KEY = 'qualitech_client_profile_v1';
+
+function snapshot(){
+  const data = {};
+  document.querySelectorAll('#profileForm input').forEach(el=>{
+    if(el.type==='checkbox') data[el.name+'|'+el.value] = el.checked;
+    else if(el.name) data[el.name] = el.value;
+  });
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+}
+
+function restore(){
+  let data; try{ data = JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }
+  catch(e){ data = {}; }
+  document.querySelectorAll('#profileForm input').forEach(el=>{
+    if(el.type==='checkbox'){
+      const k = el.name+'|'+el.value;
+      if(k in data) el.checked = !!data[k];
+    } else if(el.name && el.name in data){
+      el.value = data[el.name];
+    }
+  });
+}
+
+let saveTimer;
+document.addEventListener('input',  ()=>{ clearTimeout(saveTimer); saveTimer=setTimeout(snapshot,300); });
+document.addEventListener('change', snapshot);
+
+function clearForm(){
+  if(!confirm('¿Borrar todos los datos del formulario? Esto también borra el autoguardado.')) return;
+  document.getElementById('profileForm').reset();
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+/* Restaurar y precargar año */
+restore();
+const ty = document.querySelector('input[name=tax_year]');
+if(ty && !ty.value) ty.value = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -153,7 +153,9 @@ export class FormispaComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  /** Fits canvas to exactly ONE PDF page — for forms with explicit #page-1/#page-2. */
+  /** Fits canvas to exactly ONE PDF page — for forms with explicit #page-1/#page-2.
+   *  Usa Math.min(widthScale, heightScale) para que nunca se recorte contenido:
+   *  si el HTML es más alto que la hoja, encoge uniformemente. Centra horizontalmente. */
   private addCanvasToPdfFit(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
     const ph = pdf.internal.pageSize.getHeight();
@@ -163,13 +165,14 @@ export class FormispaComponent implements OnInit, AfterViewInit, OnDestroy {
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
 
-    // Scale by width only — fills the full page width, no side margins.
-    // Math.min was causing side margins when height scale < width scale.
-    const s     = cw / imgProps.width;
+    // Escalamiento uniforme: ningún contenido se recorta nunca.
+    const s     = Math.min(cw / imgProps.width, ch / imgProps.height);
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
 
-    pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
+    // Centra horizontalmente para que el pequeño margen lateral quede balanceado.
+    const offsetX = margin + (cw - drawW) / 2;
+    pdf.addImage(imgData, 'JPEG', offsetX, margin, drawW, drawH);
   }
 
   async exportToPDF(form: NgForm) {

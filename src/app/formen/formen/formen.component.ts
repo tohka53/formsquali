@@ -198,9 +198,9 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * Fits a canvas to exactly ONE PDF page (scales by both width and height).
-   * Use this for forms with explicit #page-1 / #page-2 divs so each page
-   * maps to exactly one PDF page without internal pagination.
+   * Fits a canvas to exactly ONE PDF page using Math.min(widthScale, heightScale).
+   * Si el HTML es más alto que la hoja, encoge uniformemente para que NADA se recorte.
+   * Centra horizontalmente para que el pequeño margen lateral quede balanceado.
    */
   private addCanvasToPdfFit(pdf: jsPDF, canvas: HTMLCanvasElement, margin = 2): void {
     const pw = pdf.internal.pageSize.getWidth();
@@ -211,13 +211,13 @@ export class FormenComponent implements OnInit, AfterViewInit, OnDestroy {
     const imgData  = canvas.toDataURL('image/jpeg', 0.97);
     const imgProps = pdf.getImageProperties(imgData);
 
-    // Scale by width only — fills the full page width, no side margins.
-    // Math.min was causing side margins when height scale < width scale.
-    const s     = cw / imgProps.width;
+    // Escalamiento uniforme: ningún contenido se recorta nunca.
+    const s     = Math.min(cw / imgProps.width, ch / imgProps.height);
     const drawW = imgProps.width  * s;
     const drawH = imgProps.height * s;
 
-    pdf.addImage(imgData, 'JPEG', margin, margin, drawW, drawH);
+    const offsetX = margin + (cw - drawW) / 2;
+    pdf.addImage(imgData, 'JPEG', offsetX, margin, drawW, drawH);
   }
 
   async exportToPDF(form: NgForm) {
